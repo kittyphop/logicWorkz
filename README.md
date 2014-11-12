@@ -1,7 +1,7 @@
 # Logic Workz #
 2110215 Prog Meth Project
 
-### [select present time within 16 Nov.](http://goo.gl/zMRbu5) ###
+### [select presentation time within 16 Nov.](http://goo.gl/zMRbu5) ###
 
 ### เกณฑ์การให้คะแนน (100 = 15%) ###
 1. Completeness ความสมบูรณ์ของโปรแกรม (35)
