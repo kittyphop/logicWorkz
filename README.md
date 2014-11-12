@@ -3,6 +3,10 @@
 
 ### [select presentation time within 16 Nov.](http://goo.gl/zMRbu5) ###
 
+### UML Diagram ###
+* [Logic](https://www.draw.io/?#G0B8JzQAISsklicVpUNklBYUI3MEU)
+* [UI](https://www.draw.io/?#G0B-oFrfahmAI7eVZzWXFGYkJpbXc)
+
 ### เกณฑ์การให้คะแนน (100 = 15%) ###
 1. Completeness ความสมบูรณ์ของโปรแกรม (35)
 2. Complexity ความยากในการพัฒนา (10)
