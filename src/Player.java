@@ -23,6 +23,8 @@ public class Player {
 		this.time = time;
 		if (this.time > ConfigurableOption.MAX_TIME)
 			this.time = ConfigurableOption.MAX_TIME;
+		if (this.time <= 0)
+			setGameOver(true);
 	}
 
 	public int getScore() {
@@ -42,6 +44,8 @@ public class Player {
 	}
 
 	public boolean isGameOver() {
+		if (time <= 0)
+			setGameOver(true);
 		return gameOver;
 	}
 

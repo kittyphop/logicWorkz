@@ -1,4 +1,4 @@
-public class Probe {
+public class Probe implements ICollectible {
 
 	private String letter;
 
@@ -8,6 +8,14 @@ public class Probe {
 
 	public String getLetter() {
 		return letter;
+	}
+
+	public void collect(Player player) {
+		player.collectNewProbe(this);
+	}
+
+	public void update() {
+
 	}
 
 }
