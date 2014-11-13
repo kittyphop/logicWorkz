@@ -1,7 +1,6 @@
 package logic;
 
 import java.awt.Graphics2D;
-
 import config.ConfigurableOption;
 
 public class Monster extends RenderableObject {
@@ -22,6 +21,7 @@ public class Monster extends RenderableObject {
 		if (movingDelayCounter > 0)
 			return;
 		x--;
+		movingDelayCounter = ConfigurableOption.MOVING_DELAY;
 	}
 
 	public void render(Graphics2D g2) {

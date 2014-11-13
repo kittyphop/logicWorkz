@@ -1,7 +1,6 @@
 package logic;
 
 import java.awt.Graphics2D;
-
 import config.ConfigurableOption;
 
 public class Probe extends RenderableObject implements ICollectible {
@@ -30,6 +29,7 @@ public class Probe extends RenderableObject implements ICollectible {
 		if (movingDelayCounter > 0)
 			return;
 		x--;
+		movingDelayCounter = ConfigurableOption.MOVING_DELAY;
 	}
 
 	public void render(Graphics2D g2) {

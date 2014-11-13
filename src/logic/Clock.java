@@ -18,6 +18,7 @@ public class Clock extends RenderableObject implements ICollectible {
 		if (movingDelayCounter > 0)
 			return;
 		x--;
+		movingDelayCounter = ConfigurableOption.MOVING_DELAY;
 	}
 
 	public void collect(Player player) {

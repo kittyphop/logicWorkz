@@ -15,7 +15,7 @@ public class Player {
 		level = 1;
 		gameOver = false;
 		pause = false;
-		currentGun = new NormalGun();
+		currentGun = new NormalGun(0, 0);
 		collectedProbe = new boolean[4];
 	}
 

@@ -17,6 +17,8 @@ public class ConfigurableOption {
 	public static final int MAX_TIME = 300;
 	public static final int MOVING_DELAY = 5;
 	public static final int CLOCK_TIME = 10;
+	public static final int MIN_NEW_MONSTER = 100;
+	public static final int MAX_NEW_MONSTER = 200;
 
 	public static Dimension getDialogDimension() {
 		return dialogDimension;

@@ -1,7 +1,6 @@
 package logic;
 
 import java.awt.Graphics2D;
-
 import config.ConfigurableOption;
 
 public class VddBullet extends Bullet {
@@ -18,6 +17,7 @@ public class VddBullet extends Bullet {
 		if (movingDelayCounter > 0)
 			return;
 		x++;
+		movingDelayCounter = ConfigurableOption.MOVING_DELAY;
 	}
 
 	public void hit(Monster monster) {
