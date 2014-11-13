@@ -7,9 +7,17 @@ import javax.swing.JPanel;
 import config.ConfigurableOption;
 
 public class GamePanel extends JPanel{
+	
+	PlayPanel playPanel;
+	
 	public GamePanel()
 	{
 		setPreferredSize(ConfigurableOption.getWindowDimension());
+		setLayout(null);
+		
+		playPanel = new PlayPanel();
+		playPanel.setBounds(15, 95, 717, 356);
+		add(playPanel);
 	}
 	
 	public void paintComponent(Graphics g)
