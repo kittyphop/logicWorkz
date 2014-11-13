@@ -21,8 +21,8 @@ public class DrawingUtility {
 
 	}
 
-	private static Image small_icon = getIcon("res/small_icon.png");
-	private static Image large_icon = getIcon("res/large_icon.png");
+	private static Image small_icon = getIcon("res/img/small_icon.png");
+	private static Image large_icon = getIcon("res/img/large_icon.png");
 	public static List<Image> icons;
 	
 	static {
@@ -42,8 +42,8 @@ public class DrawingUtility {
 		}
 	}
 	
-	//public static BufferedImage menu_background = getImage("res/menu_background.png");
-	public static BufferedImage menu_background = getImage("res/temp.png");
+	//public static BufferedImage menu_background = getImage("res/img/menu_background.png");
+	public static BufferedImage menu_background = getImage("res/img/temp.png");
 	
-	public static BufferedImage game_background = getImage("res/game_background.png");
+	public static BufferedImage game_background = getImage("res/img/game_background.png");
 }

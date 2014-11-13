@@ -1,4 +1,5 @@
-package ui;
+package config;
+
 import java.awt.Dimension;
 
 public class ConfigurableOption {

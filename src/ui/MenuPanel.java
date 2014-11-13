@@ -1,4 +1,5 @@
 package ui;
+import config.ConfigurableOption;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Vector;

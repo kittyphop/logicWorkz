@@ -1,4 +1,5 @@
 package ui;
+import config.ConfigurableOption;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
