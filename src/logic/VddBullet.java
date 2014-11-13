@@ -4,32 +4,24 @@ import java.awt.Graphics2D;
 
 import config.ConfigurableOption;
 
-public class Probe extends RenderableObject implements ICollectible {
+public class VddBullet extends Bullet {
 
-	private String letter;
-
-	public Probe(int x, int y, String letter) {
-		this.x = x;
-		this.y = y;
+	public VddBullet(int x, int y) {
+		super(x, y);
 		this.z = (int) Math.random();
 		movingDelayCounter = ConfigurableOption.MOVING_DELAY;
 		destroyed = false;
-		this.letter = letter;
-	}
-
-	public String getLetter() {
-		return letter;
-	}
-
-	public void collect(Player player) {
-		player.collectNewProbe(this);
 	}
 
 	public void move() {
 		movingDelayCounter--;
 		if (movingDelayCounter > 0)
 			return;
-		x--;
+		x++;
+	}
+
+	public void hit(Monster monster) {
+
 	}
 
 	public void render(Graphics2D g2) {

@@ -4,25 +4,17 @@ import java.awt.Graphics2D;
 
 import config.ConfigurableOption;
 
-public class Probe extends RenderableObject implements ICollectible {
+public class Monster extends RenderableObject {
 
-	private String letter;
+	protected int life, reward, firingDelayCounter;
 
-	public Probe(int x, int y, String letter) {
+	public Monster(int x, int y, int life) {
 		this.x = x;
 		this.y = y;
 		this.z = (int) Math.random();
 		movingDelayCounter = ConfigurableOption.MOVING_DELAY;
 		destroyed = false;
-		this.letter = letter;
-	}
-
-	public String getLetter() {
-		return letter;
-	}
-
-	public void collect(Player player) {
-		player.collectNewProbe(this);
+		this.life = life;
 	}
 
 	public void move() {

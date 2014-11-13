@@ -1,28 +1,16 @@
 package logic;
 
 import java.awt.Graphics2D;
-
 import config.ConfigurableOption;
 
-public class Probe extends RenderableObject implements ICollectible {
+public class Clock extends RenderableObject implements ICollectible {
 
-	private String letter;
-
-	public Probe(int x, int y, String letter) {
+	public Clock(int x, int y) {
 		this.x = x;
 		this.y = y;
 		this.z = (int) Math.random();
 		movingDelayCounter = ConfigurableOption.MOVING_DELAY;
 		destroyed = false;
-		this.letter = letter;
-	}
-
-	public String getLetter() {
-		return letter;
-	}
-
-	public void collect(Player player) {
-		player.collectNewProbe(this);
 	}
 
 	public void move() {
@@ -30,6 +18,11 @@ public class Probe extends RenderableObject implements ICollectible {
 		if (movingDelayCounter > 0)
 			return;
 		x--;
+	}
+
+	public void collect(Player player) {
+		destroyed = true;
+		player.setTime(player.getTime() + ConfigurableOption.CLOCK_TIME);
 	}
 
 	public void render(Graphics2D g2) {
