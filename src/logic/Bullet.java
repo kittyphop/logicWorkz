@@ -1,24 +1,25 @@
 package logic;
 
 import java.awt.Graphics2D;
+
 import config.ConfigurableOption;
 
-public class Gun extends RenderableObject {
+public class Bullet extends RenderableObject {
 
-	public Gun(int x, int y) {
+	protected int power;
+
+	public Bullet(int x, int y) {
 		this.x = x;
 		this.y = y;
-		this.z = Integer.MAX_VALUE;
+		this.z = (int) Math.random();
 		movingDelayCounter = ConfigurableOption.MOVING_DELAY;
 		destroyed = false;
 	}
 
-	public void shoot() {
-		// new bullet
+	public void move() {
 	}
 
-	public void move() {
-		// check move direction
+	public void hit() {
 	}
 
 	public void render(Graphics2D g2) {
