@@ -1,3 +1,5 @@
+package logic;
+
 public class Probe implements ICollectible {
 
 	private String letter;
