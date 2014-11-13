@@ -1,9 +1,10 @@
 package ui;
-import config.ConfigurableOption;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
+
+import config.ConfigurableOption;
 
 public class GamePanel extends JPanel{
 	public GamePanel()

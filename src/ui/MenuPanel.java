@@ -1,11 +1,16 @@
 package ui;
+<<<<<<< HEAD
 import config.ConfigurableOption;
 
+=======
+>>>>>>> 1455fdd06481b2e9061b8f0c4c6debd26172c12f
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Vector;
 
 import javax.swing.*;
+
+import config.ConfigurableOption;
 
 public class MenuPanel extends JPanel {
 
