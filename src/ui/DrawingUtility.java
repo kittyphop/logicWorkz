@@ -43,7 +43,6 @@ public class DrawingUtility {
 	}
 	
 	//public static BufferedImage menu_background = getImage("res/img/menu_background.png");
-	public static BufferedImage menu_background = getImage("res/img/temp.png");
-	
+	public static BufferedImage menu_background = getImage("res/img/menu_temp.png");
 	public static BufferedImage game_background = getImage("res/img/game_background.png");
 }

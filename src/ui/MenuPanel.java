@@ -1,5 +1,6 @@
 package ui;
 import config.ConfigurableOption;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Vector;
@@ -10,7 +11,7 @@ public class MenuPanel extends JPanel {
 
 	JButton newGameButton, minigameButton, howToPlayButton, creditButton,
 			resetButton, closeButton;
-	JList highscoreList; // JScrollPane ?
+	JList highscoreList;
 	JScrollPane highscorePane;
 
 	public MenuPanel(final MenuDialog menuDialog) {
@@ -20,17 +21,35 @@ public class MenuPanel extends JPanel {
 		// new game button
 		newGameButton = new JButton("New Game");
 		newGameButton.setBounds(380, 28, 75, 23);
-		// add listener
+		newGameButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				menuDialog.setVisible(false);
+			}
+		});
 
 		// minigame button
 		minigameButton = new JButton("Minigame");
 		minigameButton.setBounds(380, 93, 75, 23);
-		// add listener
+		minigameButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showMessageDialog(null, "minigame", "",JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
 
 		// reset button
 		resetButton = new JButton("Reset");
 		resetButton.setBounds(380, 172, 75, 23);
-		// add listener
+		resetButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showMessageDialog(null, "reset", "",JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
 
 		// credit button
 		creditButton = new JButton("Credit");

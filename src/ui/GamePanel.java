@@ -15,5 +15,5 @@ public class GamePanel extends JPanel{
 	{
 		Graphics2D g2 = (Graphics2D) g;
 		g2.drawImage(DrawingUtility.game_background, null, 0, 0);
-	}
+	}	
 }
