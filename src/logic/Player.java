@@ -2,7 +2,6 @@ package logic;
 
 import config.ConfigurableOption;
 
-
 public class Player {
 
 	private int time, score, level;
