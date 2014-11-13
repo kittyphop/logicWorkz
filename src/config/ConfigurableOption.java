@@ -8,11 +8,15 @@ public class ConfigurableOption {
 	private static int DIALOG_HEIGHT = 411;
 	private static int WINDOW_WIDTH = 894;
 	private static int WINDOW_HEIGHT = 620;
+	private static int PLAYPANEL_WIDTH = 717;
+	private static int PLAYPANEL_HEIGHT = 356;
 
 	private static Dimension dialogDimension = new Dimension(DIALOG_WIDTH,
 			DIALOG_HEIGHT);
 	private static Dimension windowDimension = new Dimension(WINDOW_WIDTH,
 			WINDOW_HEIGHT);
+	private static Dimension playPanelDimension = new Dimension(PLAYPANEL_WIDTH,
+			PLAYPANEL_HEIGHT);
 
 	public static final int MAX_TIME = 300;
 	public static final int MOVING_DELAY = 5;
@@ -26,6 +30,10 @@ public class ConfigurableOption {
 
 	public static Dimension getWindowDimension() {
 		return windowDimension;
+	}
+	
+	public static Dimension getPlayPanelDimension() {
+		return playPanelDimension;
 	}
 
 }

@@ -16,8 +16,6 @@ public class GameWindow extends JFrame {
 		setIconImages(DrawingUtility.icons);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		
-		
 		setResizable(false);
 		pack();
 		setVisible(true);
