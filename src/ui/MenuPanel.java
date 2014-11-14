@@ -20,7 +20,7 @@ public class MenuPanel extends JPanel {
 
 		// new game button
 		newGameButton = new JButton("New Game");
-		newGameButton.setBounds(380, 28, 75, 23);
+		newGameButton.setBounds(348, 28, 107, 23);
 		newGameButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -31,7 +31,7 @@ public class MenuPanel extends JPanel {
 
 		// minigame button
 		minigameButton = new JButton("Minigame");
-		minigameButton.setBounds(380, 93, 75, 23);
+		minigameButton.setBounds(348, 93, 107, 23);
 		minigameButton.addActionListener(new ActionListener() {
 			
 			@Override
