@@ -33,7 +33,7 @@ public class CreditPanel extends JPanel{
 	
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
-		g2.drawImage(DrawingUtility.menu_background, null, 0, 0);
+		g2.drawImage(DrawingUtility.credit_background, null, 0, 0);
 
 	}
 }

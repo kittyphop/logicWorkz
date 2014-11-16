@@ -24,7 +24,7 @@ public class DrawingUtility {
 
 	private static Image small_icon = getIcon("res/img/small_icon.png");
 	private static Image large_icon = getIcon("res/img/large_icon.png");
-	public static List<Image> icons;
+	public static final List<Image> icons;
 
 	static {
 		icons = new ArrayList<Image>();
@@ -43,20 +43,19 @@ public class DrawingUtility {
 		}
 	}
 
-	// public static BufferedImage menu_background =
-	// getImage("res/img/menu_background.png");
-	public static BufferedImage menu_background = getImage("res/img/menu_temp.png");
-	public static BufferedImage game_background = getImage("res/img/game_background.png");
-	public static BufferedImage play_panel = getImage("res/img/play_panel.png");
+	public static final BufferedImage menu_background = getImage("res/img/menu_temp.png");
+	public static final BufferedImage game_background = getImage("res/img/game_background.png");
+	public static final BufferedImage credit_background = getImage("res/img/credit_background.png");
+	public static final BufferedImage play_panel = getImage("res/img/play_panel.png");
 
-	public static BufferedImage clock = getImage("res/img/clock.png");
-	public static BufferedImage probeK = getImage("res/img/probe_k.png");
-	public static BufferedImage probeM = getImage("res/img/probe_m.png");
-	public static BufferedImage probeA = getImage("res/img/probe_a.png");
-	public static BufferedImage probeP = getImage("res/img/probe_p.png");
-	public static BufferedImage gndBullet = getImage("res/img/gnd.png");
-	public static BufferedImage vddBullet = getImage("res/img/vdd.png");
-	public static BufferedImage binarySwitch = getImage("res/img/binary_switch.png");
-	public static BufferedImage pushButton = getImage("res.img/push_button.png");
-	public static BufferedImage hexKeyboard = getImage("res/img/hex_keyboard.png");
+	public static final BufferedImage clock = getImage("res/img/clock.png");
+	public static final BufferedImage probeK = getImage("res/img/probe_k.png");
+	public static final BufferedImage probeM = getImage("res/img/probe_m.png");
+	public static final BufferedImage probeA = getImage("res/img/probe_a.png");
+	public static final BufferedImage probeP = getImage("res/img/probe_p.png");
+	public static final BufferedImage gndBullet = getImage("res/img/gnd.png");
+	public static final BufferedImage vddBullet = getImage("res/img/vdd.png");
+	public static final BufferedImage binarySwitch = getImage("res/img/binary_switch.png");
+	public static final BufferedImage pushButton = getImage("res.img/push_button.png");
+	public static final BufferedImage hexKeyboard = getImage("res/img/hex_keyboard.png");
 }
