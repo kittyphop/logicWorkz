@@ -106,6 +106,8 @@ public class GamePanel extends JPanel {
 		g2.drawImage(DrawingUtility.game_background, null, 0, 0);
 		playPanel.paintComponent(g);
 		
+		/*
+		
 		//code for draw current gun
 		
 		Gun currentGun = logic.getPlayer().getCurrentGun();
@@ -139,23 +141,28 @@ public class GamePanel extends JPanel {
 		}
 		
 		// code for draw time counter
+		...
 		
 		//code for draw level mission
+		
 		int level = logic.getPlayer().getLevel();
+		...
 		
 		
 		//code for draw kmap
 		
-		/*
 		if(gameLogic.kmapTime()){
 			g2.setComposite(transcluentWhite);
 			g2.setColor(Color.WHITE);
 			g2.fillRect(0,0,894,620);
 			g2.setComposite(opaque);
 		 }
-		 */
+		 
+		
+		*/
 		
 		//test
+		
 		if(InputUtility.getKeyPressed(KeyEvent.VK_SPACE))
 		{
 			g2.setComposite(transcluentWhite);

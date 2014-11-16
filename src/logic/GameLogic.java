@@ -14,7 +14,7 @@ public class GameLogic {
 
 	public GameLogic() {
 		player = new Player(100, ConfigurableOption.PLAYPANEL_HEIGHT / 2);
-		list.clear();
+		list = new ArrayList<IRenderable>();
 		list.add(player.getCurrentGun());
 		setCounter();
 	}

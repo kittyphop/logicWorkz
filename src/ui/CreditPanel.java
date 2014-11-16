@@ -16,9 +16,11 @@ public class CreditPanel extends JPanel{
 	public CreditPanel()
 	{
 		setPreferredSize(ConfigurableOption.DIALOG_DIMENSION);
+		setLayout(null);
 		
 		// back button
 		backButton = new JButton("Back");
+		backButton.setBounds(203, 367, 76, 23);
 		backButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -27,7 +29,6 @@ public class CreditPanel extends JPanel{
 			}
 		});
 		
-		add(new JLabel("credit panel"));
 		add(backButton);
 	}
 	

@@ -28,8 +28,8 @@ public class WindowManager {
 
 	public static void runGame(GameLogic logic) {
 		
-		WindowManager.logic = logic;
-		WindowManager.logic.start();
+		//WindowManager.logic = logic;
+		//WindowManager.logic.start();
 		
 		windowToGame();
 		gameWindow.setLocationRelativeTo(null);
