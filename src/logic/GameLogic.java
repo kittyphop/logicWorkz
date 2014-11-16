@@ -13,8 +13,7 @@ public class GameLogic {
 	private int newMonsterDelayCounter;
 
 	public GameLogic() {
-		Dimension d = ConfigurableOption.getPlayPanelDimension();
-		player = new Player(100, d.height / 2);
+		player = new Player(100, ConfigurableOption.PLAYPANEL_HEIGHT / 2);
 		list.clear();
 		list.add(player.getCurrentGun());
 		setCounter();
