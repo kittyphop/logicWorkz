@@ -1,15 +1,17 @@
 package logic;
 
-import java.awt.Graphics2D;
+import ui.DrawingUtility;
 import config.ConfigurableOption;
 
 public class VddBullet extends Bullet {
 
-	public VddBullet(int x, int y) {
+	public VddBullet(int x, int y, boolean special) {
 		super(x, y);
-		this.z = (int) Math.random();
-		movingDelayCounter = ConfigurableOption.MOVING_DELAY;
-		destroyed = false;
+		if (special)
+			power = ConfigurableOption.VDD_SPECIAL_POWER;
+		else
+			power = ConfigurableOption.VDD_POWER;
+		img = DrawingUtility.vddBullet;
 	}
 
 	public void move() {
@@ -20,11 +22,15 @@ public class VddBullet extends Bullet {
 		movingDelayCounter = ConfigurableOption.MOVING_DELAY;
 	}
 
-	public void hit(Monster monster) {
-
+	public Rectangle rectify() {
+		return new Rectangle(x, y, img.getWidth(), img.getHeight());
 	}
 
-	public void render(Graphics2D g2) {
+	public boolean isOverlap(Monster monster) {
+		return rectify().isOverlap(monster.rectify());
+	}
+
+	public void hit(Monster monster) {
 
 	}
 

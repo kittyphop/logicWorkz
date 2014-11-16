@@ -1,16 +1,13 @@
 package logic;
 
-import java.awt.Graphics2D;
+import ui.DrawingUtility;
 import config.ConfigurableOption;
 
 public class Clock extends RenderableObject implements ICollectible {
 
 	public Clock(int x, int y) {
-		this.x = x;
-		this.y = y;
-		this.z = (int) Math.random();
-		movingDelayCounter = ConfigurableOption.MOVING_DELAY;
-		destroyed = false;
+		super(x, y);
+		img = DrawingUtility.clock;
 	}
 
 	public void move() {
@@ -26,8 +23,12 @@ public class Clock extends RenderableObject implements ICollectible {
 		player.setTime(player.getTime() + ConfigurableOption.CLOCK_TIME);
 	}
 
-	public void render(Graphics2D g2) {
+	public Rectangle rectify() {
+		return new Rectangle(x, y, img.getWidth() - 15, img.getHeight());
+	}
 
+	public boolean isOverlap(Player player) {
+		return rectify().isOverlap(player.getCurrentGun().rectify());
 	}
 
 }

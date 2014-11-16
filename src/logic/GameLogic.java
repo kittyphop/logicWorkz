@@ -1,6 +1,9 @@
 package logic;
 
+import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.Comparator;
+
 import config.ConfigurableOption;
 
 public class GameLogic {
@@ -10,17 +13,33 @@ public class GameLogic {
 	private int newMonsterDelayCounter;
 
 	public GameLogic() {
-		player = new Player();
+		Dimension d = ConfigurableOption.getPlayPanelDimension();
+		player = new Player(100, d.height / 2);
 		list.clear();
+		list.add(player.getCurrentGun());
 		setCounter();
 	}
 
 	public void update() {
+		// check if pause
+
+		// check if player move or shoot and gun change
+
 		// delete destroyed object
 		for (IRenderable i : list) {
 			if (i.isDestroyed())
 				list.remove(i);
 		}
+
+		// sort objects by z
+		list.sort(new Comparator<IRenderable>() {
+			public int compare(IRenderable arg0, IRenderable arg1) {
+				if (arg0.getZ() < arg1.getZ())
+					return -1;
+				return 1;
+			}
+		});
+
 		// move
 		for (IRenderable i : list) {
 			i.move();
@@ -36,17 +55,19 @@ public class GameLogic {
 		// check collect/hit
 		for (IRenderable i : list) {
 			// check collectible object
-			if (i instanceof ICollectible) // and i.canCollect(player)
+			if (i instanceof ICollectible
+					&& ((ICollectible) i).isOverlap(player))
 				((ICollectible) i).collect(player);
 
 			// check GND hits player
-			if (i instanceof GndBullet) // and i.isHit(player)
+			if (i instanceof GndBullet && ((GndBullet) i).isOverlap(player))
 				((GndBullet) i).hit(player);
 
 			// check VDD hits monster
 			if (i instanceof VddBullet) {
 				for (IRenderable j : list) {
-					if (j instanceof Monster) // and i.isHit(j)
+					if (j instanceof Monster
+							&& ((VddBullet) i).isOverlap((Monster) j))
 						((VddBullet) i).hit((Monster) j);
 				}
 			}

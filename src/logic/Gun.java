@@ -1,27 +1,28 @@
 package logic;
 
-import java.awt.Graphics2D;
-import config.ConfigurableOption;
+public abstract class Gun extends RenderableObject {
 
-public class Gun extends RenderableObject {
+	protected int bullet;
 
-	public Gun(int x, int y) {
-		this.x = x;
-		this.y = y;
-		this.z = Integer.MAX_VALUE;
-		movingDelayCounter = ConfigurableOption.MOVING_DELAY;
-		destroyed = false;
+	public Gun(int x, int y, int bullet) {
+		super(x, y);
+		this.bullet = bullet;
 	}
 
 	public void shoot() {
-		// new bullet
+		bullet--;
+		if (bullet < 0)
+			bullet = 0;
+	}
+
+	public boolean canShoot() {
+		return bullet > 0;
 	}
 
 	public void move() {
-		// check move direction
+		// implement in GameLogic
 	}
 
-	public void render(Graphics2D g2) {
-	}
+	public abstract Rectangle rectify();
 
 }

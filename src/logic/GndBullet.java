@@ -1,15 +1,14 @@
 package logic;
 
-import java.awt.Graphics2D;
+import ui.DrawingUtility;
 import config.ConfigurableOption;
 
 public class GndBullet extends Bullet {
 
 	public GndBullet(int x, int y) {
 		super(x, y);
-		this.z = (int) Math.random();
-		movingDelayCounter = ConfigurableOption.MOVING_DELAY;
-		destroyed = false;
+		power = ConfigurableOption.GND_POWER;
+		img = DrawingUtility.gndBullet;
 	}
 
 	public void move() {
@@ -20,12 +19,16 @@ public class GndBullet extends Bullet {
 		movingDelayCounter = ConfigurableOption.MOVING_DELAY;
 	}
 
-	public void hit(Player player) {
-		player.setTime(player.getTime() - power);
+	public Rectangle rectify() {
+		return new Rectangle(x, y, img.getWidth(), img.getHeight());
 	}
 
-	public void render(Graphics2D g2) {
+	public boolean isOverlap(Player player) {
+		return rectify().isOverlap(player.getCurrentGun().rectify());
+	}
 
+	public void hit(Player player) {
+		player.setTime(player.getTime() - power);
 	}
 
 }

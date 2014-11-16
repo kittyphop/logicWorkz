@@ -2,11 +2,11 @@ package logic;
 
 import ui.DrawingUtility;
 
-public class NormalGun extends Gun {
+public class SpecialGunA extends Gun {
 
-	public NormalGun(int x, int y, int bullet) {
+	public SpecialGunA(int x, int y, int bullet) {
 		super(x, y, bullet);
-		img = DrawingUtility.binarySwitch;
+		img = DrawingUtility.pushButton;
 	}
 
 	public Rectangle rectify() {

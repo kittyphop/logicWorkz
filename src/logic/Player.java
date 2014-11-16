@@ -9,13 +9,13 @@ public class Player {
 	private Gun currentGun;
 	private boolean[] collectedProbe;
 
-	public Player() {
+	public Player(int x, int y) {
 		time = ConfigurableOption.MAX_TIME;
 		score = 0;
 		level = 1;
 		gameOver = false;
 		pause = false;
-		currentGun = new NormalGun(0, 0);
+		currentGun = new NormalGun(x, y, 0);
 		collectedProbe = new boolean[4];
 	}
 
