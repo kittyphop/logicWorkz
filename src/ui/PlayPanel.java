@@ -5,13 +5,16 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import logic.GameLogic;
+import logic.IRenderable;
 import config.ConfigurableOption;
 
 public class PlayPanel extends JPanel {
 
-	// IRenderableHolder
+	GameLogic logic;
 
-	public PlayPanel() {
+	public PlayPanel(GameLogic logic) {
+		this.logic = logic;
 		setPreferredSize(ConfigurableOption.PLAYPANEL_DIMENSION);
 	}
 
@@ -21,5 +24,10 @@ public class PlayPanel extends JPanel {
 				ConfigurableOption.PLAYPANEL_X, ConfigurableOption.PLAYPANEL_Y);
 
 		// for each object in IRenderableHolder : object.render(g); sort by z
+		
+		for(IRenderable i : logic.getList())
+		{
+			i.render();
+		}
 	}
 }

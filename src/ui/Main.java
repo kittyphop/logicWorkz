@@ -2,18 +2,17 @@ package ui;
 
 import javax.swing.UIManager;
 
+import logic.GameLogic;
 import config.InputUtility;
 
 public class Main {
 	public static void main(String[] args) {
-		
-		WindowManager.runGame();
+
+		WindowManager.runGame(new GameLogic());
 		
 		/*
 			GameLogic logic = new GameLogic();
-			Windowmanager window = new WindowManager(logic);
-			
-			logic.start();
+			WindowManager.runGame(logic);
 			
 			while(true)
 			{

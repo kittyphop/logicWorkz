@@ -2,12 +2,16 @@ package ui;
 
 import javax.swing.*;
 
+import logic.GameLogic;
+
 public class WindowManager {
 
 	public static final MenuDialog menuDialog;
 	private static JPanel currentDialogPanel;
 	public static final GameWindow gameWindow;
 	private static JPanel currentWindowPanel;
+	
+	private static GameLogic logic;
 
 	static {
 
@@ -21,7 +25,10 @@ public class WindowManager {
 		
 	}
 
-	public static void runGame() {
+	public static void runGame(GameLogic logic) {
+		
+		WindowManager.logic = logic;
+		WindowManager.logic.start();
 		
 		windowToGame();
 		gameWindow.setLocationRelativeTo(null);
@@ -72,7 +79,7 @@ public class WindowManager {
 	public static void windowToGame() {
 		
 		gameWindow.getContentPane().removeAll();
-		currentWindowPanel = new GamePanel();
+		currentWindowPanel = new GamePanel(logic);
 		gameWindow.getContentPane().add(currentWindowPanel);
 		gameWindow.getContentPane().validate();
 		gameWindow.pack();

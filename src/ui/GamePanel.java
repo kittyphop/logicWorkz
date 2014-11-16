@@ -12,6 +12,7 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 
+import logic.GameLogic;
 import config.ConfigurableOption;
 import config.InputUtility;
 
@@ -21,15 +22,19 @@ public class GamePanel extends JPanel {
 			.getInstance(AlphaComposite.SRC_OVER, 0.7f);
 	protected static final AlphaComposite opaque = AlphaComposite.getInstance(
 			AlphaComposite.SRC_OVER, 1);
-	
-	PlayPanel playPanel;
 
-	public GamePanel() {
+	PlayPanel playPanel;
+	GameLogic logic;
+
+	public GamePanel(GameLogic logic) {
+
+		this.logic = logic;
+
 		setPreferredSize(ConfigurableOption.WINDOW_DIMENSION);
 		setLayout(null);
 
-		playPanel = new PlayPanel();
-		//playPanel.setBounds(15, 95, 717, 356);
+		playPanel = new PlayPanel(logic);
+		// playPanel.setBounds(15, 95, 717, 356);
 		add(playPanel);
 
 		addKeyListener(new KeyListener() {
@@ -54,31 +59,30 @@ public class GamePanel extends JPanel {
 		});
 
 		addMouseListener(new MouseListener() {
-			
+
 			public void mouseReleased(MouseEvent arg0) {
 				InputUtility.setMouseLeftDown(false);
-				
+
 			}
-			
+
 			public void mousePressed(MouseEvent arg0) {
-				if(arg0.getButton()==1)
-				{
+				if (arg0.getButton() == 1) {
 					InputUtility.setMouseLeftDown(true);
 				}
 			}
-			
+
 			public void mouseExited(MouseEvent arg0) {
 				InputUtility.setMouseOnScreen(false);
 			}
-			
+
 			public void mouseEntered(MouseEvent arg0) {
 				InputUtility.setMouseOnScreen(true);
 			}
-			
+
 			public void mouseClicked(MouseEvent arg0) {
 			}
 		});
-		
+
 		addMouseMotionListener(new MouseMotionListener() {
 
 			public void mouseMoved(MouseEvent e) {
@@ -101,10 +105,48 @@ public class GamePanel extends JPanel {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.drawImage(DrawingUtility.game_background, null, 0, 0);
 		playPanel.paintComponent(g);
-		/*
-		//code for repaint current gun and score bar
+		
+		//code for draw current gun
+		
+		Gun currentGun = logic.getPlayer().getCurrentGun();
+		BufferedImage gun_img;
+		if(currentGun instanceOf GunA)
+			gun_img = DrawingUtility.binary_switch;
+		else if(currentGun instanceOf GunB)
+			gun_img = DrawingUtility.push_button;
+		else
+			gun_img = DrawingUtility.hex_keyboard;
+		
+		g2.drawImage(gun_img,null,300,200);							// edit x and y here
+		
+		//code for draw score
+		
+		int score = logic.getPlayer().getScore();
+		g2.drawString(""+score, 400, 50);							// edit x and y here
+		
+		//code for draw collected probe
+		
+		boolean[] probe = logic.getPlayer().getProbe();
+
+		for(int i=0;i<=3;i++)
+		{
+			int isCollect = 0;
+			if(probe[i])
+				isCollect = 1;
+			BufferedImage probe_img = DrawingUtility.probe[i][isCollect];
+			g2.drawImage(probe_img, null, 350, 150 + 50*i);			// edit x and y here
+				
+		}
+		
+		// code for draw time counter
+		
+		//code for draw level mission
+		int level = logic.getPlayer().getLevel();
+		
 		
 		//code for draw kmap
+		
+		/*
 		if(gameLogic.kmapTime()){
 			g2.setComposite(transcluentWhite);
 			g2.setColor(Color.WHITE);
