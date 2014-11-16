@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 
 public interface IRenderable {
 
+	public int getX();
+
 	public int getZ();
 
 	public boolean isDestroyed();
@@ -13,6 +15,8 @@ public interface IRenderable {
 	public void move();
 
 	public Rectangle rectify();
+
+	public boolean isOverlap(IRenderable o);
 
 	public void render(Graphics2D g2);
 

@@ -1,10 +1,13 @@
 package logic;
 
-import java.awt.Dimension;
-import java.util.ArrayList;
-import java.util.Comparator;
+import java.awt.event.KeyEvent;
+import java.util.*;
 
-import config.ConfigurableOption;
+import ui.DrawingUtility;
+import logic.bullet.*;
+import logic.collectible.ICollectible;
+import logic.monster.*;
+import config.*;
 
 public class GameLogic {
 
@@ -13,20 +16,44 @@ public class GameLogic {
 	private int newMonsterDelayCounter;
 
 	public GameLogic() {
-		player = new Player(100, ConfigurableOption.PLAYPANEL_HEIGHT / 2);
-		list.clear();
+		player = new Player(100, 50);// ConfigurableOption.PLAYPANEL_HEIGHT /
+										// 2);
+		list = new ArrayList<IRenderable>();
 		list.add(player.getCurrentGun());
 		setCounter();
 	}
 
-	public void update() {
-		// check if pause
+	public ArrayList<IRenderable> getList() {
+		return list;
+	}
 
-		// check if player move or shoot and gun change
+	public void update() {
+		if (player.isGameOver())
+			return;
+
+		if (InputUtility.getKeyTriggered(KeyEvent.VK_ENTER))
+			player.setPause(!player.isPause());
+
+		// check if pause
+		if (player.isPause())
+			return;
+
+		// check if player move or shoot
+		if (InputUtility.getKeyPressed(KeyEvent.VK_LEFT))
+			player.getCurrentGun().x--;
+		if (InputUtility.getKeyPressed(KeyEvent.VK_RIGHT))
+			player.getCurrentGun().x++;
+		if (InputUtility.getKeyPressed(KeyEvent.VK_UP))
+			player.getCurrentGun().y--;
+		if (InputUtility.getKeyPressed(KeyEvent.VK_DOWN))
+			player.getCurrentGun().y++;
+		if (InputUtility.getKeyPressed(KeyEvent.VK_SPACE))
+			player.getCurrentGun().shoot(player, list);
 
 		// delete destroyed object
-		for (IRenderable i : list) {
-			if (i.isDestroyed())
+		for (int i = 0; i < list.size(); i++) {
+			IRenderable o = list.get(i);
+			if (o.isDestroyed() || o.getX() < -100)
 				list.remove(i);
 		}
 
@@ -40,8 +67,11 @@ public class GameLogic {
 		});
 
 		// move
-		for (IRenderable i : list) {
-			i.move();
+		for (int i = 0; i < list.size(); i++) {
+			IRenderable o = list.get(i);
+			o.move();
+			if (o instanceof Monster)
+				((Monster) o).shoot(list);
 		}
 
 		// new monster
@@ -55,26 +85,29 @@ public class GameLogic {
 		for (IRenderable i : list) {
 			// check collectible object
 			if (i instanceof ICollectible
-					&& ((ICollectible) i).isOverlap(player))
+					&& i.isOverlap(player.getCurrentGun()))
 				((ICollectible) i).collect(player);
 
 			// check GND hits player
-			if (i instanceof GndBullet && ((GndBullet) i).isOverlap(player))
-				((GndBullet) i).hit(player);
+			if (i instanceof GndBullet && i.isOverlap(player.getCurrentGun())) {
+				((GndBullet) i).destroyed = true;
+				player.isHit(((GndBullet) i).getPower());
+			}
 
 			// check VDD hits monster
 			if (i instanceof VddBullet) {
 				for (IRenderable j : list) {
-					if (j instanceof Monster
-							&& ((VddBullet) i).isOverlap((Monster) j))
-						((VddBullet) i).hit((Monster) j);
+					if (j instanceof Monster && i.isOverlap(j)) {
+						((VddBullet) i).destroyed = true;
+						((Monster) j).isHit(((GndBullet) i).getPower());
+					}
 				}
 			}
 
 			// check monster hits player
-			if (i instanceof Monster) {
-				// if monster.isHit(player)
-				// player.hitByMonster(monster);
+			if (i instanceof Monster && i.isOverlap(player.getCurrentGun())) {
+				((Monster) i).isHit(ConfigurableOption.ATTACK);
+				player.isHit(ConfigurableOption.ATTACK);
 			}
 		}
 	}
@@ -85,9 +118,77 @@ public class GameLogic {
 				+ ConfigurableOption.MIN_NEW_MONSTER;
 	}
 
+	public int random(int a, int b) {
+		return (int) (Math.random() * (b - a + 1)) + a;
+	}
+
 	public void newMonster() {
-		// new monster code here
-		// don't forget to check player.getLevel();
+		int[][] p = ConfigurableOption.MONSTER_PERCENT;
+		int level = player.getLevel();
+		int r = random(1, 100);
+		int i;
+
+		for (i = 0; i < 7; i++) {
+			if (r <= p[level][i])
+				break;
+		}
+
+		int w = ConfigurableOption.PLAYPANEL_WIDTH;
+		int h = ConfigurableOption.PLAYPANEL_HEIGHT;
+
+		// And-Or-Not
+		if (i == 0) {
+			r = random(1, 3);
+			// And
+			if (r == 1) {
+				int y = random(10, h - DrawingUtility.and.getHeight() + 10);
+				list.add(new And(w, y, 100));
+			}
+			// Or
+			if (r == 2) {
+				int y = random(10, h - DrawingUtility.or.getHeight() + 10);
+				list.add(new Or(w, y, 100));
+			}
+			// Not
+			if (r == 3) {
+				int y = random(10, h - DrawingUtility.not.getHeight() + 10);
+				list.add(new Not(w, y, 100));
+			}
+		}
+
+		// DFF
+		if (i == 1) {
+			int y = random(10, h - DrawingUtility.dFF.getHeight() + 10);
+			list.add(new DFF(w, y, 100));
+		}
+
+		// HexDisplay
+		if (i == 2) {
+			int y = random(10, h - DrawingUtility.hexDisplay.getHeight() + 10);
+			list.add(new HexDisplay(w, y, 100));
+		}
+
+		// PLA
+		if (i == 3) {
+			int y = random(10, h - DrawingUtility.pla.getHeight() + 10);
+			list.add(new PLA(w, y, 100));
+		}
+		// Mux
+		if (i == 4) {
+			int y = random(10, h - DrawingUtility.mux.getHeight() + 10);
+			list.add(new Mux(w, y, 100));
+		}
+
+		// Adder
+		if (i == 5) {
+			int y = random(10, h - DrawingUtility.adder.getHeight() + 10);
+			list.add(new Adder(w, y, 100));
+		}
+		// IC74163
+		if (i == 6) {
+			int y = random(10, h - DrawingUtility.ic74163.getHeight() + 10);
+			list.add(new IC74163(w, y, 100));
+		}
 	}
 
 }

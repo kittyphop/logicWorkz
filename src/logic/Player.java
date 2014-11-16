@@ -1,5 +1,8 @@
 package logic;
 
+import logic.collectible.Probe;
+import logic.gun.Gun;
+import logic.gun.NormalGun;
 import config.ConfigurableOption;
 
 public class Player {
@@ -95,6 +98,14 @@ public class Player {
 			if (!collectedProbe[i])
 				return false;
 		return true;
+	}
+
+	public void isHit(int attack) {
+		time -= attack;
+		if (time <= 0) {
+			time = 0;
+			gameOver = true;
+		}
 	}
 
 }

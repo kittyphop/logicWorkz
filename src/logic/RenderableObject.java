@@ -19,6 +19,10 @@ public abstract class RenderableObject implements IRenderable {
 		destroyed = false;
 	}
 
+	public int getX() {
+		return x;
+	}
+
 	public int getZ() {
 		return z;
 	}
@@ -34,6 +38,10 @@ public abstract class RenderableObject implements IRenderable {
 	public abstract void move();
 
 	public abstract Rectangle rectify();
+
+	public boolean isOverlap(IRenderable o) {
+		return rectify().isOverlap(o.rectify());
+	}
 
 	public void render(Graphics2D g2) {
 		g2.drawImage(img, null, x, y);
