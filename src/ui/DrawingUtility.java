@@ -24,7 +24,7 @@ public class DrawingUtility {
 
 	private static Image small_icon = getIcon("res/img/small_icon.png");
 	private static Image large_icon = getIcon("res/img/large_icon.png");
-	public static List<Image> icons;
+	public static final List<Image> icons;
 
 	static {
 		icons = new ArrayList<Image>();
@@ -43,11 +43,10 @@ public class DrawingUtility {
 		}
 	}
 
-	// public static BufferedImage menu_background =
-	// getImage("res/img/menu_background.png");
-	public static BufferedImage menu_background = getImage("res/img/menu_temp.png");
-	public static BufferedImage game_background = getImage("res/img/game_background.png");
-	public static BufferedImage play_panel = getImage("res/img/play_panel.png");
+	public static final BufferedImage menu_background = getImage("res/img/menu_temp.png");
+	public static final BufferedImage game_background = getImage("res/img/game_background.png");
+	public static final BufferedImage credit_background = getImage("res/img/credit_background.png");
+	public static final BufferedImage play_panel = getImage("res/img/play_panel.png");
 
 	public static BufferedImage clock = getImage("res/img/clock.png");
 	public static BufferedImage probeK = getImage("res/img/probe_k.png");
@@ -68,4 +67,5 @@ public class DrawingUtility {
 	public static BufferedImage mux = getImage("res/img/mux.png");
 	public static BufferedImage adder = getImage("res/img/adder.png");
 	public static BufferedImage ic74163 = getImage("res/img/74163.png");
+
 }

@@ -16,9 +16,11 @@ public class CreditPanel extends JPanel{
 	public CreditPanel()
 	{
 		setPreferredSize(ConfigurableOption.DIALOG_DIMENSION);
+		setLayout(null);
 		
 		// back button
 		backButton = new JButton("Back");
+		backButton.setBounds(203, 367, 76, 23);
 		backButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -27,13 +29,11 @@ public class CreditPanel extends JPanel{
 			}
 		});
 		
-		add(new JLabel("credit panel"));
 		add(backButton);
 	}
 	
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
-		g2.drawImage(DrawingUtility.menu_background, null, 0, 0);
-
+		g2.drawImage(DrawingUtility.credit_background, null, 0, 0);
 	}
 }
