@@ -11,9 +11,9 @@ public class HowToPlayPanel extends JPanel{
 	
 	JButton backButton;
 	
-	public HowToPlayPanel(final MenuDialog menuDialog)
+	public HowToPlayPanel()
 	{
-		setPreferredSize(ConfigurableOption.getDialogDimension());
+		setPreferredSize(ConfigurableOption.WINDOW_DIMENSION);
 		
 		// back button
 		backButton = new JButton("Back");
@@ -21,7 +21,8 @@ public class HowToPlayPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				menuDialog.toMenu();
+				WindowManager.windowToGame();
+				WindowManager.dialogToMenu();
 			}
 		});
 		

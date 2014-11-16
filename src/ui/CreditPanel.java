@@ -1,5 +1,7 @@
 package ui;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,9 +13,9 @@ public class CreditPanel extends JPanel{
 	
 	JButton backButton;
 	
-	public CreditPanel(final MenuDialog menuDialog)
+	public CreditPanel()
 	{
-		setPreferredSize(ConfigurableOption.getDialogDimension());
+		setPreferredSize(ConfigurableOption.DIALOG_DIMENSION);
 		
 		// back button
 		backButton = new JButton("Back");
@@ -21,11 +23,17 @@ public class CreditPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				menuDialog.toMenu();
+				WindowManager.dialogToMenu();
 			}
 		});
 		
 		add(new JLabel("credit panel"));
 		add(backButton);
+	}
+	
+	public void paintComponent(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g;
+		g2.drawImage(DrawingUtility.menu_background, null, 0, 0);
+
 	}
 }

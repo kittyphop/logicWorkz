@@ -1,10 +1,9 @@
 package ui;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Vector;
-
 import javax.swing.*;
-
 import config.ConfigurableOption;
 
 public class MenuPanel extends JPanel {
@@ -14,18 +13,18 @@ public class MenuPanel extends JPanel {
 	JList highscoreList;
 	JScrollPane highscorePane;
 
-	public MenuPanel(final MenuDialog menuDialog) {
-		setPreferredSize(ConfigurableOption.getDialogDimension());
+	public MenuPanel() {
+		setPreferredSize(ConfigurableOption.DIALOG_DIMENSION);
 		setLayout(null);
 
 		// new game button
 		newGameButton = new JButton("New Game");
 		newGameButton.setBounds(348, 28, 107, 23);
 		newGameButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				menuDialog.setVisible(false);
+				WindowManager.windowToGame();
 			}
 		});
 
@@ -33,10 +32,10 @@ public class MenuPanel extends JPanel {
 		minigameButton = new JButton("Minigame");
 		minigameButton.setBounds(348, 93, 107, 23);
 		minigameButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, "minigame", "",JOptionPane.INFORMATION_MESSAGE);
+				WindowManager.windowToMinigame();
 			}
 		});
 
@@ -44,10 +43,12 @@ public class MenuPanel extends JPanel {
 		resetButton = new JButton("Reset");
 		resetButton.setBounds(380, 172, 75, 23);
 		resetButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, "reset", "",JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "reset", "",
+						JOptionPane.INFORMATION_MESSAGE);
+				// reset
 			}
 		});
 
@@ -58,7 +59,7 @@ public class MenuPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				menuDialog.toCredit();
+				WindowManager.dialogToCredit();
 			}
 		});
 
@@ -69,7 +70,7 @@ public class MenuPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				menuDialog.toHowToPlay();
+				WindowManager.windowToHowToPlay();
 			}
 		});
 
@@ -83,26 +84,15 @@ public class MenuPanel extends JPanel {
 				System.exit(0);
 			}
 		});
-		
+
 		// highscore list & Pane
-		String[] s = new String[10];
-		s[0] = "A\t\t1000";               // cannot use tab ?
-		s[1] = "B\t\t800";
-		s[2] = "C\t\t700";
-		s[3] = "D\t\t600";
-		s[4] = "E\t\t500";
-		s[5] = "F\t\t400";
-		s[6] = "G\t\t300";
-		s[7] = "H\t\t150";
-		s[8] = "I\t\t100";
-		s[9] = "J\t\t50";
-		
-		highscoreList = new JList(s);
-		
+
+		highscoreList = new JList(HighScoreUtility.listTop10());
+
 		highscorePane = new JScrollPane();
 		highscorePane.setViewportView(highscoreList);
 		highscorePane.setBounds(26, 169, 336, 95);
-		
+
 		add(newGameButton);
 		add(minigameButton);
 		add(resetButton);
