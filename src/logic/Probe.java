@@ -1,6 +1,6 @@
 package logic;
 
-import java.awt.Graphics2D;
+import ui.DrawingUtility;
 import config.ConfigurableOption;
 
 public class Probe extends RenderableObject implements ICollectible {
@@ -8,20 +8,20 @@ public class Probe extends RenderableObject implements ICollectible {
 	private String letter;
 
 	public Probe(int x, int y, String letter) {
-		this.x = x;
-		this.y = y;
-		this.z = (int) Math.random();
-		movingDelayCounter = ConfigurableOption.MOVING_DELAY;
-		destroyed = false;
+		super(x, y);
 		this.letter = letter;
+		if (letter.equals("K"))
+			img = DrawingUtility.probeK;
+		if (letter.equals("M"))
+			img = DrawingUtility.probeM;
+		if (letter.equals("A"))
+			img = DrawingUtility.probeA;
+		if (letter.equals("P"))
+			img = DrawingUtility.probeP;
 	}
 
 	public String getLetter() {
 		return letter;
-	}
-
-	public void collect(Player player) {
-		player.collectNewProbe(this);
 	}
 
 	public void move() {
@@ -32,8 +32,17 @@ public class Probe extends RenderableObject implements ICollectible {
 		movingDelayCounter = ConfigurableOption.MOVING_DELAY;
 	}
 
-	public void render(Graphics2D g2) {
+	public void collect(Player player) {
+		destroyed = true;
+		player.collectNewProbe(this);
+	}
 
+	public Rectangle rectify() {
+		return new Rectangle(x, y, img.getWidth(), img.getWidth());
+	}
+
+	public boolean isOverlap(Player player) {
+		return rectify().isOverlap(player.getCurrentGun().rectify());
 	}
 
 }

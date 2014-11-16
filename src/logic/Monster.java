@@ -1,18 +1,13 @@
 package logic;
 
-import java.awt.Graphics2D;
 import config.ConfigurableOption;
 
-public class Monster extends RenderableObject {
+public abstract class Monster extends RenderableObject {
 
 	protected int life, reward, firingDelayCounter;
 
 	public Monster(int x, int y, int life) {
-		this.x = x;
-		this.y = y;
-		this.z = (int) Math.random();
-		movingDelayCounter = ConfigurableOption.MOVING_DELAY;
-		destroyed = false;
+		super(x, y);
 		this.life = life;
 	}
 
@@ -24,8 +19,8 @@ public class Monster extends RenderableObject {
 		movingDelayCounter = ConfigurableOption.MOVING_DELAY;
 	}
 
-	public void render(Graphics2D g2) {
+	public abstract Rectangle rectify();
 
-	}
+	public abstract boolean isOverlap(Player player);
 
 }
