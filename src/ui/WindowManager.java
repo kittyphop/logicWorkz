@@ -8,6 +8,7 @@ public class WindowManager {
 
 	public static final MenuDialog menuDialog;
 	private static JPanel currentDialogPanel;
+	
 	public static final GameWindow gameWindow;
 	private static JPanel currentWindowPanel;
 	
