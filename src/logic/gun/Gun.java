@@ -28,4 +28,8 @@ public abstract class Gun extends RenderableObject {
 
 	public abstract Rectangle rectify();
 
+	public int getBulletAmount() {
+		return bullet;
+	}
+
 }

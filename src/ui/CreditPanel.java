@@ -20,7 +20,7 @@ public class CreditPanel extends JPanel{
 		
 		// back button
 		backButton = new JButton("Back");
-		backButton.setBounds(203, 367, 76, 23);
+		backButton.setBounds(203, 360, 76, 23);
 		backButton.addActionListener(new ActionListener() {
 			
 			@Override
