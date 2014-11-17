@@ -65,9 +65,11 @@ public class DrawingUtility {
 	public static BufferedImage not = getImage("res/img/not.png");
 	public static BufferedImage hexDisplay = getImage("res/img/hex_display.png");
 	public static BufferedImage dFF = getImage("res/img/d_ff.png");
+	public static BufferedImage jkFF = getImage("res/img/jk_ff.png");
 	public static BufferedImage pla = getImage("res/img/pla.png");
 	public static BufferedImage mux = getImage("res/img/mux.png");
 	public static BufferedImage adder = getImage("res/img/adder.png");
+	public static BufferedImage asciiDisplay = getImage("res/img/ascii_display.png");
 	public static BufferedImage ic74163 = getImage("res/img/74163.png");
 
 }

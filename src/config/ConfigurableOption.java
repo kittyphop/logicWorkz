@@ -27,10 +27,15 @@ public class ConfigurableOption {
 	public static final int CLOCK_TIME = 10;
 	public static final int MIN_NEW_MONSTER = 100;
 	public static final int MAX_NEW_MONSTER = 200;
+	public static final int MIN_NEW_PROBE = 5000;
+	public static final int MAX_NEW_PROBE = 7000;
+	public static final int MIN_NEW_CLOCK = 5000;
+	public static final int MAX_NEW_CLOCK = 7000;
 	public static final int GND_POWER = 10;
 	public static final int VDD_POWER = 10;
 	public static final int VDD_SPECIAL_POWER = 10;
 	public static final int ATTACK = 10;
+	public static final int SHOOTING_DELAY = 50;
 	public static final int FIRING_DELAY = 200;
 
 	// And-Or-Not, DFF, HexDisplay, PLA, Mux, Adder, IC74163

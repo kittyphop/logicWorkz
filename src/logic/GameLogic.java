@@ -6,18 +6,27 @@ import java.util.*;
 import ui.DrawingUtility;
 import ui.WindowManager;
 import logic.bullet.*;
+import logic.collectible.Clock;
 import logic.collectible.ICollectible;
+import logic.collectible.Probe;
 import logic.monster.*;
 import config.*;
 
 public class GameLogic {
 
 	private SharedData data;
-	private int newMonsterDelayCounter;
+	private int newMonsterDelayCounter, newProbeDelayCounter,
+			newClockDelayCounter, shootingDelayCounter;
 
 	public GameLogic(SharedData data) {
 		this.data = data;
-		setCounter();
+		newMonsterDelayCounter = random(ConfigurableOption.MIN_NEW_MONSTER,
+				ConfigurableOption.MAX_NEW_MONSTER);
+		newProbeDelayCounter = random(ConfigurableOption.MIN_NEW_PROBE,
+				ConfigurableOption.MAX_NEW_PROBE);
+		newClockDelayCounter = random(ConfigurableOption.MIN_NEW_CLOCK,
+				ConfigurableOption.MAX_NEW_CLOCK);
+		shootingDelayCounter = 1;
 	}
 
 	public void begin() {
@@ -33,6 +42,7 @@ public class GameLogic {
 			// setHighscore + setWindowStatus
 			WindowManager.setStatus(WindowManager.MENU_STATUS);
 			data.reset();
+			InputUtility.reset();
 		}
 	}
 
@@ -51,17 +61,42 @@ public class GameLogic {
 		if (player.isPause())
 			return;
 
-		// check if player move or shoot
-		if (InputUtility.getKeyPressed(KeyEvent.VK_LEFT))
+		// check if player move
+		if (InputUtility.getKeyPressed(KeyEvent.VK_LEFT)) {
 			player.getCurrentGun().x--;
-		if (InputUtility.getKeyPressed(KeyEvent.VK_RIGHT))
+			if (player.getCurrentGun().x < 0)
+				player.getCurrentGun().x = 0;
+		}
+		if (InputUtility.getKeyPressed(KeyEvent.VK_RIGHT)) {
 			player.getCurrentGun().x++;
-		if (InputUtility.getKeyPressed(KeyEvent.VK_UP))
+			if (player.getCurrentGun().x > ConfigurableOption.PLAYPANEL_WIDTH
+					- player.getCurrentGun().img.getWidth())
+				player.getCurrentGun().x = ConfigurableOption.PLAYPANEL_WIDTH
+						- player.getCurrentGun().img.getWidth();
+		}
+		if (InputUtility.getKeyPressed(KeyEvent.VK_UP)) {
 			player.getCurrentGun().y--;
-		if (InputUtility.getKeyPressed(KeyEvent.VK_DOWN))
+			if (player.getCurrentGun().y < 0)
+				player.getCurrentGun().y = 0;
+		}
+		if (InputUtility.getKeyPressed(KeyEvent.VK_DOWN)) {
 			player.getCurrentGun().y++;
-		if (InputUtility.getKeyTriggered(KeyEvent.VK_SPACE))
-			player.getCurrentGun().shoot(player, list);
+			if (player.getCurrentGun().y > ConfigurableOption.PLAYPANEL_HEIGHT
+					- player.getCurrentGun().img.getHeight())
+				player.getCurrentGun().y = ConfigurableOption.PLAYPANEL_HEIGHT
+						- player.getCurrentGun().img.getHeight();
+		}
+
+		// check if player shoot
+		if (InputUtility.getKeyPressed(KeyEvent.VK_SPACE)) {
+			shootingDelayCounter--;
+			if (shootingDelayCounter == 0) {
+				player.getCurrentGun().shoot(player, list);
+				shootingDelayCounter = ConfigurableOption.SHOOTING_DELAY;
+			}
+		} else {
+			shootingDelayCounter = 1;
+		}
 
 		// delete destroyed object
 		for (int i = 0; i < list.size(); i++) {
@@ -92,7 +127,30 @@ public class GameLogic {
 		newMonsterDelayCounter--;
 		if (newMonsterDelayCounter == 0) {
 			newMonster();
-			setCounter();
+			newMonsterDelayCounter = random(ConfigurableOption.MIN_NEW_MONSTER,
+					ConfigurableOption.MAX_NEW_MONSTER);
+		}
+
+		// new probe
+		newProbeDelayCounter--;
+		if (newProbeDelayCounter == 0) {
+			String[] x = { "K", "M", "A", "P" };
+			int r = random(0, 3);
+			int y = random(10, ConfigurableOption.PLAYPANEL_HEIGHT
+					- DrawingUtility.probeA.getHeight() - 10);
+			list.add(new Probe(ConfigurableOption.PLAYPANEL_WIDTH, y, x[r]));
+			newProbeDelayCounter = random(ConfigurableOption.MIN_NEW_PROBE,
+					ConfigurableOption.MAX_NEW_PROBE);
+		}
+
+		// new clock
+		newClockDelayCounter--;
+		if (newClockDelayCounter == 0) {
+			int y = random(10, ConfigurableOption.PLAYPANEL_HEIGHT
+					- DrawingUtility.clock.getHeight() - 10);
+			list.add(new Clock(ConfigurableOption.PLAYPANEL_WIDTH, y));
+			newProbeDelayCounter = random(ConfigurableOption.MIN_NEW_CLOCK,
+					ConfigurableOption.MAX_NEW_CLOCK);
 		}
 
 		// check collect/hit
@@ -137,12 +195,6 @@ public class GameLogic {
 		}
 	}
 
-	public void setCounter() {
-		newMonsterDelayCounter = (int) (Math.random() * (ConfigurableOption.MAX_NEW_MONSTER
-				- ConfigurableOption.MIN_NEW_MONSTER + 1))
-				+ ConfigurableOption.MIN_NEW_MONSTER;
-	}
-
 	public int random(int a, int b) {
 		return (int) (Math.random() * (b - a + 1)) + a;
 	}
@@ -169,54 +221,71 @@ public class GameLogic {
 			r = random(1, 3);
 			// And
 			if (r == 1) {
-				int y = random(10, h - DrawingUtility.and.getHeight() + 10);
+				int y = random(10, h - DrawingUtility.and.getHeight() - 10);
 				list.add(new And(w, y, 100));
 			}
 			// Or
 			if (r == 2) {
-				int y = random(10, h - DrawingUtility.or.getHeight() + 10);
+				int y = random(10, h - DrawingUtility.or.getHeight() - 10);
 				list.add(new Or(w, y, 100));
 			}
 			// Not
 			if (r == 3) {
-				int y = random(10, h - DrawingUtility.not.getHeight() + 10);
+				int y = random(10, h - DrawingUtility.not.getHeight() - 10);
 				list.add(new Not(w, y, 100));
 			}
 		}
 
-		// DFF
+		// DFF-JKFF
 		if (i == 1) {
-			int y = random(10, h - DrawingUtility.dFF.getHeight() + 10);
-			list.add(new DFF(w, y, 100));
+			r = random(1, 2);
+			// DFF
+			if (r == 1) {
+				int y = random(10, h - DrawingUtility.dFF.getHeight() - 10);
+				list.add(new DFF(w, y, 100));
+			}
+			if (r == 2) {
+				int y = random(10, h - DrawingUtility.jkFF.getHeight() - 10);
+				list.add(new JKFF(w, y, 100));
+			}
 		}
 
 		// HexDisplay
 		if (i == 2) {
-			int y = random(10, h - DrawingUtility.hexDisplay.getHeight() + 10);
+			int y = random(10, h - DrawingUtility.hexDisplay.getHeight() - 10);
 			list.add(new HexDisplay(w, y, 100));
 		}
 
 		// PLA
 		if (i == 3) {
-			int y = random(10, h - DrawingUtility.pla.getHeight() + 10);
+			int y = random(10, h - DrawingUtility.pla.getHeight() - 10);
 			list.add(new PLA(w, y, 100));
 		}
+
 		// Mux
 		if (i == 4) {
-			int y = random(10, h - DrawingUtility.mux.getHeight() + 10);
+			int y = random(10, h - DrawingUtility.mux.getHeight() - 10);
 			list.add(new Mux(w, y, 100));
 		}
 
-		// Adder
+		// Adder-AsciiDisplay
 		if (i == 5) {
-			int y = random(10, h - DrawingUtility.adder.getHeight() + 10);
-			list.add(new Adder(w, y, 100));
+			r = random(1, 2);
+			if (r == 1) {
+				int y = random(10, h - DrawingUtility.adder.getHeight() - 10);
+				list.add(new Adder(w, y, 100));
+			}
+			if (r == 2) {
+				int y = random(10, h - DrawingUtility.asciiDisplay.getHeight()
+						- 10);
+				list.add(new AsciiDisplay(w, y, 100));
+			}
 		}
+
 		// IC74163
 		if (i == 6) {
-			int y = random(10, h - DrawingUtility.ic74163.getHeight() + 10);
+			int y = random(10, h - DrawingUtility.ic74163.getHeight() - 10);
 			list.add(new IC74163(w, y, 100));
 		}
 	}
-
 }

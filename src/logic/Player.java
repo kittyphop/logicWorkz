@@ -15,7 +15,7 @@ public class Player {
 	public Player(int x, int y) {
 		time = ConfigurableOption.MAX_TIME;
 		score = 0;
-		level = 1;
+		level = 5;
 		gameOver = false;
 		pause = false;
 		currentGun = new NormalGun(x, y, 0);

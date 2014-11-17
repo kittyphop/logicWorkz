@@ -92,4 +92,15 @@ public class InputUtility {
 		for (int i = 0; i < 256; i++)
 			setKeyTriggered(i, false);
 	}
+
+	public static void reset() {
+		mouseLeftDown = false;
+		mouseLeftTriggered = false;
+		mouseRightDown = false;
+		mouseRightTriggered = false;
+		for (int i = 0; i < 256; i++) {
+			setKeyPressed(i, false);
+			setKeyTriggered(i, false);
+		}
+	}
 }
