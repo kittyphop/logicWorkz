@@ -2,6 +2,7 @@
 
 import javax.swing.UIManager;
 
+import ui.WindowManager;
 import logic.GameLogic;
 import config.InputUtility;
 import config.SharedData;
@@ -11,8 +12,8 @@ public class Main {
 
 		SharedData data = new SharedData();
 		(new Thread(new WindowManager(data))).start();
-		GameLogic logic = new gameLogic(data);
-		logic.begin();
+		//GameLogic logic = new gameLogic(data);
+		//logic.begin();
 		
 	}
 }

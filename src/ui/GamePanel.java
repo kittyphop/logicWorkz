@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import logic.GameLogic;
 import config.ConfigurableOption;
 import config.InputUtility;
+import config.SharedData;
 
 public class GamePanel extends JPanel {
 
@@ -24,16 +25,16 @@ public class GamePanel extends JPanel {
 			AlphaComposite.SRC_OVER, 1);
 
 	PlayPanel playPanel;
-	GameLogic logic;
+	SharedData data;
 
-	public GamePanel(GameLogic logic) {
+	public GamePanel(SharedData data) {
 
-		this.logic = logic;
+		this.data = data;
 
 		setPreferredSize(ConfigurableOption.WINDOW_DIMENSION);
 		setLayout(null);
 
-		playPanel = new PlayPanel(logic);
+		playPanel = new PlayPanel(data);
 		playPanel.setBounds(15, 95, 717, 356);
 		add(playPanel);
 
@@ -149,12 +150,14 @@ public class GamePanel extends JPanel {
 
 		// test
 
-		if (logic.getPlayer().isPause()) {
+		/*
+		if (data.getPlayer().isPause()) {
 			g2.setComposite(transcluentWhite);
 			g2.setColor(Color.BLACK);
 			g2.fillRect(0, 0, 894, 620);
 			g2.setComposite(opaque);
 			g2.drawImage(DrawingUtility.menu_background, null, 100, 100);
 		}
+		*/
 	}
 }

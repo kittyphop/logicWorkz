@@ -5,9 +5,9 @@ import javax.swing.JDialog;
 public class MenuDialog extends JDialog {
 
 	public MenuDialog() {
+		
 		setModal(true);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setLocationRelativeTo(null);
 		setResizable(false);
 	}
 

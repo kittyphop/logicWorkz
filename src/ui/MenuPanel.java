@@ -24,7 +24,7 @@ public class MenuPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				WindowManager.windowToGame();
+				WindowManager.setStatus(WindowManager.GAME_STATUS);
 			}
 		});
 
@@ -35,7 +35,7 @@ public class MenuPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				WindowManager.windowToMinigame();
+				WindowManager.setStatus(WindowManager.MINIGAME_STATUS);
 			}
 		});
 
@@ -59,7 +59,7 @@ public class MenuPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				WindowManager.dialogToCredit();
+				WindowManager.setStatus(WindowManager.CREDIT_STATUS);
 			}
 		});
 
@@ -70,7 +70,7 @@ public class MenuPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				WindowManager.windowToHowToPlay();
+				WindowManager.setStatus(WindowManager.HOW_TO_PLAY_STATUS);
 			}
 		});
 

@@ -2,26 +2,26 @@ package ui;
 
 import javax.swing.*;
 
-import config.InputUtility;
 import config.SharedData;
-import logic.GameLogic;
-import logic.TestLogic;
 
-public class WindowManager implements Runnable{
+public class WindowManager implements Runnable {
 
 	private final MenuDialog menuDialog;
 	private JPanel currentDialogPanel;
 
 	private final GameWindow gameWindow;
 	private JPanel currentWindowPanel;
-	
-	private static int status;
-	private static final int MENU_STATUS = 0;
-	private static final int CREDIT_STATUS = 1;
-	private static final int HOW_TO_PLAY_STATUS = 2;
-	private static final int GAME_STATUS = 3;
 
-	public WindowManager(SharedData data){
+	private final SharedData data;
+
+	private static int status;
+	public static final int MENU_STATUS = 0;
+	public static final int CREDIT_STATUS = 1;
+	public static final int HOW_TO_PLAY_STATUS = 2;
+	public static final int GAME_STATUS = 3;
+	public static final int MINIGAME_STATUS = 4;
+
+	public WindowManager(SharedData data) {
 
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -30,41 +30,86 @@ public class WindowManager implements Runnable{
 
 		menuDialog = new MenuDialog();
 		gameWindow = new GameWindow();
-		status = 0;
-
+		initialize();
+		
+		this.data = data;
+		status = MENU_STATUS;
 	}
 
-	public void run()
+	public void run() {
+
+		while (true) {
+
+			try {
+				Thread.sleep(20);
+			} catch (Exception e) {
+			}
+
+			// debug
+			System.out.println(status);
+
+			if (status == MENU_STATUS
+					&& (!menuDialog.isVisible() || !(currentDialogPanel instanceof MenuPanel)))
+				dialogToMenu();
+			else if (status == CREDIT_STATUS
+					&& (!menuDialog.isVisible() || !(currentDialogPanel instanceof CreditPanel)))
+				dialogToCredit();
+			else if (status == HOW_TO_PLAY_STATUS
+					&& (menuDialog.isVisible() || !(currentWindowPanel instanceof HowToPlayPanel)))
+				windowToHowToPlay();
+			else if (status == GAME_STATUS
+					&& (menuDialog.isVisible() || !(currentWindowPanel instanceof GamePanel)))
+				windowToGame();
+
+			// correct for minigamePanel
+
+			else if (status == MINIGAME_STATUS
+					&& (menuDialog.isVisible() || !(currentWindowPanel instanceof HowToPlayPanel)))
+				windowToGame();
+
+			currentDialogPanel.repaint();
+			currentWindowPanel.repaint();
+		}
+	}
+
+	public static void setStatus(int status) {
+		WindowManager.status = status;
+	}
+
+	public static int getStatus() {
+		return status;
+	}
+
+	public void initialize()
 	{
-		if(status == 0)
-			dialogToMenu();
-		else if(status == 1)
-			dialogToCredit();
-		else if(status == 2)
-			windowToHowToPlay();
-		else
-			windowToGame();
-			
-	}
-	
-	public static void runGame() {
-
-		gameWindow.getContentPane().removeAll();
-		currentWindowPanel = new GamePanel(new GameLogic());
+		currentWindowPanel = new GamePanel(data);
 		gameWindow.getContentPane().add(currentWindowPanel);
 		gameWindow.getContentPane().validate();
 		gameWindow.pack();
 		currentWindowPanel.requestFocus();
-
 		gameWindow.setLocationRelativeTo(null);
 		gameWindow.setVisible(true);
 
-		dialogToMenu();
+		menuDialog.setTitle("Welcome to LogicWorkz");
+		currentDialogPanel = new MenuPanel();
+		menuDialog.getContentPane().add(currentDialogPanel);
+		menuDialog.getContentPane().validate();
+		menuDialog.pack();
+		currentDialogPanel.requestFocus();
 		menuDialog.setLocationRelativeTo(null);
 		menuDialog.setVisible(true);
 	}
-
+	
 	public void dialogToMenu() {
+
+		gameWindow.getContentPane().removeAll();
+		currentWindowPanel = new GamePanel(data);
+		gameWindow.getContentPane().add(currentWindowPanel);
+		gameWindow.getContentPane().validate();
+		gameWindow.pack();
+		currentWindowPanel.requestFocus();
+		gameWindow.setVisible(true);
+
 		menuDialog.setTitle("Welcome to LogicWorkz");
 		menuDialog.getContentPane().removeAll();
 		currentDialogPanel = new MenuPanel();
@@ -75,7 +120,7 @@ public class WindowManager implements Runnable{
 		menuDialog.setVisible(true);
 	}
 
-	public static void dialogToCredit() {
+	public void dialogToCredit() {
 		menuDialog.setTitle("About LogicWorkz");
 
 		menuDialog.getContentPane().removeAll();
@@ -87,9 +132,7 @@ public class WindowManager implements Runnable{
 		menuDialog.setVisible(true);
 	}
 
-	public static void windowToHowToPlay() {
-
-		menuDialog.setVisible(false);
+	public void windowToHowToPlay() {
 
 		gameWindow.getContentPane().removeAll();
 		currentWindowPanel = new HowToPlayPanel();
@@ -97,50 +140,24 @@ public class WindowManager implements Runnable{
 		gameWindow.getContentPane().validate();
 		gameWindow.pack();
 		currentWindowPanel.requestFocus();
+		menuDialog.setVisible(false);
 
 	}
 
-	public static void windowToGame() {
-
-		GameLogic logic = new GameLogic();
+	public void windowToGame() {
 
 		gameWindow.getContentPane().removeAll();
-		currentWindowPanel = new GamePanel(logic);
+		currentWindowPanel = new GamePanel(data);
 		gameWindow.getContentPane().add(currentWindowPanel);
 		gameWindow.getContentPane().validate();
 		gameWindow.pack();
 		currentWindowPanel.requestFocus();
-
 		menuDialog.setVisible(false);
-
-		/*
-		 * JFrame frame = new JFrame("TestLogic"); TestLogic test = new
-		 * TestLogic(logic);
-		 * 
-		 * frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		 * frame.add(test); frame.pack(); frame.setVisible(true);
-		 */
-
-		while (true) {
-			try {
-				Thread.sleep(20);
-			} catch (InterruptedException e) {
-			}
-			currentWindowPanel.repaint();
-			// test.repaint();
-			logic.update();
-			InputUtility.postUpdate();
-		}
 	}
 
-	public static void windowToMinigame() {
+	public void windowToMinigame() {
 
 		// temporary
 		windowToHowToPlay();
 	}
-
-	public static JPanel getCurrentWindowPanel() {
-		return currentWindowPanel;
-	}
-
 }

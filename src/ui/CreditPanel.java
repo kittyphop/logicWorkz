@@ -25,7 +25,7 @@ public class CreditPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				WindowManager.dialogToMenu();
+				WindowManager.setStatus(WindowManager.MENU_STATUS);
 			}
 		});
 		

@@ -9,24 +9,27 @@ import javax.swing.JPanel;
 import logic.GameLogic;
 import logic.IRenderable;
 import config.ConfigurableOption;
+import config.SharedData;
 
 public class PlayPanel extends JPanel {
 
-	GameLogic logic;
+	SharedData data;
 
-	public PlayPanel(GameLogic logic) {
-		this.logic = logic;
+	public PlayPanel(SharedData data) {
+		this.data = data;
 		setPreferredSize(ConfigurableOption.PLAYPANEL_DIMENSION);
 	}
 
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.drawImage(DrawingUtility.play_panel, null, 0, 0);
-		if (logic != null) {
-			ArrayList<IRenderable> list = logic.getList();
+		/*
+		if (data != null) {
+			ArrayList<IRenderable> list = data.getList();
 			for (IRenderable i : list) {
 				i.render(g2);
 			}
 		}
+		*/
 	}
 }
