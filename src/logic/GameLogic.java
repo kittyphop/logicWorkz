@@ -22,6 +22,10 @@ public class GameLogic {
 		setCounter();
 	}
 
+	public Player getPlayer() {
+		return player;
+	}
+
 	public ArrayList<IRenderable> getList() {
 		return list;
 	}

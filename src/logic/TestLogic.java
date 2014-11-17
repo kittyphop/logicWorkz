@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+import config.ConfigurableOption;
 import logic.monster.IC74163;
 
 @SuppressWarnings("serial")
@@ -14,7 +15,7 @@ public class TestLogic extends JPanel {
 
 	public TestLogic(GameLogic gameLogic) {
 		this.gameLogic = gameLogic;
-		this.setPreferredSize(new Dimension(400, 400));
+		this.setPreferredSize(ConfigurableOption.PLAYPANEL_DIMENSION);
 		setDoubleBuffered(true);
 	}
 
@@ -30,7 +31,7 @@ public class TestLogic extends JPanel {
 
 		while (true) {
 			try {
-				Thread.sleep(20);
+				Thread.sleep(5);
 			} catch (InterruptedException e) {
 			}
 			test.repaint();

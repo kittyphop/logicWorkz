@@ -76,6 +76,10 @@ public class Player {
 		this.currentGun = currentGun;
 	}
 
+	public boolean[] getCollectedProbe() {
+		return collectedProbe;
+	}
+
 	public void collectNewProbe(Probe probe) {
 		String s = probe.getLetter();
 		if (s.equals("K"))

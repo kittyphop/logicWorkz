@@ -46,7 +46,7 @@ public class DrawingUtility {
 	public static final BufferedImage menu_background = getImage("res/img/menu_temp.png");
 	public static final BufferedImage game_background = getImage("res/img/game_background.png");
 	public static final BufferedImage credit_background = getImage("res/img/credit_background.png");
-	public static final BufferedImage play_panel = getImage("res/img/play_panel.png");
+	public static final BufferedImage play_panel = getImage("res/img/play_panel_inv.png");
 
 	public static BufferedImage clock = getImage("res/img/clock.png");
 	public static BufferedImage probeK = getImage("res/img/probe_k.png");
@@ -55,8 +55,10 @@ public class DrawingUtility {
 	public static BufferedImage probeP = getImage("res/img/probe_p.png");
 	public static BufferedImage gndBullet = getImage("res/img/gnd.png");
 	public static BufferedImage vddBullet = getImage("res/img/vdd.png");
-	public static BufferedImage binarySwitch = getImage("res/img/binary_switch.png");
-	public static BufferedImage pushButton = getImage("res/img/push_button.png");
+	public static BufferedImage binarySwitch0 = getImage("res/img/binary_switch_0.png");
+	public static BufferedImage binarySwitch1 = getImage("res/img/binary_switch_1.png");
+	public static BufferedImage pushButton0 = getImage("res/img/push_button_0.png");
+	public static BufferedImage pushButton1 = getImage("res/img/push_button_1.png");
 	public static BufferedImage hexKeyboard = getImage("res/img/hex_keyboard.png");
 	public static BufferedImage and = getImage("res/img/and.png");
 	public static BufferedImage or = getImage("res/img/or.png");

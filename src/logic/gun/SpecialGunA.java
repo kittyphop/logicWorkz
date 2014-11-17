@@ -12,7 +12,7 @@ public class SpecialGunA extends Gun {
 
 	public SpecialGunA(int x, int y, int bullet) {
 		super(x, y, bullet);
-		img = DrawingUtility.pushButton;
+		img = DrawingUtility.pushButton0;
 	}
 
 	public void shoot(Player player, ArrayList<IRenderable> list) {

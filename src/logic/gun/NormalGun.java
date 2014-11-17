@@ -12,7 +12,7 @@ public class NormalGun extends Gun {
 
 	public NormalGun(int x, int y, int bullet) {
 		super(x, y, bullet);
-		img = DrawingUtility.binarySwitch;
+		img = DrawingUtility.binarySwitch0;
 	}
 
 	public void shoot(Player player, ArrayList<IRenderable> list) {

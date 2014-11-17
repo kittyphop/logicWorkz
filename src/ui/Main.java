@@ -8,27 +8,18 @@ import config.InputUtility;
 public class Main {
 	public static void main(String[] args) {
 
-		WindowManager.runGame(new GameLogic());
-		
+		WindowManager.runGame();
+
 		/*
-			GameLogic logic = new GameLogic();
-			WindowManager.runGame(logic);
-			
-			while(true)
-			{
-				repaint();
-				logic.update();
-				InputUtility.postUpdate();
-			}
-			
+		 * GameLogic logic = new GameLogic(); WindowManager.runGame(logic);
+		 * 
+		 * while(true) { repaint(); logic.update(); InputUtility.postUpdate(); }
 		 */
-		
-		//test
-		
-		while(true)
-		{
-			WindowManager.getCurrentWindowPanel().repaint();
-			InputUtility.postUpdate();
-		}
+
+		// test
+		/*
+		 * while (true) { WindowManager.getCurrentWindowPanel().repaint();
+		 * InputUtility.postUpdate(); }
+		 */
 	}
 }

@@ -2,6 +2,7 @@ package ui;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -20,18 +21,12 @@ public class PlayPanel extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
-		g2.drawImage(DrawingUtility.play_panel, null,
-				ConfigurableOption.PLAYPANEL_X, ConfigurableOption.PLAYPANEL_Y);
-
-		/*
-		
-		// for each object in IRenderableHolder : object.render(g); sort by z
-		
-		for(IRenderable i : logic.getList())
-		{
-			i.render();
+		g2.drawImage(DrawingUtility.play_panel, null, 0, 0);
+		if (logic != null) {
+			ArrayList<IRenderable> list = logic.getList();
+			for (IRenderable i : list) {
+				i.render(g2);
+			}
 		}
-		
-		*/
 	}
 }
