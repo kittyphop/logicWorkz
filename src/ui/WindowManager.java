@@ -3,18 +3,25 @@ package ui;
 import javax.swing.*;
 
 import config.InputUtility;
+import config.SharedData;
 import logic.GameLogic;
 import logic.TestLogic;
 
-public class WindowManager {
+public class WindowManager implements Runnable{
 
-	public static final MenuDialog menuDialog;
-	private static JPanel currentDialogPanel;
+	private final MenuDialog menuDialog;
+	private JPanel currentDialogPanel;
 
-	public static final GameWindow gameWindow;
-	private static JPanel currentWindowPanel;
+	private final GameWindow gameWindow;
+	private JPanel currentWindowPanel;
+	
+	private static int status;
+	private static final int MENU_STATUS = 0;
+	private static final int CREDIT_STATUS = 1;
+	private static final int HOW_TO_PLAY_STATUS = 2;
+	private static final int GAME_STATUS = 3;
 
-	static {
+	public WindowManager(SharedData data){
 
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -23,9 +30,23 @@ public class WindowManager {
 
 		menuDialog = new MenuDialog();
 		gameWindow = new GameWindow();
+		status = 0;
 
 	}
 
+	public void run()
+	{
+		if(status == 0)
+			dialogToMenu();
+		else if(status == 1)
+			dialogToCredit();
+		else if(status == 2)
+			windowToHowToPlay();
+		else
+			windowToGame();
+			
+	}
+	
 	public static void runGame() {
 
 		gameWindow.getContentPane().removeAll();
@@ -43,7 +64,7 @@ public class WindowManager {
 		menuDialog.setVisible(true);
 	}
 
-	public static void dialogToMenu() {
+	public void dialogToMenu() {
 		menuDialog.setTitle("Welcome to LogicWorkz");
 		menuDialog.getContentPane().removeAll();
 		currentDialogPanel = new MenuPanel();
