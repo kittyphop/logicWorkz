@@ -10,7 +10,7 @@ import ui.DrawingUtility;
 public class Mux extends Monster {
 
 	public Mux(int x, int y, int life) {
-		super(x, y, life);
+		super(x, y, life, ConfigurableOption.MUX_SCORE);
 		img = DrawingUtility.mux;
 	}
 

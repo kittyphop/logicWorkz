@@ -38,7 +38,17 @@ public class ConfigurableOption {
 	public static final int SHOOTING_DELAY = 50;
 	public static final int FIRING_DELAY = 200;
 
-	// And-Or-Not, DFF, HexDisplay, PLA, Mux, Adder, IC74163
+	// Score
+	public static final int GATE_SCORE = 50;
+	public static final int FF_SCORE = 100;
+	public static final int HEX_DISPLAY_SCORE = 200;
+	public static final int PLA_SCORE = 500;
+	public static final int MUX_SCORE = 700;
+	public static final int ADDER_SCORE = 1000;
+	public static final int ASCII_DISPLAY_SCORE = 1000;
+	public static final int IC_SCORE = 5000;
+
+	// And-Or-Not, DFF-JKFF, HexDisplay, PLA, Mux, Adder-AsciiDisplay, IC74163
 	public static final int[][] MONSTER_PERCENT = new int[][] {
 			{ 0, 0, 0, 0, 0, 0, 0 }, { 80, 100, 0, 0, 0, 0, 0 },
 			{ 60, 80, 100, 0, 0, 0, 0 }, { 50, 70, 90, 100, 0, 0, 0 },

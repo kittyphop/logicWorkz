@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.util.*;
 
 import ui.DrawingUtility;
+import ui.HighScoreUtility;
 import ui.WindowManager;
 import logic.bullet.*;
 import logic.collectible.Clock;
@@ -40,6 +41,7 @@ public class GameLogic {
 				InputUtility.postUpdate();
 			}
 			// setHighscore + setWindowStatus
+			HighScoreUtility.recordHighScore(data.getPlayer().getScore());
 			WindowManager.setStatus(WindowManager.MENU_STATUS);
 			data.reset();
 			InputUtility.reset();
@@ -171,7 +173,7 @@ public class GameLogic {
 				for (IRenderable j : list) {
 					if (j instanceof Monster && i.isOverlap(j)) {
 						((VddBullet) i).destroyed = true;
-						((Monster) j).isHit(((VddBullet) i).getPower());
+						((Monster) j).isHit(((VddBullet) i).getPower(), player);
 					}
 				}
 			}

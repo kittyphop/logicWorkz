@@ -11,7 +11,7 @@ import ui.DrawingUtility;
 public class And extends Monster {
 
 	public And(int x, int y, int life) {
-		super(x, y, life);
+		super(x, y, life, ConfigurableOption.GATE_SCORE);
 		img = DrawingUtility.and;
 	}
 

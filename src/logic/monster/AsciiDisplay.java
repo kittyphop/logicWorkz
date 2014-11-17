@@ -10,7 +10,7 @@ import ui.DrawingUtility;
 public class AsciiDisplay extends Monster {
 
 	public AsciiDisplay(int x, int y, int life) {
-		super(x, y, life);
+		super(x, y, life, ConfigurableOption.ASCII_DISPLAY_SCORE);
 		img = DrawingUtility.asciiDisplay;
 	}
 

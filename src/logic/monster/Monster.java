@@ -1,7 +1,9 @@
 package logic.monster;
 
 import java.util.ArrayList;
+
 import logic.IRenderable;
+import logic.Player;
 import logic.Rectangle;
 import logic.RenderableObject;
 import config.ConfigurableOption;
@@ -10,9 +12,10 @@ public abstract class Monster extends RenderableObject {
 
 	protected int life, reward, firingDelayCounter;
 
-	public Monster(int x, int y, int life) {
+	public Monster(int x, int y, int life, int reward) {
 		super(x, y);
 		this.life = life;
+		this.reward = reward;
 		firingDelayCounter = ConfigurableOption.FIRING_DELAY;
 	}
 
@@ -28,10 +31,12 @@ public abstract class Monster extends RenderableObject {
 
 	public abstract Rectangle rectify();
 
-	public void isHit(int attack) {
+	public void isHit(int attack, Player player) {
 		life -= attack;
-		if (life <= 0)
+		if (life <= 0) {
 			destroyed = true;
+			player.setScore(player.getScore() + reward);
+		}
 	}
 
 }

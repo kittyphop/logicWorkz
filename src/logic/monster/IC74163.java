@@ -10,7 +10,7 @@ import ui.DrawingUtility;
 public class IC74163 extends Monster {
 
 	public IC74163(int x, int y, int life) {
-		super(x, y, life);
+		super(x, y, life, ConfigurableOption.IC_SCORE);
 		img = DrawingUtility.ic74163;
 	}
 

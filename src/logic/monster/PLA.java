@@ -10,7 +10,7 @@ import ui.DrawingUtility;
 public class PLA extends Monster {
 
 	public PLA(int x, int y, int life) {
-		super(x, y, life);
+		super(x, y, life, ConfigurableOption.PLA_SCORE);
 		img = DrawingUtility.pla;
 	}
 
