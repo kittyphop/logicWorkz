@@ -2,11 +2,8 @@ package logic;
 
 import java.awt.*;
 import java.util.ArrayList;
-
 import javax.swing.*;
-
 import config.ConfigurableOption;
-import logic.monster.IC74163;
 
 @SuppressWarnings("serial")
 public class TestLogic extends JPanel {
