@@ -2,7 +2,6 @@ package logic;
 
 import java.awt.event.KeyEvent;
 import java.util.*;
-
 import ui.DrawingUtility;
 import logic.bullet.*;
 import logic.collectible.ICollectible;
@@ -61,7 +60,7 @@ public class GameLogic {
 		}
 
 		// sort objects by z
-		list.sort(new Comparator<IRenderable>() {
+		Collections.sort(list, new Comparator<IRenderable>() {
 			public int compare(IRenderable arg0, IRenderable arg1) {
 				if (arg0.getZ() < arg1.getZ())
 					return -1;
@@ -103,6 +102,17 @@ public class GameLogic {
 					if (j instanceof Monster && i.isOverlap(j)) {
 						((VddBullet) i).destroyed = true;
 						((Monster) j).isHit(((GndBullet) i).getPower());
+					}
+				}
+			}
+
+			// check GND hits VDD
+			if (i instanceof GndBullet) {
+				for (IRenderable j : list) {
+					if (j instanceof VddBullet && i.isOverlap(j)) {
+						((GndBullet) i).destroyed = true;
+						if (!((VddBullet) j).isSpecial())
+							((VddBullet) j).destroyed = true;
 					}
 				}
 			}
