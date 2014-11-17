@@ -68,6 +68,13 @@ public class Player {
 		this.pause = pause;
 	}
 
+	public boolean isKmap() {
+		for (int i = 0; i < collectedProbe.length; i++)
+			if (!collectedProbe[i])
+				return false;
+		return true;
+	}
+
 	public Gun getCurrentGun() {
 		return currentGun;
 	}
@@ -95,13 +102,6 @@ public class Player {
 	public void clearCollectedProbe() {
 		for (int i = 0; i < collectedProbe.length; i++)
 			collectedProbe[i] = false;
-	}
-
-	public boolean isKmapReady() {
-		for (int i = 0; i < collectedProbe.length; i++)
-			if (!collectedProbe[i])
-				return false;
-		return true;
 	}
 
 	public void isHit(int attack) {

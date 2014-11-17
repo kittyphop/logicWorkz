@@ -2,6 +2,7 @@ package logic;
 
 import java.awt.event.KeyEvent;
 import java.util.*;
+
 import ui.DrawingUtility;
 import logic.bullet.*;
 import logic.collectible.ICollectible;
@@ -10,27 +11,30 @@ import config.*;
 
 public class GameLogic {
 
-	private Player player;
-	ArrayList<IRenderable> list;
+	private SharedData data;
 	private int newMonsterDelayCounter;
 
-	public GameLogic() {
-		player = new Player(100, ConfigurableOption.PLAYPANEL_HEIGHT / 2);
-		list = new ArrayList<IRenderable>();
-		list.add(player.getCurrentGun());
+	public GameLogic(SharedData data) {
+		this.data = data;
 		setCounter();
 	}
 
-	public Player getPlayer() {
-		return player;
-	}
-
-	public ArrayList<IRenderable> getList() {
-		return list;
+	public void begin() {
+		while (!data.getPlayer().isGameOver()) {
+			try {
+				Thread.sleep(5);
+			} catch (InterruptedException e) {
+			}
+			update();
+		}
+		// setHighscore + setWindowStatus
 	}
 
 	public void update() {
-		if (player.isGameOver())
+		Player player = data.getPlayer();
+		ArrayList<IRenderable> list = data.getList();
+
+		if (player.isGameOver() || player.isKmap())
 			return;
 
 		if (InputUtility.getKeyTriggered(KeyEvent.VK_ENTER))
@@ -136,6 +140,9 @@ public class GameLogic {
 	}
 
 	public void newMonster() {
+		Player player = data.getPlayer();
+		ArrayList<IRenderable> list = data.getList();
+
 		int[][] p = ConfigurableOption.MONSTER_PERCENT;
 		int level = player.getLevel();
 		int r = random(1, 100);

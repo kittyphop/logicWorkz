@@ -2,24 +2,28 @@ package logic;
 
 import java.awt.*;
 import java.util.ArrayList;
+
 import javax.swing.*;
+
 import config.ConfigurableOption;
+import config.SharedData;
 
 @SuppressWarnings("serial")
 public class TestLogic extends JPanel {
 
-	GameLogic gameLogic;
+	SharedData data;
 
-	public TestLogic(GameLogic gameLogic) {
-		this.gameLogic = gameLogic;
+	public TestLogic(SharedData data) {
+		this.data = data;
 		this.setPreferredSize(ConfigurableOption.PLAYPANEL_DIMENSION);
 		setDoubleBuffered(true);
 	}
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("TestLogic");
-		final GameLogic logic = new GameLogic();
-		TestLogic test = new TestLogic(logic);
+		SharedData data = new SharedData();
+		final GameLogic logic = new GameLogic(data);
+		TestLogic test = new TestLogic(data);
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(test);
@@ -38,7 +42,7 @@ public class TestLogic extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		ArrayList<IRenderable> list = gameLogic.getList();
+		ArrayList<IRenderable> list = data.getList();
 		for (IRenderable i : list) {
 			i.render((Graphics2D) g);
 		}
