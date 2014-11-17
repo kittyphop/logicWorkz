@@ -46,7 +46,7 @@ public class DrawingUtility {
 	public static final BufferedImage menu_background = getImage("res/img/menu_temp.png");
 	public static final BufferedImage game_background = getImage("res/img/game_background.png");
 	public static final BufferedImage credit_background = getImage("res/img/credit_background.png");
-	public static final BufferedImage play_panel = getImage("res/img/play_panel_inv.png");
+	public static final BufferedImage play_panel = getImage("res/img/play_panel.png");
 
 	public static BufferedImage clock = getImage("res/img/clock.png");
 	public static BufferedImage probeK = getImage("res/img/probe_k.png");

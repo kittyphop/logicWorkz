@@ -1,5 +1,4 @@
 
-
 import javax.swing.UIManager;
 
 import ui.WindowManager;
@@ -12,8 +11,8 @@ public class Main {
 
 		SharedData data = new SharedData();
 		(new Thread(new WindowManager(data))).start();
-		//GameLogic logic = new gameLogic(data);
-		//logic.begin();
-		
+		GameLogic logic = new GameLogic(data);
+		logic.begin();
+
 	}
 }

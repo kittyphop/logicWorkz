@@ -31,7 +31,7 @@ public class WindowManager implements Runnable {
 		menuDialog = new MenuDialog();
 		gameWindow = new GameWindow();
 		initialize();
-		
+
 		this.data = data;
 		status = MENU_STATUS;
 	}
@@ -46,7 +46,7 @@ public class WindowManager implements Runnable {
 			}
 
 			// debug
-			System.out.println(status);
+			// System.out.println(status);
 
 			if (status == MENU_STATUS
 					&& (!menuDialog.isVisible() || !(currentDialogPanel instanceof MenuPanel)))
@@ -80,8 +80,7 @@ public class WindowManager implements Runnable {
 		return status;
 	}
 
-	public void initialize()
-	{
+	public void initialize() {
 		currentWindowPanel = new GamePanel(data);
 		gameWindow.getContentPane().add(currentWindowPanel);
 		gameWindow.getContentPane().validate();
@@ -99,7 +98,7 @@ public class WindowManager implements Runnable {
 		menuDialog.setLocationRelativeTo(null);
 		menuDialog.setVisible(true);
 	}
-	
+
 	public void dialogToMenu() {
 
 		gameWindow.getContentPane().removeAll();

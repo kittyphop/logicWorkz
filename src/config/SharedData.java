@@ -16,12 +16,18 @@ public class SharedData {
 		list.add(player.getCurrentGun());
 	}
 
-	public Player getPlayer() {
+	public synchronized Player getPlayer() {
 		return player;
 	}
 
-	public ArrayList<IRenderable> getList() {
+	public synchronized ArrayList<IRenderable> getList() {
 		return list;
+	}
+
+	public synchronized void reset() {
+		player = new Player(100, ConfigurableOption.PLAYPANEL_HEIGHT / 2);
+		list = new ArrayList<IRenderable>();
+		list.add(player.getCurrentGun());
 	}
 
 }

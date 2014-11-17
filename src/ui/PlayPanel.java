@@ -23,13 +23,10 @@ public class PlayPanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.drawImage(DrawingUtility.play_panel, null, 0, 0);
-		/*
 		if (data != null) {
 			ArrayList<IRenderable> list = data.getList();
-			for (IRenderable i : list) {
-				i.render(g2);
-			}
+			for (int i = 0; i < list.size(); i++)
+				list.get(i).render(g2);
 		}
-		*/
 	}
 }

@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.util.*;
 
 import ui.DrawingUtility;
+import ui.WindowManager;
 import logic.bullet.*;
 import logic.collectible.ICollectible;
 import logic.monster.*;
@@ -20,21 +21,27 @@ public class GameLogic {
 	}
 
 	public void begin() {
-		while (!data.getPlayer().isGameOver()) {
-			try {
-				Thread.sleep(5);
-			} catch (InterruptedException e) {
+		while (true) {
+			while (!data.getPlayer().isGameOver()) {
+				try {
+					Thread.sleep(5);
+				} catch (InterruptedException e) {
+				}
+				update();
+				InputUtility.postUpdate();
 			}
-			update();
+			// setHighscore + setWindowStatus
+			WindowManager.setStatus(WindowManager.MENU_STATUS);
+			data.reset();
 		}
-		// setHighscore + setWindowStatus
 	}
 
 	public void update() {
 		Player player = data.getPlayer();
 		ArrayList<IRenderable> list = data.getList();
 
-		if (player.isGameOver() || player.isKmap())
+		if (WindowManager.getStatus() != WindowManager.GAME_STATUS
+				|| player.isGameOver() || player.isKmap())
 			return;
 
 		if (InputUtility.getKeyTriggered(KeyEvent.VK_ENTER))
@@ -53,13 +60,14 @@ public class GameLogic {
 			player.getCurrentGun().y--;
 		if (InputUtility.getKeyPressed(KeyEvent.VK_DOWN))
 			player.getCurrentGun().y++;
-		if (InputUtility.getKeyPressed(KeyEvent.VK_SPACE))
+		if (InputUtility.getKeyTriggered(KeyEvent.VK_SPACE))
 			player.getCurrentGun().shoot(player, list);
 
 		// delete destroyed object
 		for (int i = 0; i < list.size(); i++) {
 			IRenderable o = list.get(i);
-			if (o.isDestroyed() || o.getX() < -100)
+			if (o.isDestroyed() || o.getX() < -100
+					|| o.getX() > ConfigurableOption.PLAYPANEL_WIDTH)
 				list.remove(i);
 		}
 
@@ -105,7 +113,7 @@ public class GameLogic {
 				for (IRenderable j : list) {
 					if (j instanceof Monster && i.isOverlap(j)) {
 						((VddBullet) i).destroyed = true;
-						((Monster) j).isHit(((GndBullet) i).getPower());
+						((Monster) j).isHit(((VddBullet) i).getPower());
 					}
 				}
 			}
@@ -123,7 +131,7 @@ public class GameLogic {
 
 			// check monster hits player
 			if (i instanceof Monster && i.isOverlap(player.getCurrentGun())) {
-				((Monster) i).isHit(ConfigurableOption.ATTACK);
+				// ((Monster) i).isHit(ConfigurableOption.ATTACK);
 				player.isHit(ConfigurableOption.ATTACK);
 			}
 		}
