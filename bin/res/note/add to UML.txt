@@ -1,0 +1,14 @@
+
+
+Gun
+	firingDelay
+	firingDelayCounter
+
+iRenderable
+	isVisible
+	isDestroy
+	isSamePosition
+	isDestroyed
+
+movingDelay
+movingDelayCounter
