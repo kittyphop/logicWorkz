@@ -2,11 +2,12 @@ package config;
 
 public class InputUtility {
 
-	private static int mouseX, mouseY;
-	private static boolean mouseLeftDown, mouseRightDown, mouseOnScreen;
-	private static boolean mouseLeftTriggered, mouseRightTriggered;
-	private static boolean[] keyPressed = new boolean[256];
-	private static boolean[] keyTriggered = new boolean[256];
+	private static volatile int mouseX, mouseY;
+	private static volatile boolean mouseLeftDown, mouseRightDown,
+			mouseOnScreen;
+	private static volatile boolean mouseLeftTriggered, mouseRightTriggered;
+	private static volatile boolean[] keyPressed = new boolean[256];
+	private static volatile boolean[] keyTriggered = new boolean[256];
 
 	public static int getMouseX() {
 		return mouseX;

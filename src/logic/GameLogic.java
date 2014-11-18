@@ -32,18 +32,21 @@ public class GameLogic implements Runnable {
 
 	public void run() {
 		while (true) {
-			while (!data.getPlayer().isGameOver()) {
-				try {
-					Thread.sleep(5);
-				} catch (InterruptedException e) {
+			if (WindowManager.getStatus() == WindowManager.GAME_STATUS
+					&& !data.getPlayer().isGameOver()) {
+				while (!data.getPlayer().isGameOver()) {
+					try {
+						Thread.sleep(5);
+					} catch (InterruptedException e) {
+					}
+					update();
+					InputUtility.postUpdate();
 				}
-				update();
-				InputUtility.postUpdate();
+				HighScoreUtility.recordHighScore(data.getPlayer().getScore());
+				WindowManager.setStatus(WindowManager.MENU_STATUS);
+				data.reset();
+				InputUtility.reset();
 			}
-			HighScoreUtility.recordHighScore(data.getPlayer().getScore());
-			WindowManager.setStatus(WindowManager.MENU_STATUS);
-			data.reset();
-			InputUtility.reset();
 		}
 	}
 
@@ -51,8 +54,7 @@ public class GameLogic implements Runnable {
 		Player player = data.getPlayer();
 		ArrayList<IRenderable> list = data.getList();
 
-		if (WindowManager.getStatus() != WindowManager.GAME_STATUS
-				|| player.isGameOver() || player.isKmap())
+		if (player.isGameOver() || player.isKmap())
 			return;
 
 		if (InputUtility.getKeyTriggered(KeyEvent.VK_ENTER))
