@@ -166,6 +166,7 @@ public class GamePanel extends JPanel {
 		}
 
 		// time counter
+		
 		int time = data.getPlayer().getTime();
 		g2.setColor(Color.BLACK);
 		g2.drawRect(28, 555, 854, 12);
@@ -178,36 +179,22 @@ public class GamePanel extends JPanel {
 		g2.fillRect(29, 556, time * 853 / ConfigurableOption.MAX_TIME, 11);
 
 		// level mission
-		
+
 		int level = data.getPlayer().getLevel();
 		font = new Font("MS Sans Serif", Font.BOLD, 30);
 		g2.setFont(font);
 		g2.setColor(Color.BLACK);
-		g2.drawString("MISSION : "+level+" x", 610, 537);
+		g2.drawString("MISSION : " + level + " x", 610, 537);
 
-		/*
-		 * 
-		 * // code for draw time counter ...
-		 * 
-		 * //code for draw level mission
-		 * 
-		 * int level = logic.getPlayer().getLevel(); ...
-		 * 
-		 * 
-		 * //code for draw kmap
-		 * 
-		 * if(gameLogic.kmapTime()){ g2.setComposite(transcluentWhite);
-		 * g2.setColor(Color.WHITE); g2.fillRect(0,0,894,620);
-		 * g2.setComposite(opaque); }
-		 */
+		// k-map
 
-		// test
+		if (InputUtility.getKeyPressed(KeyEvent.VK_K)) {
+			g2.setComposite(transcluentWhite);
+			g2.setColor(Color.BLACK);
+			g2.fillRect(0, 0, 894, 620);
+			g2.setComposite(opaque);
+			g2.drawImage(DrawingUtility.kmap_background, null, 287, 150);
+		}
 
-		/*
-		 * if (data.getPlayer().isPause()) { g2.setComposite(transcluentWhite);
-		 * g2.setColor(Color.BLACK); g2.fillRect(0, 0, 894, 620);
-		 * g2.setComposite(opaque); g2.drawImage(DrawingUtility.menu_background,
-		 * null, 100, 100); }
-		 */
 	}
 }
