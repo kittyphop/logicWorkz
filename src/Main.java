@@ -1,5 +1,6 @@
 import ui.WindowManager;
 import logic.GameLogic;
+import logic.KmapLogic;
 import config.SharedData;
 
 public class Main {
@@ -7,7 +8,7 @@ public class Main {
 
 		SharedData data = new SharedData();
 		(new Thread(new GameLogic(data))).start();
+		(new Thread(new KmapLogic(data))).start();
 		(new WindowManager(data)).begin();
-
 	}
 }

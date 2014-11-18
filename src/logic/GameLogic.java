@@ -2,14 +2,11 @@ package logic;
 
 import java.awt.event.KeyEvent;
 import java.util.*;
-
 import ui.DrawingUtility;
 import ui.HighScoreUtility;
 import ui.WindowManager;
 import logic.bullet.*;
-import logic.collectible.Clock;
-import logic.collectible.ICollectible;
-import logic.collectible.Probe;
+import logic.collectible.*;
 import logic.monster.*;
 import config.*;
 
@@ -43,7 +40,6 @@ public class GameLogic implements Runnable {
 				update();
 				InputUtility.postUpdate();
 			}
-			// setHighscore + setWindowStatus
 			HighScoreUtility.recordHighScore(data.getPlayer().getScore());
 			WindowManager.setStatus(WindowManager.MENU_STATUS);
 			data.reset();
@@ -66,6 +62,7 @@ public class GameLogic implements Runnable {
 		if (player.isPause())
 			return;
 
+		// decrease time
 		timeCounter--;
 		if (timeCounter == 0) {
 			player.setTime(player.getTime() - 1);

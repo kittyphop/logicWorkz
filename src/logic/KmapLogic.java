@@ -1,52 +1,51 @@
 package logic;
 
-public class KmapLogic {
+import ui.WindowManager;
+import config.ConfigurableOption;
+import config.InputUtility;
+import config.SharedData;
 
-	private int[][] kmap = new int[4][4];
-	private int time, score;
-	private boolean end;
+public class KmapLogic implements Runnable {
 
-	public KmapLogic() {
-		randomKmap();
-		time = 30;
-		score = 0;
-		end = false;
+	private SharedData data;
+	private int timeCounter;
+
+	public KmapLogic(SharedData data) {
+		this.data = data;
+		timeCounter = ConfigurableOption.TIME_DELAY;
 	}
 
-	public int getTime() {
-		return time;
-	}
+	public void run() {
+		while (true) {
+			while (data.getPlayer().isKmap()) {
+				try {
+					Thread.sleep(5);
+				} catch (InterruptedException e) {
+				}
+				update();
+				InputUtility.postUpdate();
+			}
+			if (data.getKmap().isReturnToGame())
+				WindowManager.setStatus(WindowManager.GAME_STATUS);
+			else
+				WindowManager.setStatus(WindowManager.MENU_STATUS);
+			InputUtility.reset();
+		}
 
-	public int getScore() {
-		return score;
-	}
-
-	public void setEnd(boolean end) {
-		this.end = end;
-	}
-
-	public boolean isEnd() {
-		return end;
 	}
 
 	public void update() {
-		// update logic here
-		if (end)
+		Kmap map = data.getKmap();
+
+		if (map.isEnd())
 			return;
-		time--;
-		if (time <= 0)
-			end = true;
-		score++;
-	}
 
-	public int random(int a, int b) {
-		return (int) (Math.random() * (b - a + 1)) + a;
-	}
-
-	public void randomKmap() {
-		for (int i = 0; i < 4; i++)
-			for (int j = 0; j < 4; j++)
-				kmap[i][j] = random(0, 1);
+		// decrease time
+		timeCounter--;
+		if (timeCounter == 0) {
+			map.setTime(map.getTime() - 1);
+			timeCounter = ConfigurableOption.TIME_DELAY;
+		}
 	}
 
 }
