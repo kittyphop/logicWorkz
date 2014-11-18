@@ -28,7 +28,7 @@ import config.SharedData;
 public class GamePanel extends JPanel {
 
 	protected static final AlphaComposite transcluentWhite = AlphaComposite
-			.getInstance(AlphaComposite.SRC_OVER, 0.7f);
+			.getInstance(AlphaComposite.SRC_OVER, 0.9f);
 	protected static final AlphaComposite opaque = AlphaComposite.getInstance(
 			AlphaComposite.SRC_OVER, 1);
 
