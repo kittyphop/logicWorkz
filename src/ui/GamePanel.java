@@ -43,7 +43,7 @@ public class GamePanel extends JPanel {
 		setLayout(null);
 
 		playPanel = new PlayPanel(data);
-		//playPanel.setBounds(15, 95, 717, 356);
+		playPanel.setBounds(15, 95, 717, 356);
 		add(playPanel);
 
 		addKeyListener(new KeyListener() {
@@ -113,7 +113,6 @@ public class GamePanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.drawImage(DrawingUtility.game_background, null, 0, 0);
-		playPanel.paintComponent(g);
 
 		if (data == null)
 			return;
