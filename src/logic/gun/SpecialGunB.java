@@ -10,8 +10,8 @@ import ui.DrawingUtility;
 
 public class SpecialGunB extends Gun {
 
-	public SpecialGunB(int x, int y, int bullet) {
-		super(x, y, bullet);
+	public SpecialGunB(Player player, int x, int y, int bullet) {
+		super(player, x, y, bullet);
 		img = DrawingUtility.hexKeyboard;
 	}
 
@@ -25,7 +25,7 @@ public class SpecialGunB extends Gun {
 		bullet--;
 		if (bullet == 0) {
 			destroyed = true;
-			NormalGun g = new NormalGun(x, y, 0);
+			NormalGun g = new NormalGun(player, x, y, 0);
 			player.setCurrentGun(g);
 			list.add(g);
 		}

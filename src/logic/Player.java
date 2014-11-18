@@ -8,7 +8,7 @@ import config.ConfigurableOption;
 public class Player {
 
 	private int time, score, level;
-	private boolean gameOver, pause;
+	private boolean gameOver, pause, damaged;
 	private Gun currentGun;
 	private boolean[] collectedProbe;
 
@@ -18,7 +18,7 @@ public class Player {
 		level = 5;
 		gameOver = false;
 		pause = false;
-		currentGun = new NormalGun(x, y, 0);
+		currentGun = new NormalGun(this, x, y, 0);
 		collectedProbe = new boolean[4];
 	}
 
@@ -66,6 +66,14 @@ public class Player {
 
 	public void setPause(boolean pause) {
 		this.pause = pause;
+	}
+
+	public boolean isDamaged() {
+		return damaged;
+	}
+
+	public void setDamaged(boolean damaged) {
+		this.damaged = damaged;
 	}
 
 	public boolean isKmap() {

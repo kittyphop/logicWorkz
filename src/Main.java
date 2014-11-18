@@ -1,18 +1,13 @@
-
-import javax.swing.UIManager;
-
 import ui.WindowManager;
 import logic.GameLogic;
-import config.InputUtility;
 import config.SharedData;
 
 public class Main {
 	public static void main(String[] args) {
 
 		SharedData data = new SharedData();
-		(new Thread(new WindowManager(data))).start();
-		GameLogic logic = new GameLogic(data);
-		logic.begin();
+		(new Thread(new GameLogic(data))).start();
+		(new WindowManager(data)).begin();
 
 	}
 }

@@ -4,7 +4,7 @@ import javax.swing.*;
 
 import config.SharedData;
 
-public class WindowManager implements Runnable {
+public class WindowManager {
 
 	private final MenuDialog menuDialog;
 	private JPanel currentDialogPanel;
@@ -36,7 +36,7 @@ public class WindowManager implements Runnable {
 		status = MENU_STATUS;
 	}
 
-	public void run() {
+	public void begin() {
 
 		while (true) {
 

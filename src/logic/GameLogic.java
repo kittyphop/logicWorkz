@@ -13,11 +13,12 @@ import logic.collectible.Probe;
 import logic.monster.*;
 import config.*;
 
-public class GameLogic {
+public class GameLogic implements Runnable {
 
 	private SharedData data;
 	private int newMonsterDelayCounter, newProbeDelayCounter,
-			newClockDelayCounter, shootingDelayCounter;
+			newClockDelayCounter, shootingDelayCounter, damagedDelayCounter,
+			timeCounter;
 
 	public GameLogic(SharedData data) {
 		this.data = data;
@@ -28,9 +29,11 @@ public class GameLogic {
 		newClockDelayCounter = random(ConfigurableOption.MIN_NEW_CLOCK,
 				ConfigurableOption.MAX_NEW_CLOCK);
 		shootingDelayCounter = 1;
+		damagedDelayCounter = 1;
+		timeCounter = ConfigurableOption.TIME_DELAY;
 	}
 
-	public void begin() {
+	public void run() {
 		while (true) {
 			while (!data.getPlayer().isGameOver()) {
 				try {
@@ -63,30 +66,10 @@ public class GameLogic {
 		if (player.isPause())
 			return;
 
-		// check if player move
-		if (InputUtility.getKeyPressed(KeyEvent.VK_LEFT)) {
-			player.getCurrentGun().x--;
-			if (player.getCurrentGun().x < 0)
-				player.getCurrentGun().x = 0;
-		}
-		if (InputUtility.getKeyPressed(KeyEvent.VK_RIGHT)) {
-			player.getCurrentGun().x++;
-			if (player.getCurrentGun().x > ConfigurableOption.PLAYPANEL_WIDTH
-					- player.getCurrentGun().img.getWidth())
-				player.getCurrentGun().x = ConfigurableOption.PLAYPANEL_WIDTH
-						- player.getCurrentGun().img.getWidth();
-		}
-		if (InputUtility.getKeyPressed(KeyEvent.VK_UP)) {
-			player.getCurrentGun().y--;
-			if (player.getCurrentGun().y < 0)
-				player.getCurrentGun().y = 0;
-		}
-		if (InputUtility.getKeyPressed(KeyEvent.VK_DOWN)) {
-			player.getCurrentGun().y++;
-			if (player.getCurrentGun().y > ConfigurableOption.PLAYPANEL_HEIGHT
-					- player.getCurrentGun().img.getHeight())
-				player.getCurrentGun().y = ConfigurableOption.PLAYPANEL_HEIGHT
-						- player.getCurrentGun().img.getHeight();
+		timeCounter--;
+		if (timeCounter == 0) {
+			player.setTime(player.getTime() - 1);
+			timeCounter = ConfigurableOption.TIME_DELAY;
 		}
 
 		// check if player shoot
@@ -155,6 +138,13 @@ public class GameLogic {
 					ConfigurableOption.MAX_NEW_CLOCK);
 		}
 
+		// check gun damaged
+		damagedDelayCounter--;
+		if (damagedDelayCounter < 0) {
+			damagedDelayCounter = 1;
+			player.setDamaged(false);
+		}
+
 		// check collect/hit
 		for (IRenderable i : list) {
 			// check collectible object
@@ -163,9 +153,12 @@ public class GameLogic {
 				((ICollectible) i).collect(player);
 
 			// check GND hits player
-			if (i instanceof GndBullet && i.isOverlap(player.getCurrentGun())) {
+			if (i instanceof GndBullet && i.isOverlap(player.getCurrentGun())
+					&& damagedDelayCounter == 0) {
 				((GndBullet) i).destroyed = true;
 				player.isHit(((GndBullet) i).getPower());
+				player.setDamaged(true);
+				damagedDelayCounter = ConfigurableOption.DAMAGED_DELAY;
 			}
 
 			// check VDD hits monster
@@ -190,9 +183,12 @@ public class GameLogic {
 			}
 
 			// check monster hits player
-			if (i instanceof Monster && i.isOverlap(player.getCurrentGun())) {
+			if (i instanceof Monster && i.isOverlap(player.getCurrentGun())
+					&& damagedDelayCounter == 0) {
 				// ((Monster) i).isHit(ConfigurableOption.ATTACK);
 				player.isHit(ConfigurableOption.ATTACK);
+				player.setDamaged(true);
+				damagedDelayCounter = ConfigurableOption.DAMAGED_DELAY;
 			}
 		}
 	}

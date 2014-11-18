@@ -36,6 +36,7 @@ public abstract class Monster extends RenderableObject {
 		if (life <= 0) {
 			destroyed = true;
 			player.setScore(player.getScore() + reward);
+			player.setTime(player.getTime() + 10);
 		}
 	}
 
