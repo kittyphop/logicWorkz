@@ -51,7 +51,7 @@ public class SharedData {
 	}
 
 	public void setRemainWaitingTime() {
-		remainWaitingTime = 30;
+		remainWaitingTime = 300;
 	}
 
 	public void decreaseWaitingTime() {

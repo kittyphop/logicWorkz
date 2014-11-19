@@ -91,14 +91,25 @@ public class KmapPanel extends JPanel {
 		g2.setColor(Color.BLACK);
 		g2.fillRect(0, 0, 894, 620);
 		g2.setComposite(opaque);
-		g2.drawImage(DrawingUtility.kmap_background, null, 287, 150);
-		data.getKmap().render(g2);
-		ArrayList<Frame> list = data.getKmapList();
-		for (int i = 0; i < list.size(); i++)
-			list.get(i).render(g2);
-		data.getTemp().render(g2);
+
+		Font f = g2.getFont();
 
 		// code for count down
+		
+		if (data.getRemainWaitingTime() > 0) {
+
+			int number = data.getRemainWaitingTime() / 100 + 1;
+			Font font = new Font("MS Sans Serif", Font.BOLD, 200);
+			g2.setFont(font);
+			g2.setColor(Color.WHITE);
+			FontMetrics metrics = g2.getFontMetrics(font);
+			Rectangle2D rect = metrics.getStringBounds("" + number, g2);
+			g2.drawString(
+					"" + number,
+					(ConfigurableOption.WINDOW_WIDTH - (int) rect.getWidth()) / 2,
+					(ConfigurableOption.WINDOW_HEIGHT - (int) rect.getHeight()) / 2 + 200);
+			return;
+		}
 
 		// title
 
@@ -133,12 +144,26 @@ public class KmapPanel extends JPanel {
 		g2.setColor(Color.WHITE);
 		g2.drawString("x " + remainFrame, 780, 370);
 
-		// correct kmap
+		// correct k-map
+
 		int score = data.getKmap().getScore();
 		g2.drawImage(DrawingUtility.kmap_score, null, 660, 400);
 		font = new Font("MS Sans Serif", Font.BOLD, 30);
 		g2.setFont(font);
 		g2.setColor(Color.WHITE);
 		g2.drawString("x " + score, 780, 455);
+
+		// k-map
+
+		g2.drawImage(DrawingUtility.kmap_background, null, 287, 150);
+
+		g2.setFont(f);
+		g2.setColor(Color.BLACK);
+		data.getKmap().render(g2);
+		ArrayList<Frame> list = data.getKmapList();
+		for (int i = 0; i < list.size(); i++)
+			list.get(i).render(g2);
+		data.getTemp().render(g2);
+
 	}
 }

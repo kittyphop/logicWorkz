@@ -38,6 +38,27 @@ public class PlayPanel extends JPanel {
 		for (int i = 0; i < list.size(); i++)
 			list.get(i).render(g2);
 
+		if (data.getRemainWaitingTime() > 0) {
+
+			g2.setComposite(transcluentWhite);
+			g2.setColor(Color.BLACK);
+			g2.fillRect(0, 0, ConfigurableOption.PLAYPANEL_WIDTH,
+					ConfigurableOption.PLAYPANEL_HEIGHT);
+			g2.setComposite(opaque);
+
+			int number = data.getRemainWaitingTime() / 100 + 1;
+			Font font = new Font("MS Sans Serif", Font.BOLD, 100);
+			g2.setFont(font);
+			g2.setColor(Color.WHITE);
+			FontMetrics metrics = g2.getFontMetrics(font);
+			Rectangle2D rect = metrics.getStringBounds("" + number, g2);
+			g2.drawString(
+					"" + number,
+					(ConfigurableOption.PLAYPANEL_WIDTH - (int) rect.getWidth()) / 2,
+					(ConfigurableOption.PLAYPANEL_HEIGHT - (int) rect.getHeight()) / 2 + 100);
+			return;
+		}
+
 		if (data.getPlayer().isPause()) {
 			g2.setComposite(transcluentWhite);
 			g2.setColor(Color.BLACK);
@@ -54,7 +75,7 @@ public class PlayPanel extends JPanel {
 					"PAUSE",
 					(ConfigurableOption.PLAYPANEL_WIDTH - (int) rect.getWidth()) / 2,
 					(ConfigurableOption.PLAYPANEL_HEIGHT - (int) rect
-							.getHeight()) / 2 + 20);
+							.getHeight()) / 2 + 30);
 
 		}
 	}
