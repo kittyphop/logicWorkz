@@ -2,6 +2,7 @@ package ui;
 
 import javax.swing.*;
 
+import config.InputUtility;
 import config.SharedData;
 
 public class WindowManager {
@@ -45,9 +46,6 @@ public class WindowManager {
 			} catch (Exception e) {
 			}
 
-			// debug
-			// System.out.println(status);
-
 			if (status == MENU_STATUS && (!menuDialog.isVisible() || !(currentDialogPanel instanceof MenuPanel)))
 				dialogToMenu();
 			else if (status == CREDIT_STATUS
@@ -70,6 +68,15 @@ public class WindowManager {
 
 			currentDialogPanel.repaint();
 			currentWindowPanel.repaint();
+			
+			
+			if(InputUtility.isMouseLeftDown())
+				System.out.println("down");
+			if(InputUtility.isMouseLeftDownTriggered())
+				System.out.println("triggered down");
+			if(InputUtility.isMouseLeftUpTriggered())
+				System.out.println("triggered up");
+				
 		}
 	}
 

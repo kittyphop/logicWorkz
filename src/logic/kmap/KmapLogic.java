@@ -52,7 +52,6 @@ public class KmapLogic implements Runnable {
 		if (timeCounter == 0) {
 			map.setTime(map.getTime() - 1);
 			timeCounter = ConfigurableOption.TIME_DELAY;
-			map.setRun(false);
 		}
 
 		// check if cover all ones

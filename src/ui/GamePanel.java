@@ -3,20 +3,14 @@ package ui;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
-import logic.GameLogic;
 import logic.gun.Gun;
 import logic.gun.NormalGun;
 import logic.gun.SpecialGunA;
@@ -50,7 +44,7 @@ public class GamePanel extends JPanel {
 		playPanel = new PlayPanel(data);
 		playPanel.setBounds(15, 95, 717, 356);
 		add(playPanel);
-
+		
 		addKeyListener(new KeyListener() {
 
 			@Override
@@ -69,51 +63,6 @@ public class GamePanel extends JPanel {
 					InputUtility.setKeyTriggered(arg0.getKeyCode(), true);
 				InputUtility.setKeyPressed(arg0.getKeyCode(), true);
 
-			}
-		});
-
-		addMouseListener(new MouseListener() {
-
-			public void mouseReleased(MouseEvent arg0) {
-				if (arg0.getButton() == 1) {
-					InputUtility.setMouseLeftUpTriggered(true);
-					InputUtility.setMouseLeftDown(false);
-				}
-			}
-
-			public void mousePressed(MouseEvent arg0) {
-				if (arg0.getButton() == 1) {
-					InputUtility.setMouseLeftDownTriggered(true);
-					InputUtility.setMouseLeftDown(true);
-				}
-			}
-
-			public void mouseExited(MouseEvent arg0) {
-				InputUtility.setMouseOnScreen(false);
-			}
-
-			public void mouseEntered(MouseEvent arg0) {
-				InputUtility.setMouseOnScreen(true);
-			}
-
-			public void mouseClicked(MouseEvent arg0) {
-			}
-		});
-
-		addMouseMotionListener(new MouseMotionListener() {
-
-			public void mouseMoved(MouseEvent e) {
-				if (InputUtility.isMouseOnScreen()) {
-					InputUtility.setMouseX(e.getX());
-					InputUtility.setMouseY(e.getY());
-				}
-			}
-
-			public void mouseDragged(MouseEvent e) {
-				if (InputUtility.isMouseOnScreen()) {
-					InputUtility.setMouseX(e.getX());
-					InputUtility.setMouseY(e.getY());
-				}
 			}
 		});
 	}

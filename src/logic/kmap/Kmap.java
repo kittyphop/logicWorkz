@@ -31,7 +31,7 @@ public class Kmap {
 		this.time = time;
 		if (time <= 0) {
 			this.time = 0;
-			run = true;
+			run = false;
 		}
 	}
 
