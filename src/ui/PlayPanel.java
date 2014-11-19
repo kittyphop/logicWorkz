@@ -32,7 +32,7 @@ public class PlayPanel extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
-		g2.drawImage(DrawingUtility.play_panel, null, 15, 95);
+		g2.drawImage(DrawingUtility.play_panel, null, 0, 0);
 		if (data == null)
 			return;
 		
