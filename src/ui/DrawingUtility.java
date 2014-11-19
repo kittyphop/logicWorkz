@@ -53,6 +53,7 @@ public class DrawingUtility {
 	public static final BufferedImage side_binary_switch = getImage("res/img/side_binary_switch.png");
 	public static final BufferedImage side_hex_keyboard = getImage("res/img/side_hex_keyboard.png");
 	public static final BufferedImage side_push_button = getImage("res/img/side_push_button.png");
+	public static final BufferedImage side_one_shot = getImage("res/img/side_one_shot.png");
 
 	public static final BufferedImage kmap_frame = getImage("res/img/kmap_frame.png");
 	public static final BufferedImage kmap_score = getImage("res/img/kmap_score.png");
