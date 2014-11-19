@@ -54,8 +54,11 @@ public class GameLogic implements Runnable {
 		Player player = data.getPlayer();
 		ArrayList<IRenderable> list = data.getGameList();
 
-		if (player.isGameOver() || player.isKmap())
+		if (player.isGameOver() || !data.getKmap().isEnd())
 			return;
+
+		if (player.isKmap())
+			data.getKmap().setEnd(false);
 
 		if (InputUtility.getKeyTriggered(KeyEvent.VK_ENTER))
 			player.setPause(!player.isPause());

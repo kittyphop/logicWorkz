@@ -3,8 +3,11 @@ package ui;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Vector;
+
 import javax.swing.*;
+
 import config.ConfigurableOption;
+import config.SharedData;
 
 public class MenuPanel extends JPanel {
 
@@ -14,6 +17,7 @@ public class MenuPanel extends JPanel {
 	JScrollPane highscorePane;
 
 	public MenuPanel() {
+
 		setPreferredSize(ConfigurableOption.DIALOG_DIMENSION);
 		setLayout(null);
 

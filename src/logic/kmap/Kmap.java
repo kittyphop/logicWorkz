@@ -13,8 +13,10 @@ public class Kmap {
 		randomKmap();
 		time = 30;
 		score = 0;
-		end = false;
+		end = true;
 		returnToGame = false;
+		x = -1;
+		y = -1;
 	}
 
 	public int[][] getMap() {
@@ -90,7 +92,7 @@ public class Kmap {
 		return true;
 	}
 
-	public boolean ok(Line l) {
+	public boolean ok(Frame l) {
 		int x1 = l.getX1(), y1 = l.getY1();
 		int x2 = l.getX1(), y2 = l.getY1();
 		int dx = x2 - x1 + 1, dy = y2 - y1 + 1;
@@ -110,7 +112,7 @@ public class Kmap {
 		return true;
 	}
 
-	public void cover(Line l) {
+	public void cover(Frame l) {
 		int x1 = l.getX1(), y1 = l.getY1();
 		int x2 = l.getX1(), y2 = l.getY1();
 

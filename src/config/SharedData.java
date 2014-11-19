@@ -5,23 +5,23 @@ import java.util.ArrayList;
 import logic.IRenderable;
 import logic.Player;
 import logic.kmap.Kmap;
-import logic.kmap.Line;
+import logic.kmap.Frame;
 
 public class SharedData {
 
 	private volatile Player player;
 	private volatile ArrayList<IRenderable> gameList;
 	private volatile Kmap kmap;
-	private volatile Line temp;
-	private volatile ArrayList<Line> kmapList;
+	private volatile Frame temp;
+	private volatile ArrayList<Frame> kmapList;
 
 	public SharedData() {
 		player = new Player(100, ConfigurableOption.PLAYPANEL_HEIGHT / 2);
 		gameList = new ArrayList<IRenderable>();
 		gameList.add(player.getCurrentGun());
 		kmap = new Kmap();
-		temp = new Line(-1, -1, -1, -1);
-		kmapList = new ArrayList<Line>();
+		temp = new Frame(-1, -1, -1, -1);
+		kmapList = new ArrayList<Frame>();
 	}
 
 	public Player getPlayer() {
@@ -36,11 +36,15 @@ public class SharedData {
 		return kmap;
 	}
 
-	public Line getTemp() {
+	public void setTemp(Frame temp) {
+		this.temp = temp;
+	}
+
+	public Frame getTemp() {
 		return temp;
 	}
 
-	public ArrayList<Line> getKmapList() {
+	public ArrayList<Frame> getKmapList() {
 		return kmapList;
 	}
 

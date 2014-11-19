@@ -46,12 +46,10 @@ public class GamePanel extends JPanel {
 		kmapPanel = new KmapPanel(data);
 		kmapPanel.setBounds(0, 0, 894, 620);
 		add(kmapPanel);
-		
+
 		playPanel = new PlayPanel(data);
 		playPanel.setBounds(15, 95, 717, 356);
 		add(playPanel);
-		
-		
 
 		addKeyListener(new KeyListener() {
 
@@ -77,12 +75,18 @@ public class GamePanel extends JPanel {
 		addMouseListener(new MouseListener() {
 
 			public void mouseReleased(MouseEvent arg0) {
-				InputUtility.setMouseLeftDown(false);
-
+				if (arg0.getButton() == 1) {
+					System.out.println("release");
+					InputUtility.setMouseLeftUpTriggered(true);
+					InputUtility.setMouseLeftDown(false);
+				}
 			}
 
 			public void mousePressed(MouseEvent arg0) {
 				if (arg0.getButton() == 1) {
+
+					System.out.println("press");
+					InputUtility.setMouseLeftDownTriggered(true);
 					InputUtility.setMouseLeftDown(true);
 				}
 			}
@@ -173,7 +177,7 @@ public class GamePanel extends JPanel {
 		}
 
 		// time counter
-		
+
 		int time = data.getPlayer().getTime();
 		g2.setColor(Color.BLACK);
 		g2.drawRect(28, 555, 854, 12);

@@ -41,8 +41,7 @@ public class KmapLogic implements Runnable {
 
 	public void update() {
 		Kmap map = data.getKmap();
-		Line temp = data.getTemp();
-		ArrayList<Line> list = data.getKmapList();
+		ArrayList<Frame> list = data.getKmapList();
 
 		if (map.isEnd())
 			return;
@@ -62,7 +61,7 @@ public class KmapLogic implements Runnable {
 		}
 
 		// check if player click
-		if (InputUtility.isMouseLeftClicked()) {
+		if (InputUtility.isMouseLeftDownTriggered()) {
 			if (Kmap.isInsideKmap(InputUtility.getMouseX(),
 					InputUtility.getMouseY())) {
 				map.setX(InputUtility.getMouseX());
@@ -77,19 +76,21 @@ public class KmapLogic implements Runnable {
 		if (InputUtility.isMouseLeftDown()) {
 			if (Kmap.isInsideKmap(InputUtility.getMouseX(),
 					InputUtility.getMouseY())) {
-				temp = new Line(map.getX(), map.getY(),
-						InputUtility.getMouseX(), InputUtility.getMouseY());
+				data.setTemp(new Frame(map.getX(), map.getY(), InputUtility
+						.getMouseX(), InputUtility.getMouseY()));
 			} else
-				temp = new Line(map.getX(), map.getY(), -1, -1);
+				data.setTemp(new Frame(map.getX(), map.getY(), -1, -1));
 		}
 
 		// check if player release
-		if (true /* not yet implemented */) {
-			if (map.ok(temp.toIndex())) {
-				map.cover(temp.toIndex());
-				list.add(new Line(temp));
+		if (InputUtility.isMouseLeftUpTriggered()) {
+			if (map.ok(data.getTemp().toIndex())) {
+				map.cover(data.getTemp().toIndex());
+				list.add(new Frame(data.getTemp()));
 			}
-			temp = new Line(-1, -1, -1, -1);
+			map.setX(-1);
+			map.setY(-1);
+			data.setTemp(new Frame(-1, -1, -1, -1));
 		}
 	}
 

@@ -35,11 +35,11 @@ public class PlayPanel extends JPanel {
 		g2.drawImage(DrawingUtility.play_panel, null, 0, 0);
 		if (data == null)
 			return;
-		
-		//if(data.getPlayer().isGameOver())
-			//return;
-		
-		ArrayList<IRenderable> list = new ArrayList<IRenderable>(data.getGameList());
+
+		// if(data.getPlayer().isGameOver())
+		// return;
+
+		ArrayList<IRenderable> list = data.getGameList();
 		for (int i = 0; i < list.size(); i++)
 			list.get(i).render(g2);
 

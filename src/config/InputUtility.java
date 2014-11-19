@@ -3,9 +3,9 @@ package config;
 public class InputUtility {
 
 	private static volatile int mouseX, mouseY;
-	private static volatile boolean mouseLeftDown, mouseRightDown,
-			mouseOnScreen;
-	private static volatile boolean mouseLeftTriggered, mouseRightTriggered;
+	private static volatile boolean mouseLeftDown, mouseOnScreen;
+	private static volatile boolean mouseLeftDownTriggered,
+			mouseLeftUpTriggered;
 	private static volatile boolean[] keyPressed = new boolean[256];
 	private static volatile boolean[] keyTriggered = new boolean[256];
 
@@ -33,14 +33,6 @@ public class InputUtility {
 		InputUtility.mouseLeftDown = mouseLeftDown;
 	}
 
-	public static boolean isMouseRightDown() {
-		return mouseRightDown;
-	}
-
-	public static void setMouseRightDown(boolean mouseRightDown) {
-		InputUtility.mouseRightDown = mouseRightDown;
-	}
-
 	public static boolean isMouseOnScreen() {
 		return mouseOnScreen;
 	}
@@ -49,20 +41,20 @@ public class InputUtility {
 		InputUtility.mouseOnScreen = mouseOnScreen;
 	}
 
-	public static boolean isMouseLeftClicked() {
-		return mouseLeftTriggered;
+	public static void setMouseLeftDownTriggered(boolean v) {
+		InputUtility.mouseLeftDownTriggered = v;
 	}
 
-	public static void setMouseLeftTriggered(boolean v) {
-		InputUtility.mouseLeftTriggered = v;
+	public static boolean isMouseLeftDownTriggered() {
+		return mouseLeftDownTriggered;
 	}
 
-	public static boolean isMouseRightClicked() {
-		return mouseRightTriggered;
+	public static void setMouseLeftUpTriggered(boolean v) {
+		InputUtility.mouseLeftUpTriggered = v;
 	}
 
-	public static void setMouseRightTriggered(boolean v) {
-		InputUtility.mouseRightTriggered = v;
+	public static boolean isMouseLeftUpTriggered() {
+		return mouseLeftUpTriggered;
 	}
 
 	public static boolean getKeyPressed(int key) {
@@ -88,17 +80,16 @@ public class InputUtility {
 	}
 
 	public static void postUpdate() {
-		mouseLeftTriggered = false;
-		mouseRightTriggered = false;
+		mouseLeftDownTriggered = false;
+		mouseLeftUpTriggered = false;
 		for (int i = 0; i < 256; i++)
 			setKeyTriggered(i, false);
 	}
 
 	public static void reset() {
 		mouseLeftDown = false;
-		mouseLeftTriggered = false;
-		mouseRightDown = false;
-		mouseRightTriggered = false;
+		mouseLeftDownTriggered = false;
+		mouseLeftUpTriggered = false;
 		for (int i = 0; i < 256; i++) {
 			setKeyPressed(i, false);
 			setKeyTriggered(i, false);
