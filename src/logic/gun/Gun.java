@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import config.ConfigurableOption;
 import config.InputUtility;
+import config.SharedData;
 import logic.IRenderable;
 import logic.Player;
 import logic.Rectangle;
@@ -15,14 +16,14 @@ import logic.RenderableObject;
 public abstract class Gun extends RenderableObject {
 
 	protected int bullet;
-	protected Player player;
+	protected SharedData data;
 	protected int renderDelayCounter;
 	protected BufferedImage img0, img1;
 
-	public Gun(Player player, int x, int y, int bullet) {
+	public Gun(SharedData data, int x, int y, int bullet) {
 		super(x, y);
 		z = Integer.MAX_VALUE - 1;
-		this.player = player;
+		this.data = data;
 		this.bullet = bullet;
 		renderDelayCounter = ConfigurableOption.RENDER_DELAY;
 	}
@@ -34,6 +35,8 @@ public abstract class Gun extends RenderableObject {
 	}
 
 	public void move() {
+		Player player = data.getPlayer();
+
 		if (InputUtility.getKeyPressed(KeyEvent.VK_LEFT)) {
 			player.getCurrentGun().x--;
 			if (player.getCurrentGun().x < 0)
@@ -67,9 +70,9 @@ public abstract class Gun extends RenderableObject {
 	}
 
 	public void render(Graphics2D g2) {
-		if (player.isPause() || player.isKmap())
+		if (data.getPlayer().isPause() || data.getKmap().isRun())
 			super.render(g2);
-		else if (player.isDamaged()) {
+		else if (data.getPlayer().isDamaged()) {
 			renderDelayCounter--;
 			if (renderDelayCounter > ConfigurableOption.RENDER_DELAY / 2)
 				return;

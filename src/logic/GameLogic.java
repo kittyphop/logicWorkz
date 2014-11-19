@@ -34,6 +34,7 @@ public class GameLogic implements Runnable {
 		while (true) {
 			if (WindowManager.getStatus() == WindowManager.GAME_STATUS
 					&& !data.getPlayer().isGameOver()) {
+				InputUtility.reset();
 				while (!data.getPlayer().isGameOver()) {
 					try {
 						Thread.sleep(5);
@@ -45,7 +46,6 @@ public class GameLogic implements Runnable {
 				HighScoreUtility.recordHighScore(data.getPlayer().getScore());
 				WindowManager.setStatus(WindowManager.MENU_STATUS);
 				data.resetGame();
-				InputUtility.reset();
 			}
 		}
 	}

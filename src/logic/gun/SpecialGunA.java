@@ -1,6 +1,8 @@
 package logic.gun;
 
 import java.util.ArrayList;
+
+import config.SharedData;
 import logic.IRenderable;
 import logic.Player;
 import logic.Rectangle;
@@ -9,8 +11,8 @@ import ui.DrawingUtility;
 
 public class SpecialGunA extends Gun {
 
-	public SpecialGunA(Player player, int x, int y, int bullet) {
-		super(player, x, y, bullet);
+	public SpecialGunA(SharedData data, int x, int y, int bullet) {
+		super(data, x, y, bullet);
 		img = DrawingUtility.pushButton0;
 		img0 = DrawingUtility.pushButton0;
 		img1 = DrawingUtility.pushButton1;
@@ -23,7 +25,7 @@ public class SpecialGunA extends Gun {
 		bullet--;
 		if (bullet == 0) {
 			destroyed = true;
-			NormalGun g = new NormalGun(player, x, y, 0);
+			NormalGun g = new NormalGun(data, x, y, 0);
 			player.setCurrentGun(g);
 			list.add(g);
 		}
