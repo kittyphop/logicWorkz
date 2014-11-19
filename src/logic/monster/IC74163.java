@@ -11,8 +11,9 @@ public class IC74163 extends Monster {
 
 	private boolean up = false;
 
-	public IC74163(int x, int y, int life) {
-		super(x, y, life, ConfigurableOption.IC_SCORE);
+	public IC74163(int x, int y) {
+		super(x, y, ConfigurableOption.IC74163_LIFE,
+				ConfigurableOption.IC74163_SCORE);
 		img = DrawingUtility.ic74163;
 	}
 

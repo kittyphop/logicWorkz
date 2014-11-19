@@ -16,7 +16,7 @@ public class Player {
 	public Player(SharedData data, int x, int y) {
 		time = ConfigurableOption.MAX_TIME;
 		score = 0;
-		level = 1;
+		level = 0;
 		gameOver = false;
 		pause = false;
 		currentGun = new NormalGun(data, x, y, 0);
@@ -52,6 +52,10 @@ public class Player {
 
 	public void setLevel(int level) {
 		this.level = level;
+	}
+
+	public int getRemainToNextLevel() {
+		return remainToNextLevel;
 	}
 
 	public boolean isGameOver() {
@@ -129,6 +133,10 @@ public class Player {
 		if (remainToNextLevel == 0) {
 			remainToNextLevel = ConfigurableOption.MONSTER_TO_NEXT_LEVEL;
 			level++;
+			if (level == ConfigurableOption.MAX_LEVEL)
+				remainToNextLevel = 1;
+			if (level > ConfigurableOption.MAX_LEVEL)
+				gameOver = true;
 		}
 	}
 

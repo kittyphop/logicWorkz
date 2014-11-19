@@ -9,8 +9,8 @@ import ui.DrawingUtility;
 
 public class DFF extends Monster {
 
-	public DFF(int x, int y, int life) {
-		super(x, y, life, ConfigurableOption.FF_SCORE);
+	public DFF(int x, int y) {
+		super(x, y, ConfigurableOption.DFF_LIFE, ConfigurableOption.DFF_SCORE);
 		img = DrawingUtility.dFF;
 	}
 

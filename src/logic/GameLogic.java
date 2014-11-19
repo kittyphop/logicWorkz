@@ -233,67 +233,67 @@ public class GameLogic implements Runnable {
 		// Not
 		if (i == 0) {
 			int y = random(10, h - DrawingUtility.not.getHeight() - 10);
-			list.add(new Not(w, y, 100));
+			list.add(new Not(w, y));
 		}
 
 		// Or
 		if (i == 1) {
 			int y = random(10, h - DrawingUtility.or.getHeight() - 10);
-			list.add(new Or(w, y, 100));
+			list.add(new Or(w, y));
 		}
 
 		// And
 		if (i == 2) {
 			int y = random(10, h - DrawingUtility.and.getHeight() - 10);
-			list.add(new And(w, y, 100));
+			list.add(new And(w, y));
 		}
 
 		// DFF
 		if (i == 3) {
 			int y = random(10, h - DrawingUtility.dFF.getHeight() - 10);
-			list.add(new DFF(w, y, 100));
+			list.add(new DFF(w, y));
 		}
 
 		// JKFF
 		if (i == 4) {
 			int y = random(10, h - DrawingUtility.jkFF.getHeight() - 10);
-			list.add(new JKFF(w, y, 100));
+			list.add(new JKFF(w, y));
 		}
 
 		// HexDisplay
 		if (i == 5) {
 			int y = random(10, h - DrawingUtility.hexDisplay.getHeight() - 10);
-			list.add(new HexDisplay(w, y, 100));
+			list.add(new HexDisplay(w, y));
 		}
 
 		// PLA
 		if (i == 6) {
 			int y = random(10, h - DrawingUtility.pla.getHeight() - 10);
-			list.add(new PLA(w, y, 100));
+			list.add(new PLA(w, y));
 		}
 
 		// Mux
 		if (i == 7) {
 			int y = random(10, h - DrawingUtility.mux.getHeight() - 10);
-			list.add(new Mux(w, y, 100));
-		}
-
-		// Adder
-		if (i == 8) {
-			int y = random(10, h - DrawingUtility.adder.getHeight() - 10);
-			list.add(new Adder(w, y, 100));
+			list.add(new Mux(w, y));
 		}
 
 		// AsciiDisplay
-		if (i == 9) {
+		if (i == 8) {
 			int y = random(10, h - DrawingUtility.asciiDisplay.getHeight() - 10);
-			list.add(new AsciiDisplay(w, y, 100));
+			list.add(new AsciiDisplay(w, y));
+		}
+
+		// Adder
+		if (i == 9) {
+			int y = random(10, h - DrawingUtility.adder.getHeight() - 10);
+			list.add(new Adder(w, y));
 		}
 
 		// IC74163
 		if (i == 10 && !isBossCreated) {
 			int y = random(10, h - DrawingUtility.ic74163.getHeight() - 10);
-			list.add(new IC74163(w, y, 100));
+			list.add(new IC74163(w, y));
 			isBossCreated = true;
 		}
 	}

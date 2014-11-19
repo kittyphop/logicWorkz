@@ -135,7 +135,7 @@ public class GamePanel extends JPanel {
 		// level mission
 
 		int level = data.getPlayer().getLevel();
-		int remain_mon = data.getPlayer().getLevel();
+		int remain_mon = data.getPlayer().getRemainToNextLevel();
 		font = new Font("MS Sans Serif", Font.BOLD, 30);
 		g2.setFont(font);
 		g2.setColor(Color.BLACK);
@@ -146,25 +146,25 @@ public class GamePanel extends JPanel {
 		g2.drawString("x " + remain_mon, 820, 537);
 
 		BufferedImage mon;
-		if (level == 1)
+		if (level == 0)
 			mon = DrawingUtility.not;
-		else if (level == 2)
+		else if (level == 1)
 			mon = DrawingUtility.or;
-		else if (level == 3)
+		else if (level == 2)
 			mon = DrawingUtility.and;
-		else if (level == 4)
+		else if (level == 3)
 			mon = DrawingUtility.dFF;
-		else if (level == 5)
+		else if (level == 4)
 			mon = DrawingUtility.jkFF;
-		else if (level == 6)
+		else if (level == 5)
 			mon = DrawingUtility.hexDisplay;
-		else if (level == 7)
+		else if (level == 6)
 			mon = DrawingUtility.pla;
-		else if (level == 8)
+		else if (level == 7)
 			mon = DrawingUtility.mux;
-		else if (level == 9)
+		else if (level == 8)
 			mon = DrawingUtility.asciiDisplay;
-		else if (level == 10)
+		else if (level == 9)
 			mon = DrawingUtility.adder;
 		else
 			mon = DrawingUtility.ic74163;
@@ -179,7 +179,7 @@ public class GamePanel extends JPanel {
 			w *= 45 / h;
 			h = 45;
 		}
-		
+
 		g2.drawImage(mon, (int) (760 + (45 - w) / 2),
 				(int) (505 + (45 - h) / 2), (int) w, (int) h, null);
 

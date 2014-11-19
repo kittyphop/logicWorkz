@@ -10,8 +10,8 @@ import ui.DrawingUtility;
 
 public class Not extends Monster {
 
-	public Not(int x, int y, int life) {
-		super(x, y, life, ConfigurableOption.GATE_SCORE);
+	public Not(int x, int y) {
+		super(x, y, ConfigurableOption.NOT_LIFE, ConfigurableOption.NOT_SCORE);
 		img = DrawingUtility.not;
 	}
 

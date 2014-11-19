@@ -9,8 +9,8 @@ import ui.DrawingUtility;
 
 public class JKFF extends Monster {
 
-	public JKFF(int x, int y, int life) {
-		super(x, y, life, ConfigurableOption.FF_SCORE);
+	public JKFF(int x, int y) {
+		super(x, y, ConfigurableOption.JKFF_LIFE, ConfigurableOption.JKFF_SCORE);
 		img = DrawingUtility.jkFF;
 	}
 

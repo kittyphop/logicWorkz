@@ -10,8 +10,8 @@ import ui.DrawingUtility;
 
 public class Or extends Monster {
 
-	public Or(int x, int y, int life) {
-		super(x, y, life, ConfigurableOption.GATE_SCORE);
+	public Or(int x, int y) {
+		super(x, y, ConfigurableOption.OR_LIFE, ConfigurableOption.OR_SCORE);
 		img = DrawingUtility.or;
 	}
 

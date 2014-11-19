@@ -9,8 +9,9 @@ import ui.DrawingUtility;
 
 public class HexDisplay extends Monster {
 
-	public HexDisplay(int x, int y, int life) {
-		super(x, y, life, ConfigurableOption.HEX_DISPLAY_SCORE);
+	public HexDisplay(int x, int y) {
+		super(x, y, ConfigurableOption.HEX_DISPLAY_LIFE,
+				ConfigurableOption.HEX_DISPLAY_SCORE);
 		img = DrawingUtility.hexDisplay;
 	}
 

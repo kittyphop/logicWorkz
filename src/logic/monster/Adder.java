@@ -9,8 +9,9 @@ import ui.DrawingUtility;
 
 public class Adder extends Monster {
 
-	public Adder(int x, int y, int life) {
-		super(x, y, life, ConfigurableOption.ADDER_SCORE);
+	public Adder(int x, int y) {
+		super(x, y, ConfigurableOption.ADDER_LIFE,
+				ConfigurableOption.ADDER_SCORE);
 		img = DrawingUtility.adder;
 	}
 

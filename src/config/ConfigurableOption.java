@@ -20,7 +20,7 @@ public class ConfigurableOption {
 	public static final Dimension PLAYPANEL_DIMENSION = new Dimension(
 			PLAYPANEL_WIDTH, PLAYPANEL_HEIGHT);
 
-	public static final int MAX_LEVEL = 11;
+	public static final int MAX_LEVEL = 10;
 	public static final int MAX_TIME = 300;
 	public static final int MOVING_DELAY = 2;
 	public static final int BULLET_MOVING_DELAY = 0;
@@ -33,7 +33,7 @@ public class ConfigurableOption {
 	public static final int MAX_NEW_CLOCK = 3000;
 	public static final int GND_POWER = 10;
 	public static final int VDD_POWER = 10;
-	public static final int VDD_SPECIAL_POWER = 10;
+	public static final int VDD_SPECIAL_POWER = 100;
 	public static final int ATTACK = 10;
 	public static final int SHOOTING_DELAY = 50;
 	public static final int FIRING_DELAY = 200;
@@ -42,32 +42,47 @@ public class ConfigurableOption {
 	public static final int TIME_DELAY = 1000;
 	public static final int MAX_KMAP_TIME = 10 * TIME_DELAY;
 	public static final int MAX_FRAME = 30;
-	public static final int MONSTER_TO_NEXT_LEVEL = 5;
+	public static final int MONSTER_TO_NEXT_LEVEL = 10;
+
+	// Life
+	public static final int NOT_LIFE = 10;
+	public static final int OR_LIFE = 20;
+	public static final int AND_LIFE = 30;
+	public static final int DFF_LIFE = 50;
+	public static final int JKFF_LIFE = 60;
+	public static final int HEX_DISPLAY_LIFE = 80;
+	public static final int PLA_LIFE = 100;
+	public static final int MUX_LIFE = 130;
+	public static final int ASCII_DISPLAY_LIFE = 150;
+	public static final int ADDER_LIFE = 170;
+	public static final int IC74163_LIFE = 200;
 
 	// Score
-	public static final int GATE_SCORE = 50;
-	public static final int FF_SCORE = 100;
+	public static final int NOT_SCORE = 50;
+	public static final int OR_SCORE = 50;
+	public static final int AND_SCORE = 50;
+	public static final int DFF_SCORE = 100;
+	public static final int JKFF_SCORE = 100;
 	public static final int HEX_DISPLAY_SCORE = 200;
 	public static final int PLA_SCORE = 500;
 	public static final int MUX_SCORE = 700;
-	public static final int ADDER_SCORE = 1000;
 	public static final int ASCII_DISPLAY_SCORE = 1000;
-	public static final int IC_SCORE = 5000;
+	public static final int ADDER_SCORE = 2000;
+	public static final int IC74163_SCORE = 5000;
 
 	// not, or, and, dFF, jkFF, hexDisplay, pla, mux, asciiDisplay, adder,
 	// ic74163
 	public static final int[][] MONSTER_PERCENT = new int[][] {
-			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-			{ 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // level 1
-			{ 70, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // level 2
-			{ 30, 60, 100, 0, 0, 0, 0, 0, 0, 0, 0 }, // level 3
-			{ 30, 50, 70, 100, 0, 0, 0, 0, 0, 0, 0 }, // level 4
-			{ 20, 40, 60, 80, 100, 0, 0, 0, 0, 0, 0 }, // level 5
-			{ 0, 20, 40, 60, 80, 100, 0, 0, 0, 0, 0 }, // level 6
-			{ 0, 0, 20, 40, 60, 80, 100, 0, 0, 0, 0 }, // level 7
-			{ 0, 0, 10, 25, 40, 60, 80, 100, 0, 0, 0 }, // level 8
-			{ 0, 0, 10, 25, 40, 55, 70, 85, 100, 0, 0 }, // level 9
-			{ 0, 0, 0, 10, 25, 40, 55, 70, 85, 100, 0 }, // level 10
-			{ 0, 0, 0, 0, 10, 25, 40, 55, 70, 85, 100 }, }; // level 11
+			{ 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // level 0
+			{ 70, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // level 1
+			{ 30, 60, 100, 0, 0, 0, 0, 0, 0, 0, 0 }, // level 2
+			{ 30, 50, 70, 100, 0, 0, 0, 0, 0, 0, 0 }, // level 3
+			{ 20, 40, 60, 80, 100, 0, 0, 0, 0, 0, 0 }, // level 4
+			{ 0, 20, 40, 60, 80, 100, 0, 0, 0, 0, 0 }, // level 5
+			{ 0, 0, 20, 40, 60, 80, 100, 0, 0, 0, 0 }, // level 6
+			{ 0, 0, 10, 25, 40, 60, 80, 100, 0, 0, 0 }, // level 7
+			{ 0, 0, 10, 25, 40, 55, 70, 85, 100, 0, 0 }, // level 8
+			{ 0, 0, 0, 10, 25, 40, 55, 70, 85, 100, 0 }, // level 9
+			{ 0, 0, 0, 0, 10, 25, 40, 55, 70, 85, 100 }, }; // level BOSS (10)
 
 }

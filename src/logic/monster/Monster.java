@@ -36,29 +36,28 @@ public abstract class Monster extends RenderableObject {
 		if (life <= 0) {
 			destroyed = true;
 			player.setScore(player.getScore() + reward);
-			player.setTime(player.getTime() + 10);
 			boolean mission = false;
-			if (player.getLevel() == 1 && this instanceof Not)
+			if (player.getLevel() == 0 && this instanceof Not)
 				mission = true;
-			if (player.getLevel() == 2 && this instanceof Or)
+			if (player.getLevel() == 1 && this instanceof Or)
 				mission = true;
-			if (player.getLevel() == 3 && this instanceof And)
+			if (player.getLevel() == 2 && this instanceof And)
 				mission = true;
-			if (player.getLevel() == 4 && this instanceof DFF)
+			if (player.getLevel() == 3 && this instanceof DFF)
 				mission = true;
-			if (player.getLevel() == 5 && this instanceof JKFF)
+			if (player.getLevel() == 4 && this instanceof JKFF)
 				mission = true;
-			if (player.getLevel() == 6 && this instanceof HexDisplay)
+			if (player.getLevel() == 5 && this instanceof HexDisplay)
 				mission = true;
-			if (player.getLevel() == 7 && this instanceof PLA)
+			if (player.getLevel() == 6 && this instanceof PLA)
 				mission = true;
-			if (player.getLevel() == 8 && this instanceof Mux)
+			if (player.getLevel() == 7 && this instanceof Mux)
 				mission = true;
-			if (player.getLevel() == 9 && this instanceof AsciiDisplay)
+			if (player.getLevel() == 8 && this instanceof AsciiDisplay)
 				mission = true;
-			if (player.getLevel() == 10 && this instanceof Adder)
+			if (player.getLevel() == 9 && this instanceof Adder)
 				mission = true;
-			if (player.getLevel() == 11 && this instanceof IC74163)
+			if (player.getLevel() == 10 && this instanceof IC74163)
 				mission = true;
 			if (mission)
 				player.doMission();
