@@ -12,7 +12,7 @@ public class HighScoreUtility {
 
 	public static void recordHighScore(int score) {
 		if (!loadHighScore() || highScoreRecord == null) {
-			JOptionPane.showMessageDialog(null,
+			JOptionPane.showMessageDialog(WindowManager.getGameFrame(),
 					"Error loading highscore record", "Error",
 					JOptionPane.ERROR_MESSAGE);
 			return;
@@ -25,8 +25,9 @@ public class HighScoreUtility {
 			}
 		}
 		if (index >= highScoreRecord.length) {
-			JOptionPane.showMessageDialog(null, "Game over\nYour score is "
-					+ score, "Game over", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(WindowManager.getGameFrame(),
+					"Game over\nYour score is " + score, "Game over",
+					JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			String name = JOptionPane.showInputDialog(null,
 					"Congratulation, you are ranked " + (index + 1)
@@ -34,6 +35,7 @@ public class HighScoreUtility {
 					JOptionPane.INFORMATION_MESSAGE);
 			if (name == null)
 				return;
+			name = name.trim();
 			for (int i = highScoreRecord.length - 1; i >= index + 1; i--) {
 				highScoreRecord[i] = highScoreRecord[i - 1];
 			}
@@ -47,7 +49,7 @@ public class HighScoreUtility {
 				out.print(getXORed(record));
 				out.close();
 			} catch (IOException e) {
-				JOptionPane.showMessageDialog(null,
+				JOptionPane.showMessageDialog(WindowManager.getGameFrame(),
 						"Error saving high score record", "Error",
 						JOptionPane.ERROR_MESSAGE);
 				highScoreRecord = null;
@@ -58,15 +60,23 @@ public class HighScoreUtility {
 
 	public static String[] listTop10() {
 		if (!loadHighScore() || highScoreRecord == null) {
-			JOptionPane.showMessageDialog(null,
+			JOptionPane.showMessageDialog(WindowManager.getGameFrame(),
 					"Error loading highscore record", "Error",
 					JOptionPane.ERROR_MESSAGE);
 			return HighScoreRecord.defaultRecord();
 		}
 		String[] highScoreList = new String[10];
+		int max_length = 0;
+		for (HighScoreRecord record : highScoreRecord) {
+			if (max_length < record.getName().length())
+				max_length = record.getName().length();
+		}
 		int rank = 0;
 		for (HighScoreRecord record : highScoreRecord) {
-			highScoreList[rank] = record.getRecord();
+			highScoreList[rank] = record.getName();
+			for (int i = record.getName().length(); i <= max_length; i++)
+				highScoreList[rank] += " ";
+			highScoreList[rank] += record.getScore();
 			rank++;
 		}
 		return highScoreList;
