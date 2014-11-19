@@ -24,7 +24,6 @@ public class KmapLogic implements Runnable {
 					} catch (InterruptedException e) {
 					}
 					update();
-					InputUtility.postUpdate();
 				}
 				if (data.getKmap().isReturnToGame())
 					WindowManager.setStatus(WindowManager.GAME_STATUS);
@@ -93,6 +92,8 @@ public class KmapLogic implements Runnable {
 			map.setY(-1);
 			data.setTemp(new Frame(-1, -1, -1, -1));
 		}
+
+		InputUtility.postUpdate();
 	}
 
 }

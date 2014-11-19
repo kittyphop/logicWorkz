@@ -121,13 +121,13 @@ public class KmapPanel extends JPanel {
 		int time = data.getKmap().getTime();
 		g2.setColor(Color.WHITE);
 		g2.drawRect(50, 530, 794, 12);
-		if ((double) time / 30 > 2.0 / 3)
+		if ((double) time / ConfigurableOption.MAX_KMAP_TIME > 2.0 / 3)
 			g2.setColor(Color.GREEN);
-		else if ((double) time / 30 > 1.0 / 3)
+		else if ((double) time / ConfigurableOption.MAX_KMAP_TIME > 1.0 / 3)
 			g2.setColor(Color.YELLOW);
 		else
 			g2.setColor(Color.RED);
-		g2.fillRect(51, 531, time * 793 / 30, 11);
+		g2.fillRect(51, 531, time * 793 / ConfigurableOption.MAX_KMAP_TIME, 11);
 		
 		// remaining frame
 		

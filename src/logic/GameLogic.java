@@ -41,7 +41,6 @@ public class GameLogic implements Runnable {
 					} catch (InterruptedException e) {
 					}
 					update();
-					InputUtility.postUpdate();
 				}
 				HighScoreUtility.recordHighScore(data.getPlayer().getScore());
 				WindowManager.setStatus(WindowManager.MENU_STATUS);
@@ -198,6 +197,8 @@ public class GameLogic implements Runnable {
 				damagedDelayCounter = ConfigurableOption.DAMAGED_DELAY;
 			}
 		}
+
+		InputUtility.postUpdate();
 	}
 
 	public int random(int a, int b) {
