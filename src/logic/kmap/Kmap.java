@@ -12,7 +12,7 @@ public class Kmap {
 
 	public Kmap() {
 		randomKmap();
-		time = ConfigurableOption.MAX_KMAP_TIME * ConfigurableOption.TIME_DELAY;
+		time = ConfigurableOption.MAX_KMAP_TIME;
 		score = 0;
 		setRemainFrame(ConfigurableOption.MAX_FRAME);
 		run = false;
