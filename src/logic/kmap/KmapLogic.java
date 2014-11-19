@@ -24,12 +24,11 @@ public class KmapLogic implements Runnable {
 					} catch (InterruptedException e) {
 					}
 					update();
+					InputUtility.postUpdate();
 				}
-				if (data.getKmap().isReturnToGame())
-					WindowManager.setStatus(WindowManager.GAME_STATUS);
-				else {
+				System.out.println(data.getKmap().isReturnToGame());
+				if (!data.getKmap().isReturnToGame())
 					WindowManager.setStatus(WindowManager.MENU_STATUS);
-				}
 				data.resetKmap();
 				data.getPlayer().setPause(false);
 				data.getPlayer().clearCollectedProbe();
@@ -92,7 +91,6 @@ public class KmapLogic implements Runnable {
 			data.setTemp(new Frame(-1, -1, -1, -1));
 		}
 
-		InputUtility.postUpdate();
 	}
 
 }

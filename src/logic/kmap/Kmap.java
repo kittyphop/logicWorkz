@@ -14,7 +14,7 @@ public class Kmap {
 		randomKmap();
 		time = ConfigurableOption.MAX_KMAP_TIME;
 		score = 0;
-		setRemainFrame(ConfigurableOption.MAX_FRAME);
+		remainFrame = ConfigurableOption.MAX_FRAME;
 		run = false;
 		returnToGame = false;
 		x = -1;
@@ -114,7 +114,6 @@ public class Kmap {
 	public boolean ok(Frame l) {
 		int x1 = l.getX1(), y1 = l.getY1();
 		int x2 = l.getX2(), y2 = l.getY2();
-		System.out.println(x1 + " " + y1 + " " + x2 + " " + y2);
 		int dx = abs(x2 - x1) + 1, dy = abs(y2 - y1) + 1;
 
 		// check 1) size is 2^k

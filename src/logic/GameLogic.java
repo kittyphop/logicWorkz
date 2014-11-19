@@ -41,6 +41,8 @@ public class GameLogic implements Runnable {
 					} catch (InterruptedException e) {
 					}
 					update();
+					if (!data.getKmap().isRun())
+						InputUtility.postUpdate();
 				}
 				HighScoreUtility.recordHighScore(data.getPlayer().getScore());
 				WindowManager.setStatus(WindowManager.MENU_STATUS);
@@ -58,11 +60,13 @@ public class GameLogic implements Runnable {
 			data.getKmap().setReturnToGame(true);
 		}
 
-		if (InputUtility.getKeyPressed(KeyEvent.VK_ESCAPE))
+		if (InputUtility.getKeyTriggered(KeyEvent.VK_ESCAPE))
 			player.setGameOver(true);
 
-		if (InputUtility.getKeyPressed(KeyEvent.VK_K))
+		if (InputUtility.getKeyTriggered(KeyEvent.VK_K)) {
 			data.getKmap().setRun(true);
+			data.getKmap().setReturnToGame(true);
+		}
 
 		if (player.isGameOver() || data.getKmap().isRun())
 			return;
@@ -200,8 +204,6 @@ public class GameLogic implements Runnable {
 				damagedDelayCounter = ConfigurableOption.DAMAGED_DELAY;
 			}
 		}
-
-		InputUtility.postUpdate();
 	}
 
 	public int random(int a, int b) {

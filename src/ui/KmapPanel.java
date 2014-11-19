@@ -35,12 +35,12 @@ public class KmapPanel extends JPanel {
 		this.data = data;
 		setOpaque(false);
 		setPreferredSize(ConfigurableOption.WINDOW_DIMENSION);
-		
+
 		addMouseListener(new MouseListener() {
 
 			public void mouseReleased(MouseEvent arg0) {
-				if (arg0.getButton() == 1){
-					//System.out.println("release");
+				if (arg0.getButton() == 1) {
+					// System.out.println("release");
 					InputUtility.setMouseLeftUpTriggered(true);
 					InputUtility.setMouseLeftDown(false);
 				}
@@ -48,7 +48,7 @@ public class KmapPanel extends JPanel {
 
 			public void mousePressed(MouseEvent arg0) {
 				if (arg0.getButton() == 1)
-					//System.out.println("press");
+					// System.out.println("press");
 					InputUtility.setMouseLeftDownTriggered(true);
 			}
 
@@ -75,7 +75,7 @@ public class KmapPanel extends JPanel {
 
 			public void mouseDragged(MouseEvent e) {
 				if (InputUtility.isMouseOnScreen()) {
-					//System.out.println("hold");
+					// System.out.println("hold");
 					InputUtility.setMouseX(e.getX());
 					InputUtility.setMouseY(e.getY());
 					InputUtility.setMouseLeftDown(true);
@@ -106,7 +106,7 @@ public class KmapPanel extends JPanel {
 		// code for count down
 
 		// title
-		
+
 		Font font = new Font("MS Sans Serif", Font.BOLD, 50);
 		g2.setFont(font);
 		g2.setColor(Color.WHITE);
@@ -128,9 +128,22 @@ public class KmapPanel extends JPanel {
 		else
 			g2.setColor(Color.RED);
 		g2.fillRect(51, 531, time * 793 / ConfigurableOption.MAX_KMAP_TIME, 11);
-		
+
 		// remaining frame
-		
+
+		int remainFrame = data.getKmap().getRemainFrame();
+		g2.drawImage(DrawingUtility.kmap_frame, null, 698, 330);
+		font = new Font("MS Sans Serif", Font.BOLD, 30);
+		g2.setFont(font);
+		g2.setColor(Color.WHITE);
+		g2.drawString("x "+remainFrame, 780, 370);
+
 		// correct kmap
+		int score = data.getKmap().getScore();
+		g2.drawImage(DrawingUtility.kmap_score, null, 660, 400);
+		font = new Font("MS Sans Serif", Font.BOLD, 30);
+		g2.setFont(font);
+		g2.setColor(Color.WHITE);
+		g2.drawString("x "+score, 780, 455);
 	}
 }
