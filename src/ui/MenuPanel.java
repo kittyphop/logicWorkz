@@ -55,9 +55,8 @@ public class MenuPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, "reset", "",
-						JOptionPane.INFORMATION_MESSAGE);
-				// reset
+				HighScoreUtility.createDefaultScoreFile();
+				WindowManager.setStatus(WindowManager.REFRESH_STATUS);
 			}
 		});
 

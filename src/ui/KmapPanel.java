@@ -33,8 +33,6 @@ public class KmapPanel extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
-		if (data == null)
-			return;
 		if (data.getKmap().isRun()) {
 			g2.setComposite(transcluentWhite);
 			g2.setColor(Color.BLACK);

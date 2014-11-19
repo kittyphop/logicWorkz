@@ -20,6 +20,7 @@ public class WindowManager {
 	public static final int HOW_TO_PLAY_STATUS = 2;
 	public static final int GAME_STATUS = 3;
 	public static final int MINIGAME_STATUS = 4;
+	public static final int REFRESH_STATUS = 5;
 
 	public WindowManager(SharedData data) {
 
@@ -47,8 +48,7 @@ public class WindowManager {
 			// debug
 			// System.out.println(status);
 
-			if (status == MENU_STATUS
-					&& (!menuDialog.isVisible() || !(currentDialogPanel instanceof MenuPanel)))
+			if (status == MENU_STATUS && (!menuDialog.isVisible() || !(currentDialogPanel instanceof MenuPanel)))
 				dialogToMenu();
 			else if (status == CREDIT_STATUS
 					&& (!menuDialog.isVisible() || !(currentDialogPanel instanceof CreditPanel)))
@@ -59,12 +59,14 @@ public class WindowManager {
 			else if (status == GAME_STATUS
 					&& (menuDialog.isVisible() || !(currentWindowPanel instanceof GamePanel)))
 				windowToGame();
-
-			// correct for minigamePanel
-
 			else if (status == MINIGAME_STATUS
 					&& (menuDialog.isVisible() || !(currentWindowPanel instanceof HowToPlayPanel)))
 				windowToGame();
+			else if(status==REFRESH_STATUS)
+			{
+				dialogToMenu();
+				status = MENU_STATUS;
+			}
 
 			currentDialogPanel.repaint();
 			currentWindowPanel.repaint();
@@ -153,9 +155,4 @@ public class WindowManager {
 		menuDialog.setVisible(false);
 	}
 
-	public void windowToMinigame() {
-
-		// temporary
-		windowToHowToPlay();
-	}
 }

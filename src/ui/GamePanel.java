@@ -122,11 +122,8 @@ public class GamePanel extends JPanel {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.drawImage(DrawingUtility.game_background, null, 0, 0);
 
-		if (data == null)
+		if (WindowManager.getStatus() != WindowManager.GAME_STATUS)
 			return;
-
-		// if(data.getPlayer().isGameOver())
-		// return;
 
 		// score
 
@@ -178,9 +175,9 @@ public class GamePanel extends JPanel {
 		int time = data.getPlayer().getTime();
 		g2.setColor(Color.BLACK);
 		g2.drawRect(28, 555, 854, 12);
-		if ((double) time / ConfigurableOption.MAX_TIME > 0.6)
+		if ((double) time / ConfigurableOption.MAX_TIME > 2.0 / 3)
 			g2.setColor(Color.GREEN);
-		else if ((double) time / ConfigurableOption.MAX_TIME > 0.3)
+		else if ((double) time / ConfigurableOption.MAX_TIME > 1.0 / 3)
 			g2.setColor(Color.YELLOW);
 		else
 			g2.setColor(Color.RED);
