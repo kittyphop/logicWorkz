@@ -42,7 +42,6 @@ public class ConfigurableOption {
 	public static final int TIME_DELAY = 1000;
 	public static final int MAX_KMAP_TIME = 30 * TIME_DELAY;
 	public static final int MAX_FRAME = 10;
-	public static final int KMAP_BONUS = 5000;
 
 	// Score
 	public static final int GATE_SCORE = 50;

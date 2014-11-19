@@ -61,6 +61,9 @@ public class GameLogic implements Runnable {
 		if (InputUtility.getKeyPressed(KeyEvent.VK_ESCAPE))
 			player.setGameOver(true);
 
+		if (InputUtility.getKeyPressed(KeyEvent.VK_K))
+			data.getKmap().setRun(true);
+
 		if (player.isGameOver() || data.getKmap().isRun())
 			return;
 

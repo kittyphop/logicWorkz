@@ -102,14 +102,20 @@ public class Kmap {
 	}
 
 	public static boolean isInsideKmap(int x, int y) {
-		// not yet implemented
-		return true;
+		return x >= 297 && x <= 597 && y >= 160 && y <= 460;
+	}
+
+	public static int abs(int a) {
+		if (a > 0)
+			return a;
+		return -a;
 	}
 
 	public boolean ok(Frame l) {
 		int x1 = l.getX1(), y1 = l.getY1();
-		int x2 = l.getX1(), y2 = l.getY1();
-		int dx = x2 - x1 + 1, dy = y2 - y1 + 1;
+		int x2 = l.getX2(), y2 = l.getY2();
+		System.out.println(x1 + " " + y1 + " " + x2 + " " + y2);
+		int dx = abs(x2 - x1) + 1, dy = abs(y2 - y1) + 1;
 
 		// check 1) size is 2^k
 		if (dx != 1 && dx != 2 && dx != 4)
@@ -128,7 +134,7 @@ public class Kmap {
 
 	public void cover(Frame l) {
 		int x1 = l.getX1(), y1 = l.getY1();
-		int x2 = l.getX1(), y2 = l.getY1();
+		int x2 = l.getX2(), y2 = l.getY2();
 
 		for (int i = x1; i <= x2; i++)
 			for (int j = y1; j <= y2; j++)
@@ -144,9 +150,15 @@ public class Kmap {
 	}
 
 	public void render(Graphics2D g2) {
-		// not yet implemented
 		// render only number on Kmap
 		// 0 = 0, 1 = 1, 2 = X
+		for (int i = 0; i < 4; i++)
+			for (int j = 0; j < 4; j++) {
+				String str = "" + map[i][j];
+				if (map[i][j] == 2)
+					str = "X";
+				g2.drawString(str, 400 + 30 * i, 270 + 30 * j);
+			}
 	}
 
 }

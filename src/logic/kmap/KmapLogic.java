@@ -86,7 +86,6 @@ public class KmapLogic implements Runnable {
 			if (map.ok(data.getTemp().toIndex())) {
 				map.cover(data.getTemp().toIndex());
 				list.add(new Frame(data.getTemp()));
-				map.setTime(map.getTime() + ConfigurableOption.KMAP_BONUS);
 			}
 			map.setX(-1);
 			map.setY(-1);

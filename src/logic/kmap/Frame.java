@@ -40,8 +40,8 @@ public class Frame {
 	public Frame toIndex() {
 		// not yet implemented
 		// change pixel co-ordinate to table index
-		int a = (x1 - 50) / 100, c = (x2 - 50) / 100;
-		int b = (y1 - 60) / 100, d = (y2 - 60) / 100;
+		int a = (x1 - 297) / 30 - 3, c = (x2 - 297) / 30 - 3;
+		int b = (y1 - 160) / 30 - 3, d = (y2 - 160) / 30 - 3;
 		return new Frame(a, b, c, d);
 	}
 
