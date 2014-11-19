@@ -57,6 +57,7 @@ public class KmapLogic implements Runnable {
 							"Game over\nYour score is " + score, "Game over",
 							JOptionPane.INFORMATION_MESSAGE);
 					WindowManager.setStatus(WindowManager.MENU_STATUS);
+					data.resetGame();
 				} else
 					data.setRemainWaitingTime();
 				data.resetKmap();

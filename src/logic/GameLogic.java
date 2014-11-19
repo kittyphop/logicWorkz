@@ -60,6 +60,14 @@ public class GameLogic implements Runnable {
 		Player player = data.getPlayer();
 		ArrayList<IRenderable> list = data.getGameList();
 
+		// delete destroyed object
+		for (int i = 0; i < list.size(); i++) {
+			IRenderable o = list.get(i);
+			if (o.isDestroyed() || o.getX() < -100
+					|| o.getX() > ConfigurableOption.PLAYPANEL_WIDTH)
+				list.remove(i);
+		}
+
 		if (player.isGameOver() || data.getKmap().isRun())
 			return;
 
@@ -107,14 +115,6 @@ public class GameLogic implements Runnable {
 			}
 		} else {
 			shootingDelayCounter = 1;
-		}
-
-		// delete destroyed object
-		for (int i = 0; i < list.size(); i++) {
-			IRenderable o = list.get(i);
-			if (o.isDestroyed() || o.getX() < -100
-					|| o.getX() > ConfigurableOption.PLAYPANEL_WIDTH)
-				list.remove(i);
 		}
 
 		// sort objects by z
