@@ -2,7 +2,9 @@ package ui;
 
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
+
 import config.ConfigurableOption;
 import config.SharedData;
 
@@ -91,8 +93,9 @@ public class MenuPanel extends JPanel {
 
 		// highscore list & Pane
 
-		highscoreList = new JList(HighScoreUtility.listTop10());
-
+		highscoreList = new JList<String>(HighScoreUtility.listTop10());
+		highscoreList.setFont(new Font("Courier New", Font.PLAIN, 15));
+		
 		highscorePane = new JScrollPane();
 		highscorePane.setViewportView(highscoreList);
 		highscorePane.setBounds(26, 169, 336, 95);
