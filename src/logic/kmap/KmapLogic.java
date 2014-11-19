@@ -3,6 +3,8 @@ package logic.kmap;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import logic.gun.Gun;
 import logic.gun.SpecialGunA;
 import logic.gun.SpecialGunB;
@@ -47,8 +49,12 @@ public class KmapLogic implements Runnable {
 					data.getPlayer().setCurrentGun(ng);
 					data.getGameList().add(ng);
 				}
-				if (!data.getKmap().isReturnToGame())
+				if (!data.getKmap().isReturnToGame()) {
+					JOptionPane.showMessageDialog(null,
+							"Game over\nYour score is " + score, "Game over",
+							JOptionPane.INFORMATION_MESSAGE);
 					WindowManager.setStatus(WindowManager.MENU_STATUS);
+				}
 				data.resetKmap();
 				data.getPlayer().setPause(false);
 				data.getPlayer().clearCollectedProbe();

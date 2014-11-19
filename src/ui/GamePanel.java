@@ -44,7 +44,7 @@ public class GamePanel extends JPanel {
 		playPanel = new PlayPanel(data);
 		playPanel.setBounds(15, 95, 717, 356);
 		add(playPanel);
-		
+
 		addKeyListener(new KeyListener() {
 
 			@Override

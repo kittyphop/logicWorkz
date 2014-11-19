@@ -1,8 +1,6 @@
 package ui;
 
 import javax.swing.*;
-
-import config.InputUtility;
 import config.SharedData;
 
 public class WindowManager {
