@@ -33,6 +33,7 @@ public class GamePanel extends JPanel {
 			AlphaComposite.SRC_OVER, 1);
 
 	PlayPanel playPanel;
+	KmapPanel kmapPanel;
 	SharedData data;
 
 	public GamePanel(SharedData data) {
@@ -42,9 +43,15 @@ public class GamePanel extends JPanel {
 		setPreferredSize(ConfigurableOption.WINDOW_DIMENSION);
 		setLayout(null);
 
+		kmapPanel = new KmapPanel(data);
+		kmapPanel.setBounds(0, 0, 894, 620);
+		add(kmapPanel);
+		
 		playPanel = new PlayPanel(data);
 		playPanel.setBounds(15, 95, 717, 356);
 		add(playPanel);
+		
+		
 
 		addKeyListener(new KeyListener() {
 
@@ -185,16 +192,6 @@ public class GamePanel extends JPanel {
 		g2.setFont(font);
 		g2.setColor(Color.BLACK);
 		g2.drawString("MISSION : " + level + " x", 610, 537);
-
-		// k-map
-
-		if (InputUtility.getKeyPressed(KeyEvent.VK_K)) {
-			g2.setComposite(transcluentWhite);
-			g2.setColor(Color.BLACK);
-			g2.fillRect(0, 0, 894, 620);
-			g2.setComposite(opaque);
-			g2.drawImage(DrawingUtility.kmap_background, null, 287, 150);
-		}
 
 	}
 }

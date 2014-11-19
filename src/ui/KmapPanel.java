@@ -22,40 +22,18 @@ public class KmapPanel extends JPanel {
 			AlphaComposite.SRC_OVER, 1);
 
 	SharedData data;
-	
+
 	public KmapPanel(SharedData data) {
 		this.data = data;
 		setOpaque(false);
 		setPreferredSize(ConfigurableOption.WINDOW_DIMENSION);
-		
-		//debug
-		add(new JLabel("kmap"));
-
-		addKeyListener(new KeyListener() {
-
-			@Override
-			public void keyTyped(KeyEvent arg0) {
-			}
-
-			@Override
-			public void keyReleased(KeyEvent arg0) {
-				InputUtility.setKeyPressed(arg0.getKeyCode(), false);
-
-			}
-
-			@Override
-			public void keyPressed(KeyEvent arg0) {
-				if (!InputUtility.getKeyPressed(arg0.getKeyCode()))
-					InputUtility.setKeyTriggered(arg0.getKeyCode(), true);
-				InputUtility.setKeyPressed(arg0.getKeyCode(), true);
-
-			}
-		});
 	}
 
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
-		if (InputUtility.getKeyPressed(KeyEvent.VK_K)) {
+		if (data == null)
+			return;
+		if (data.getPlayer().isKmap()) {
 			g2.setComposite(transcluentWhite);
 			g2.setColor(Color.BLACK);
 			g2.fillRect(0, 0, 894, 620);

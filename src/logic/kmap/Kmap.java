@@ -14,7 +14,7 @@ public class Kmap {
 		time = 30;
 		score = 0;
 		end = false;
-		returnToGame = true;
+		returnToGame = false;
 	}
 
 	public int[][] getMap() {

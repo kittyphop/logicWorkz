@@ -54,9 +54,6 @@ public class GameLogic implements Runnable {
 		Player player = data.getPlayer();
 		ArrayList<IRenderable> list = data.getGameList();
 
-		if (player.isKmap())
-			data.getKmap().setReturnToGame(true);
-
 		if (player.isGameOver() || player.isKmap())
 			return;
 

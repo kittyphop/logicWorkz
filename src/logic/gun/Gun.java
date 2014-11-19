@@ -66,7 +66,7 @@ public abstract class Gun extends RenderableObject {
 	}
 
 	public void render(Graphics2D g2) {
-		if (player.isPause())
+		if (player.isPause() || player.isKmap())
 			super.render(g2);
 		else if (player.isDamaged()) {
 			renderDelayCounter--;
