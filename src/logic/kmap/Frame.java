@@ -1,5 +1,6 @@
 package logic.kmap;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 
 public class Frame {
@@ -48,12 +49,16 @@ public class Frame {
 		if (x1 == -1 || y1 == -1 || x2 == -1 || y2 == -1)
 			return;
 
+		Color c = g2.getColor();
+		g2.setColor(Color.RED);
+
 		if (Kmap.isInsideKmap(x1, y1) && Kmap.isInsideKmap(x2, y2)) {
 			g2.drawLine(x1, y1, x2, y1);
 			g2.drawLine(x1, y1, x1, y2);
 			g2.drawLine(x2, y1, x2, y2);
 			g2.drawLine(x1, y2, x2, y2);
 		}
+		g2.setColor(c);
 
 		// not yet implemented
 

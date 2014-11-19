@@ -13,7 +13,7 @@ public class Player {
 	private Gun currentGun;
 	private boolean[] collectedProbe;
 
-	public Player(SharedData data,int x, int y) {
+	public Player(SharedData data, int x, int y) {
 		time = ConfigurableOption.MAX_TIME;
 		score = 0;
 		level = 5;

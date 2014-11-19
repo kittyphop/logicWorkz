@@ -1,14 +1,16 @@
 package logic.kmap;
 
 import java.awt.Graphics2D;
+import logic.gun.*;
 import config.ConfigurableOption;
 
 public class Kmap {
 
 	private int[][] map = new int[4][4];
 	private boolean[][] cover = new boolean[4][4];
-	private int time, score, x, y, remainFrame;
+	private int time, score, x, y, remainFrame, remainToNextGun;
 	private boolean run, returnToGame;
+	private Gun nextGun;
 
 	public Kmap() {
 		randomKmap();
@@ -19,6 +21,8 @@ public class Kmap {
 		returnToGame = false;
 		x = -1;
 		y = -1;
+		nextGun = new SpecialGunA(null, 0, 0, 0);
+		remainToNextGun = 4;
 	}
 
 	public int[][] getMap() {
@@ -43,6 +47,16 @@ public class Kmap {
 
 	public void setScore(int score) {
 		this.score = score;
+		if (score < 4) {
+			nextGun = new SpecialGunA(null, 0, 0, 0);
+			remainToNextGun = 4 - score;
+		} else if (score < 7) {
+			nextGun = new SpecialGunB(null, 0, 0, 0);
+			remainToNextGun = 7 - score;
+		} else {
+			nextGun = null;
+			remainToNextGun = 0;
+		}
 	}
 
 	public int getX() {
@@ -73,6 +87,10 @@ public class Kmap {
 		}
 	}
 
+	public int getRemainToNextGun() {
+		return remainToNextGun;
+	}
+
 	public void setRun(boolean run) {
 		this.run = run;
 	}
@@ -87,6 +105,10 @@ public class Kmap {
 
 	public void setReturnToGame(boolean returnToGame) {
 		this.returnToGame = returnToGame;
+	}
+
+	public Gun getNextGun() {
+		return nextGun;
 	}
 
 	public int random(int a, int b) {

@@ -6,17 +6,12 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
-
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import logic.kmap.Frame;
 import config.ConfigurableOption;
 import config.InputUtility;
@@ -136,7 +131,7 @@ public class KmapPanel extends JPanel {
 		font = new Font("MS Sans Serif", Font.BOLD, 30);
 		g2.setFont(font);
 		g2.setColor(Color.WHITE);
-		g2.drawString("x "+remainFrame, 780, 370);
+		g2.drawString("x " + remainFrame, 780, 370);
 
 		// correct kmap
 		int score = data.getKmap().getScore();
@@ -144,6 +139,6 @@ public class KmapPanel extends JPanel {
 		font = new Font("MS Sans Serif", Font.BOLD, 30);
 		g2.setFont(font);
 		g2.setColor(Color.WHITE);
-		g2.drawString("x "+score, 780, 455);
+		g2.drawString("x " + score, 780, 455);
 	}
 }
