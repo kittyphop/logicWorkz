@@ -1,6 +1,6 @@
 import ui.WindowManager;
 import logic.GameLogic;
-import logic.KmapLogic;
+import logic.kmap.KmapLogic;
 import config.SharedData;
 
 public class Main {

@@ -39,7 +39,7 @@ public class PlayPanel extends JPanel {
 		//if(data.getPlayer().isGameOver())
 			//return;
 		
-		ArrayList<IRenderable> list = new ArrayList<IRenderable>(data.getList());
+		ArrayList<IRenderable> list = new ArrayList<IRenderable>(data.getGameList());
 		for (int i = 0; i < list.size(); i++)
 			list.get(i).render(g2);
 

@@ -44,7 +44,7 @@ public class GameLogic implements Runnable {
 				}
 				HighScoreUtility.recordHighScore(data.getPlayer().getScore());
 				WindowManager.setStatus(WindowManager.MENU_STATUS);
-				data.reset();
+				data.resetGame();
 				InputUtility.reset();
 			}
 		}
@@ -52,7 +52,10 @@ public class GameLogic implements Runnable {
 
 	public void update() {
 		Player player = data.getPlayer();
-		ArrayList<IRenderable> list = data.getList();
+		ArrayList<IRenderable> list = data.getGameList();
+
+		if (player.isKmap())
+			data.getKmap().setReturnToGame(true);
 
 		if (player.isGameOver() || player.isKmap())
 			return;
@@ -198,7 +201,7 @@ public class GameLogic implements Runnable {
 
 	public void newMonster() {
 		Player player = data.getPlayer();
-		ArrayList<IRenderable> list = data.getList();
+		ArrayList<IRenderable> list = data.getGameList();
 
 		int[][] p = ConfigurableOption.MONSTER_PERCENT;
 		int level = player.getLevel();
