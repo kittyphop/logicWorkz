@@ -1,18 +1,20 @@
 package logic.kmap;
 
 import java.awt.Graphics2D;
+import config.ConfigurableOption;
 
 public class Kmap {
 
 	private int[][] map = new int[4][4];
 	private boolean[][] cover = new boolean[4][4];
-	private int time, score, x, y;
+	private int time, score, x, y, remainFrame;
 	private boolean run, returnToGame;
 
 	public Kmap() {
 		randomKmap();
-		time = 30;
+		time = ConfigurableOption.MAX_KMAP_TIME * ConfigurableOption.TIME_DELAY;
 		score = 0;
+		setRemainFrame(ConfigurableOption.MAX_FRAME);
 		run = false;
 		returnToGame = false;
 		x = -1;
@@ -31,7 +33,7 @@ public class Kmap {
 		this.time = time;
 		if (time <= 0) {
 			this.time = 0;
-			run = true;
+			run = false;
 		}
 	}
 
@@ -57,6 +59,18 @@ public class Kmap {
 
 	public void setY(int y) {
 		this.y = y;
+	}
+
+	public int getRemainFrame() {
+		return remainFrame;
+	}
+
+	public void setRemainFrame(int remainFrame) {
+		this.remainFrame = remainFrame;
+		if (remainFrame <= 0) {
+			this.remainFrame = 0;
+			run = false;
+		}
 	}
 
 	public void setRun(boolean run) {

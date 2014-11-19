@@ -1,22 +1,23 @@
 package logic.kmap;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+
 import ui.WindowManager;
 import config.*;
 
 public class KmapLogic implements Runnable {
 
 	private SharedData data;
-	private int timeCounter;
 
 	public KmapLogic(SharedData data) {
 		this.data = data;
-		timeCounter = ConfigurableOption.TIME_DELAY;
 	}
 
 	public void run() {
 		while (true) {
 			if (data.getKmap().isRun()) {
+				InputUtility.reset();
 				while (data.getKmap().isRun()) {
 					try {
 						Thread.sleep(5);
@@ -29,12 +30,10 @@ public class KmapLogic implements Runnable {
 					WindowManager.setStatus(WindowManager.GAME_STATUS);
 				else {
 					WindowManager.setStatus(WindowManager.MENU_STATUS);
-					data.resetGame();
 				}
 				data.resetKmap();
 				data.getPlayer().setPause(false);
 				data.getPlayer().clearCollectedProbe();
-				InputUtility.reset();
 			}
 		}
 
@@ -44,16 +43,14 @@ public class KmapLogic implements Runnable {
 		Kmap map = data.getKmap();
 		ArrayList<Frame> list = data.getKmapList();
 
+		if (InputUtility.getKeyPressed(KeyEvent.VK_ESCAPE))
+			map.setRun(false);
+
 		if (!map.isRun())
 			return;
 
 		// decrease time
-		timeCounter--;
-		if (timeCounter == 0) {
-			map.setTime(map.getTime() - 1);
-			timeCounter = ConfigurableOption.TIME_DELAY;
-			map.setRun(false);
-		}
+		map.setTime(map.getTime() - 1);
 
 		// check if cover all ones
 		if (map.isCoverAllOnes()) {
@@ -86,9 +83,11 @@ public class KmapLogic implements Runnable {
 
 		// check if player release
 		if (InputUtility.isMouseLeftUpTriggered()) {
+			map.setRemainFrame(map.getRemainFrame() - 1);
 			if (map.ok(data.getTemp().toIndex())) {
 				map.cover(data.getTemp().toIndex());
 				list.add(new Frame(data.getTemp()));
+				map.setTime(map.getTime() + ConfigurableOption.KMAP_BONUS);
 			}
 			map.setX(-1);
 			map.setY(-1);

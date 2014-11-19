@@ -56,6 +56,8 @@ public class SharedData {
 
 	public void resetKmap() {
 		kmap = new Kmap();
+		temp = new Frame(-1, -1, -1, -1);
+		kmapList = new ArrayList<Frame>();
 	}
 
 }

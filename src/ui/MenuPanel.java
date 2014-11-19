@@ -43,7 +43,6 @@ public class MenuPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				WindowManager.setStatus(WindowManager.MINIGAME_STATUS);
-				data.getGameList().clear();
 				data.getKmap().setRun(true);
 			}
 		});
