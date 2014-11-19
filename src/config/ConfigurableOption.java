@@ -41,7 +41,7 @@ public class ConfigurableOption {
 	public static final int MAX_FIRING_DELAY = 250;
 	public static final int DAMAGED_DELAY = 350;
 	public static final int RENDER_DELAY = 7;
-	public static final int TIME_DELAY = 1000;
+	public static final int TIME_DELAY = 500;
 	public static final int MAX_KMAP_TIME = 10 * TIME_DELAY;
 	public static final int MAX_FRAME = 30;
 	public static final int MONSTER_TO_NEXT_LEVEL = 10;

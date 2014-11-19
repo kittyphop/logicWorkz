@@ -142,10 +142,10 @@ public class GamePanel extends JPanel {
 		font = new Font("MS Sans Serif", Font.BOLD, 30);
 		g2.setFont(font);
 		g2.setColor(Color.BLACK);
-		if (level <= 10)
+		if (level <= 9)
 			g2.drawString("LEVEL " + level + " : ", 610, 537);
 		else
-			g2.drawString("BOSS : ", 610, 537);
+			g2.drawString("BOSS : ", 647, 537);
 		g2.drawString("x " + remain_mon, 820, 537);
 
 		BufferedImage mon;

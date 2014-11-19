@@ -70,6 +70,16 @@ public abstract class Gun extends RenderableObject {
 	}
 
 	public void render(Graphics2D g2) {
+		Player player = data.getPlayer();
+		if (player.getCurrentGun().x > ConfigurableOption.PLAYPANEL_WIDTH
+				- player.getCurrentGun().img.getWidth())
+			player.getCurrentGun().x = ConfigurableOption.PLAYPANEL_WIDTH
+					- player.getCurrentGun().img.getWidth();
+		if (player.getCurrentGun().y > ConfigurableOption.PLAYPANEL_HEIGHT
+				- player.getCurrentGun().img.getHeight())
+			player.getCurrentGun().y = ConfigurableOption.PLAYPANEL_HEIGHT
+					- player.getCurrentGun().img.getHeight();
+
 		if (data.getPlayer().isPause() || data.getKmap().isRun())
 			super.render(g2);
 		else if (data.getPlayer().isDamaged()) {
