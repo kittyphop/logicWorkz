@@ -67,13 +67,8 @@ public class WindowManager {
 			currentDialogPanel.repaint();
 			currentWindowPanel.repaint();
 
-			/*
-			 * if(InputUtility.isMouseLeftDown()) System.out.println("down");
-			 * if(InputUtility.isMouseLeftDownTriggered())
-			 * System.out.println("triggered down");
-			 * if(InputUtility.isMouseLeftUpTriggered())
-			 * System.out.println("triggered up");
-			 */
+			if(menuDialog.isVisible())
+				currentDialogPanel.requestFocus();
 		}
 	}
 
@@ -102,6 +97,7 @@ public class WindowManager {
 		currentDialogPanel.requestFocus();
 		menuDialog.setLocationRelativeTo(null);
 		menuDialog.setVisible(true);
+		
 	}
 
 	public void dialogToMenu() {
