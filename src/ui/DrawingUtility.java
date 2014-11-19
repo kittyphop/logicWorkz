@@ -31,7 +31,7 @@ public class DrawingUtility {
 		icons.add(small_icon);
 		icons.add(large_icon);
 	}
-	
+
 	// image
 
 	private static BufferedImage getImage(String directory) {
@@ -48,11 +48,11 @@ public class DrawingUtility {
 	public static final BufferedImage credit_background = getImage("res/img/credit_background.png");
 	public static final BufferedImage kmap_background = getImage("res/img/kmap_background.png");
 	public static final BufferedImage play_panel = getImage("res/img/play_panel.png");
-	
+
 	public static final BufferedImage side_binary_switch = getImage("res/img/side_binary_switch.png");
 	public static final BufferedImage side_hex_keyboard = getImage("res/img/side_hex_keyboard.png");
 	public static final BufferedImage side_push_button = getImage("res/img/side_push_button.png");
-	
+
 	public static final BufferedImage kmap_frame = getImage("res/img/kmap_frame.png");
 	public static final BufferedImage kmap_score = getImage("res/img/kmap_score.png");
 
@@ -79,10 +79,10 @@ public class DrawingUtility {
 	public static final BufferedImage adder = getImage("res/img/adder.png");
 	public static final BufferedImage asciiDisplay = getImage("res/img/ascii_display.png");
 	public static final BufferedImage ic74163 = getImage("res/img/74163.png");
-	
+
 	public static final BufferedImage[][] probe_array;
-	
-	static{
+
+	static {
 		probe_array = new BufferedImage[4][2];
 		probe_array[0][0] = getImage("res/img/probe_k_0.png");
 		probe_array[0][1] = getImage("res/img/probe_k_1.png");

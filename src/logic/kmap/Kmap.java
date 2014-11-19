@@ -105,16 +105,22 @@ public class Kmap {
 		return x >= 297 && x <= 597 && y >= 160 && y <= 460;
 	}
 
-	public static int abs(int a) {
-		if (a > 0)
-			return a;
-		return -a;
-	}
-
 	public boolean ok(Frame l) {
 		int x1 = l.getX1(), y1 = l.getY1();
 		int x2 = l.getX2(), y2 = l.getY2();
-		int dx = abs(x2 - x1) + 1, dy = abs(y2 - y1) + 1;
+
+		if (x1 > x2) {
+			int t = x1;
+			x1 = x2;
+			x2 = t;
+		}
+		if (y1 > y2) {
+			int t = y1;
+			y1 = y2;
+			y2 = t;
+		}
+
+		int dx = x2 - x1 + 1, dy = y2 - y1 + 1;
 
 		// check 1) size is 2^k
 		if (dx != 1 && dx != 2 && dx != 4)
@@ -134,6 +140,17 @@ public class Kmap {
 	public void cover(Frame l) {
 		int x1 = l.getX1(), y1 = l.getY1();
 		int x2 = l.getX2(), y2 = l.getY2();
+
+		if (x1 > x2) {
+			int t = x1;
+			x1 = x2;
+			x2 = t;
+		}
+		if (y1 > y2) {
+			int t = y1;
+			y1 = y2;
+			y2 = t;
+		}
 
 		for (int i = x1; i <= x2; i++)
 			for (int j = y1; j <= y2; j++)

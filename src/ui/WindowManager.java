@@ -46,7 +46,8 @@ public class WindowManager {
 			} catch (Exception e) {
 			}
 
-			if (status == MENU_STATUS && (!menuDialog.isVisible() || !(currentDialogPanel instanceof MenuPanel)))
+			if (status == MENU_STATUS
+					&& (!menuDialog.isVisible() || !(currentDialogPanel instanceof MenuPanel)))
 				dialogToMenu();
 			else if (status == CREDIT_STATUS
 					&& (!menuDialog.isVisible() || !(currentDialogPanel instanceof CreditPanel)))
@@ -58,25 +59,23 @@ public class WindowManager {
 					&& (menuDialog.isVisible() || !(currentWindowPanel instanceof GamePanel)))
 				windowToGame();
 			else if (status == MINIGAME_STATUS
-					&& (menuDialog.isVisible() || !(currentWindowPanel instanceof HowToPlayPanel)))
+					&& (menuDialog.isVisible() || !(currentWindowPanel instanceof GamePanel)))
 				windowToGame();
-			else if(status==REFRESH_STATUS)
-			{
+			else if (status == REFRESH_STATUS) {
 				dialogToMenu();
 				status = MENU_STATUS;
 			}
 
 			currentDialogPanel.repaint();
 			currentWindowPanel.repaint();
-			
-			
-			if(InputUtility.isMouseLeftDown())
-				System.out.println("down");
-			if(InputUtility.isMouseLeftDownTriggered())
-				System.out.println("triggered down");
-			if(InputUtility.isMouseLeftUpTriggered())
-				System.out.println("triggered up");
-				
+
+			/*
+			 * if(InputUtility.isMouseLeftDown()) System.out.println("down");
+			 * if(InputUtility.isMouseLeftDownTriggered())
+			 * System.out.println("triggered down");
+			 * if(InputUtility.isMouseLeftUpTriggered())
+			 * System.out.println("triggered up");
+			 */
 		}
 	}
 

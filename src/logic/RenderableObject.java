@@ -14,13 +14,17 @@ public abstract class RenderableObject implements IRenderable {
 	public RenderableObject(int x, int y) {
 		this.x = x;
 		this.y = y;
-		this.z = (int) Math.random();
+		this.z = (int) (Math.random() * 1000);
 		movingDelayCounter = ConfigurableOption.MOVING_DELAY;
 		destroyed = false;
 	}
 
 	public int getX() {
 		return x;
+	}
+
+	public int getY() {
+		return y;
 	}
 
 	public int getZ() {

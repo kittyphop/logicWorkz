@@ -40,8 +40,8 @@ public class ConfigurableOption {
 	public static final int DAMAGED_DELAY = 350;
 	public static final int RENDER_DELAY = 7;
 	public static final int TIME_DELAY = 1000;
-	public static final int MAX_KMAP_TIME = 30 * TIME_DELAY;
-	public static final int MAX_FRAME = 10;
+	public static final int MAX_KMAP_TIME = 10 * TIME_DELAY;
+	public static final int MAX_FRAME = 30;
 
 	// Score
 	public static final int GATE_SCORE = 50;

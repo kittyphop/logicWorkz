@@ -6,6 +6,8 @@ public interface IRenderable {
 
 	public int getX();
 
+	public int getY();
+
 	public int getZ();
 
 	public boolean isDestroyed();

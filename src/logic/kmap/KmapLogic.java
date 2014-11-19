@@ -3,6 +3,9 @@ package logic.kmap;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import logic.gun.Gun;
+import logic.gun.SpecialGunA;
+import logic.gun.SpecialGunB;
 import ui.WindowManager;
 import config.*;
 
@@ -26,12 +29,30 @@ public class KmapLogic implements Runnable {
 					update();
 					InputUtility.postUpdate();
 				}
-				System.out.println(data.getKmap().isReturnToGame());
+				data.getKmap().setRun(true);
+				int score = data.getKmap().getScore();
+				int x = data.getPlayer().getCurrentGun().getX();
+				int y = data.getPlayer().getCurrentGun().getY();
+				if (score >= 7) {
+					Gun g = data.getPlayer().getCurrentGun();
+					data.getGameList().remove(g);
+					Gun ng = new SpecialGunB(data, x, y, 99);
+					data.getPlayer().setCurrentGun(ng);
+					data.getGameList().add(ng);
+				} else if (score >= 4
+						&& !(data.getPlayer().getCurrentGun() instanceof SpecialGunA)) {
+					Gun g = data.getPlayer().getCurrentGun();
+					data.getGameList().remove(g);
+					Gun ng = new SpecialGunA(data, x, y, 99);
+					data.getPlayer().setCurrentGun(ng);
+					data.getGameList().add(ng);
+				}
 				if (!data.getKmap().isReturnToGame())
 					WindowManager.setStatus(WindowManager.MENU_STATUS);
 				data.resetKmap();
 				data.getPlayer().setPause(false);
 				data.getPlayer().clearCollectedProbe();
+				data.getKmap().setRun(false);
 			}
 		}
 

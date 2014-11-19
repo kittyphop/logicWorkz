@@ -14,6 +14,8 @@ public class SpecialGunB extends Gun {
 	public SpecialGunB(SharedData data, int x, int y, int bullet) {
 		super(data, x, y, bullet);
 		img = DrawingUtility.hexKeyboard;
+		img0 = img;
+		img1 = img;
 	}
 
 	public void shoot(Player player, ArrayList<IRenderable> list) {
