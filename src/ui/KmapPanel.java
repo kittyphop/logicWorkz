@@ -10,8 +10,16 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+
 import javax.swing.JPanel;
+
+import logic.gun.Gun;
+import logic.gun.NormalGun;
+import logic.gun.SpecialGunA;
+import logic.gun.SpecialGunB;
+import logic.gun.SpecialGunC;
 import logic.kmap.Frame;
 import config.ConfigurableOption;
 import config.InputUtility;
@@ -95,7 +103,7 @@ public class KmapPanel extends JPanel {
 		Font f = g2.getFont();
 
 		// code for count down
-		
+
 		if (data.getRemainWaitingTime() > 0) {
 
 			int number = data.getRemainWaitingTime() / 100 + 1;
@@ -138,20 +146,20 @@ public class KmapPanel extends JPanel {
 		// remaining frame
 
 		int remainFrame = data.getKmap().getRemainFrame();
-		g2.drawImage(DrawingUtility.kmap_frame, null, 698, 330);
+		g2.drawImage(DrawingUtility.kmap_frame, null, 698, 250);
 		font = new Font("MS Sans Serif", Font.BOLD, 30);
 		g2.setFont(font);
 		g2.setColor(Color.WHITE);
-		g2.drawString("x " + remainFrame, 780, 370);
+		g2.drawString("x " + remainFrame, 780, 290);
 
 		// correct k-map
 
 		int score = data.getKmap().getScore();
-		g2.drawImage(DrawingUtility.kmap_score, null, 660, 400);
+		g2.drawImage(DrawingUtility.kmap_score, null, 660, 320);
 		font = new Font("MS Sans Serif", Font.BOLD, 30);
 		g2.setFont(font);
 		g2.setColor(Color.WHITE);
-		g2.drawString("x " + score, 780, 455);
+		g2.drawString("x " + score, 780, 375);
 
 		// k-map
 
@@ -164,6 +172,52 @@ public class KmapPanel extends JPanel {
 		for (int i = 0; i < list.size(); i++)
 			list.get(i).render(g2);
 		data.getTemp().render(g2);
+
+		if(WindowManager.getStatus()==WindowManager.MINIGAME_STATUS)
+			return;
+		
+		// next gun
+
+		int remainToGun = data.getKmap().getRemainToNextGun();
+		Gun nextGun = data.getKmap().getNextGun();
+		BufferedImage nextGunImg;
+		if (nextGun instanceof NormalGun)
+			nextGunImg = DrawingUtility.binarySwitch0;
+		else if (nextGun instanceof SpecialGunA)
+			nextGunImg = DrawingUtility.pushButton0;
+		else if (nextGun instanceof SpecialGunB)
+			nextGunImg = DrawingUtility.oneShot;
+		else if (nextGun instanceof SpecialGunC)
+			nextGunImg = DrawingUtility.hexKeyboard;
+		else
+			nextGunImg = null;
+
+		font = new Font("MS Sans Serif", Font.BOLD, 30);
+		g2.setFont(font);
+		g2.setColor(Color.WHITE);
+
+		if (nextGunImg == null) {
+			nextGunImg = DrawingUtility.hexKeyboard;
+			g2.drawString("You got ", 660, 455);
+		} else {
+			g2.drawString(remainToGun + " x for ", 680, 455);
+		}
+
+		double w = nextGunImg.getWidth();
+		double h = nextGunImg.getHeight();
+
+		if (w > h) {
+			h *= 45 / w;
+			w = 45;
+		} else {
+			w *= 45 / h;
+			h = 45;
+		}
+
+		g2.setColor(Color.WHITE);
+		g2.fillRect(787, 417, 51, 51);
+		g2.drawImage(nextGunImg, (int) (790 + (45 - w) / 2),
+				(int) (420 + (45 - h) / 2), (int) w, (int) h, null);
 
 	}
 }

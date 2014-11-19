@@ -53,8 +53,11 @@ public class Kmap {
 			nextGun = new SpecialGunA(null, 0, 0, 0);
 			remainToNextGun = 4 - score;
 		} else if (score < 7) {
-			nextGun = new SpecialGunC(null, 0, 0, 0);
+			nextGun = new SpecialGunB(null, 0, 0, 0);
 			remainToNextGun = 7 - score;
+		} else if (score < 10) {
+			nextGun = new SpecialGunC(null, 0, 0, 0);
+			remainToNextGun = 10 - score;
 		} else {
 			nextGun = null;
 			remainToNextGun = 0;

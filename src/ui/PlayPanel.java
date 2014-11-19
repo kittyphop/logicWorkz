@@ -7,9 +7,17 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+
 import javax.swing.JPanel;
+
 import logic.IRenderable;
+import logic.gun.Gun;
+import logic.gun.NormalGun;
+import logic.gun.SpecialGunA;
+import logic.gun.SpecialGunB;
+import logic.gun.SpecialGunC;
 import config.ConfigurableOption;
 import config.SharedData;
 
@@ -46,6 +54,49 @@ public class PlayPanel extends JPanel {
 					ConfigurableOption.PLAYPANEL_HEIGHT);
 			g2.setComposite(opaque);
 
+			// current gun
+
+			Gun currentGun = data.getPlayer().getCurrentGun();
+			;
+			BufferedImage gunImg;
+			if (currentGun instanceof NormalGun)
+				gunImg = DrawingUtility.binarySwitch0;
+			else if (currentGun instanceof SpecialGunA)
+				gunImg = DrawingUtility.pushButton0;
+			else if (currentGun instanceof SpecialGunB)
+				gunImg = DrawingUtility.oneShot;
+			else
+				gunImg = DrawingUtility.hexKeyboard;
+
+			if (!(currentGun instanceof NormalGun)) {
+				Font font = new Font("MS Sans Serif", Font.BOLD, 30);
+				g2.setFont(font);
+				g2.setColor(Color.WHITE);
+
+				g2.drawString("Your gun is now", 200, 250);
+
+				double w = gunImg.getWidth();
+				double h = gunImg.getHeight();
+
+				if (w > h) {
+					h *= 45 / w;
+					w = 45;
+				} else {
+					w *= 45 / h;
+					h = 45;
+				}
+
+				g2.setColor(Color.WHITE);
+				g2.fillRect(460, 215, 51, 51);
+				g2.drawImage(gunImg, (int) (463 + (45 - w) / 2),
+						(int) (218 + (45 - h) / 2), (int) w, (int) h, null);
+			}
+			// count down
+
+			int plus = 0;
+			if (currentGun instanceof NormalGun)
+				plus = 50;
+
 			int number = data.getRemainWaitingTime() / 100 + 1;
 			Font font = new Font("MS Sans Serif", Font.BOLD, 100);
 			g2.setFont(font);
@@ -56,7 +107,8 @@ public class PlayPanel extends JPanel {
 					"" + number,
 					(ConfigurableOption.PLAYPANEL_WIDTH - (int) rect.getWidth()) / 2,
 					(ConfigurableOption.PLAYPANEL_HEIGHT - (int) rect
-							.getHeight()) / 2 + 100);
+							.getHeight()) / 2 + 50 + plus);
+
 			return;
 		}
 
