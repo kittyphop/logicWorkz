@@ -16,7 +16,7 @@ public class SharedData {
 	private volatile ArrayList<Frame> kmapList;
 
 	public SharedData() {
-		player = new Player(100, ConfigurableOption.PLAYPANEL_HEIGHT / 2);
+		player = new Player(this, 100, ConfigurableOption.PLAYPANEL_HEIGHT / 2);
 		gameList = new ArrayList<IRenderable>();
 		gameList.add(player.getCurrentGun());
 		kmap = new Kmap();
@@ -49,7 +49,7 @@ public class SharedData {
 	}
 
 	public void resetGame() {
-		player = new Player(100, ConfigurableOption.PLAYPANEL_HEIGHT / 2);
+		player = new Player(this, 100, ConfigurableOption.PLAYPANEL_HEIGHT / 2);
 		gameList = new ArrayList<IRenderable>();
 		gameList.add(player.getCurrentGun());
 	}

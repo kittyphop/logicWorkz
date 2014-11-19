@@ -1,6 +1,8 @@
 package logic.gun;
 
 import java.util.ArrayList;
+
+import config.SharedData;
 import logic.IRenderable;
 import logic.Player;
 import logic.Rectangle;
@@ -9,8 +11,8 @@ import ui.DrawingUtility;
 
 public class NormalGun extends Gun {
 
-	public NormalGun(Player player, int x, int y, int bullet) {
-		super(player, x, y, bullet);
+	public NormalGun(SharedData data, int x, int y, int bullet) {
+		super(data, x, y, bullet);
 		img = DrawingUtility.binarySwitch0;
 		img0 = DrawingUtility.binarySwitch0;
 		img1 = DrawingUtility.binarySwitch1;

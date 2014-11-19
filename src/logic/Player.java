@@ -4,6 +4,7 @@ import logic.collectible.Probe;
 import logic.gun.Gun;
 import logic.gun.NormalGun;
 import config.ConfigurableOption;
+import config.SharedData;
 
 public class Player {
 
@@ -12,13 +13,13 @@ public class Player {
 	private Gun currentGun;
 	private boolean[] collectedProbe;
 
-	public Player(int x, int y) {
+	public Player(SharedData data,int x, int y) {
 		time = ConfigurableOption.MAX_TIME;
 		score = 0;
 		level = 5;
 		gameOver = false;
 		pause = false;
-		currentGun = new NormalGun(this, x, y, 0);
+		currentGun = new NormalGun(data, x, y, 0);
 		collectedProbe = new boolean[4];
 	}
 
