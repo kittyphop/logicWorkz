@@ -60,8 +60,13 @@ public class GameLogic implements Runnable {
 		Player player = data.getPlayer();
 		ArrayList<IRenderable> list = data.getGameList();
 
+		if (data.getRemainWaitingTime() > 0) {
+			data.decreaseWaitingTime();
+		}
+
 		if (player.isKmap()) {
 			data.getKmap().setRun(true);
+			data.setRemainWaitingTime();
 			data.getKmap().setReturnToGame(true);
 		}
 

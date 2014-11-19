@@ -61,6 +61,7 @@ public class KmapLogic implements Runnable {
 				data.resetKmap();
 				data.getPlayer().clearCollectedProbe();
 				data.getKmap().setRun(false);
+				data.setRemainWaitingTime();
 			}
 		}
 
@@ -69,6 +70,10 @@ public class KmapLogic implements Runnable {
 	public void update() {
 		Kmap map = data.getKmap();
 		ArrayList<Frame> list = data.getKmapList();
+
+		if (data.getRemainWaitingTime() > 0) {
+			data.decreaseWaitingTime();
+		}
 
 		if (InputUtility.getKeyPressed(KeyEvent.VK_ESCAPE))
 			map.setRun(false);

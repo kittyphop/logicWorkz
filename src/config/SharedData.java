@@ -14,6 +14,7 @@ public class SharedData {
 	private volatile Kmap kmap;
 	private volatile Frame temp;
 	private volatile ArrayList<Frame> kmapList;
+	private volatile int remainWaitingTime;
 
 	public SharedData() {
 		player = new Player(this, 100, ConfigurableOption.PLAYPANEL_HEIGHT / 2);
@@ -22,6 +23,7 @@ public class SharedData {
 		kmap = new Kmap();
 		temp = new Frame(-1, -1, -1, -1);
 		kmapList = new ArrayList<Frame>();
+		remainWaitingTime = 0;
 	}
 
 	public Player getPlayer() {
@@ -46,6 +48,18 @@ public class SharedData {
 
 	public ArrayList<Frame> getKmapList() {
 		return kmapList;
+	}
+
+	public void setRemainWaitingTime() {
+		remainWaitingTime = 30;
+	}
+
+	public void decreaseWaitingTime() {
+		remainWaitingTime--;
+	}
+
+	public int getRemainWaitingTime() {
+		return remainWaitingTime;
 	}
 
 	public void resetGame() {
