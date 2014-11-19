@@ -7,13 +7,13 @@ public class Kmap {
 	private int[][] map = new int[4][4];
 	private boolean[][] cover = new boolean[4][4];
 	private int time, score, x, y;
-	private boolean end, returnToGame;
+	private boolean run, returnToGame;
 
 	public Kmap() {
 		randomKmap();
 		time = 30;
 		score = 0;
-		end = true;
+		run = false;
 		returnToGame = false;
 		x = -1;
 		y = -1;
@@ -31,7 +31,7 @@ public class Kmap {
 		this.time = time;
 		if (time <= 0) {
 			this.time = 0;
-			end = true;
+			run = true;
 		}
 	}
 
@@ -59,12 +59,12 @@ public class Kmap {
 		this.y = y;
 	}
 
-	public void setEnd(boolean end) {
-		this.end = end;
+	public void setRun(boolean run) {
+		this.run = run;
 	}
 
-	public boolean isEnd() {
-		return end;
+	public boolean isRun() {
+		return run;
 	}
 
 	public boolean isReturnToGame() {

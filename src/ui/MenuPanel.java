@@ -15,8 +15,11 @@ public class MenuPanel extends JPanel {
 			resetButton, closeButton;
 	JList highscoreList;
 	JScrollPane highscorePane;
+	SharedData data;
 
-	public MenuPanel() {
+	public MenuPanel(final SharedData data) {
+
+		this.data = data;
 
 		setPreferredSize(ConfigurableOption.DIALOG_DIMENSION);
 		setLayout(null);
@@ -40,6 +43,8 @@ public class MenuPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				WindowManager.setStatus(WindowManager.MINIGAME_STATUS);
+				data.getGameList().clear();
+				data.getKmap().setRun(true);
 			}
 		});
 

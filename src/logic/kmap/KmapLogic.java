@@ -16,9 +16,8 @@ public class KmapLogic implements Runnable {
 
 	public void run() {
 		while (true) {
-			if (WindowManager.getStatus() == WindowManager.GAME_STATUS
-					&& data.getPlayer().isKmap() && !data.getKmap().isEnd()) {
-				while (data.getPlayer().isKmap() && !data.getKmap().isEnd()) {
+			if (data.getKmap().isRun()) {
+				while (data.getKmap().isRun()) {
 					try {
 						Thread.sleep(5);
 					} catch (InterruptedException e) {
@@ -28,8 +27,10 @@ public class KmapLogic implements Runnable {
 				}
 				if (data.getKmap().isReturnToGame())
 					WindowManager.setStatus(WindowManager.GAME_STATUS);
-				else
+				else {
 					WindowManager.setStatus(WindowManager.MENU_STATUS);
+					data.resetGame();
+				}
 				data.resetKmap();
 				data.getPlayer().setPause(false);
 				data.getPlayer().clearCollectedProbe();
@@ -43,7 +44,7 @@ public class KmapLogic implements Runnable {
 		Kmap map = data.getKmap();
 		ArrayList<Frame> list = data.getKmapList();
 
-		if (map.isEnd())
+		if (!map.isRun())
 			return;
 
 		// decrease time
@@ -51,6 +52,7 @@ public class KmapLogic implements Runnable {
 		if (timeCounter == 0) {
 			map.setTime(map.getTime() - 1);
 			timeCounter = ConfigurableOption.TIME_DELAY;
+			map.setRun(false);
 		}
 
 		// check if cover all ones

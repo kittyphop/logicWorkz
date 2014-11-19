@@ -21,6 +21,7 @@ public abstract class Gun extends RenderableObject {
 
 	public Gun(Player player, int x, int y, int bullet) {
 		super(x, y);
+		z = Integer.MAX_VALUE - 1;
 		this.player = player;
 		this.bullet = bullet;
 		renderDelayCounter = ConfigurableOption.RENDER_DELAY;

@@ -76,7 +76,6 @@ public class GamePanel extends JPanel {
 
 			public void mouseReleased(MouseEvent arg0) {
 				if (arg0.getButton() == 1) {
-					System.out.println("release");
 					InputUtility.setMouseLeftUpTriggered(true);
 					InputUtility.setMouseLeftDown(false);
 				}
@@ -84,8 +83,6 @@ public class GamePanel extends JPanel {
 
 			public void mousePressed(MouseEvent arg0) {
 				if (arg0.getButton() == 1) {
-
-					System.out.println("press");
 					InputUtility.setMouseLeftDownTriggered(true);
 					InputUtility.setMouseLeftDown(true);
 				}

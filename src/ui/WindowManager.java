@@ -30,10 +30,9 @@ public class WindowManager {
 
 		menuDialog = new MenuDialog();
 		gameWindow = new GameWindow();
-		initialize();
-
 		this.data = data;
 		status = MENU_STATUS;
+		initialize();
 	}
 
 	public void begin() {
@@ -90,7 +89,7 @@ public class WindowManager {
 		gameWindow.setVisible(true);
 
 		menuDialog.setTitle("Welcome to LogicWorkz");
-		currentDialogPanel = new MenuPanel();
+		currentDialogPanel = new MenuPanel(data);
 		menuDialog.getContentPane().add(currentDialogPanel);
 		menuDialog.getContentPane().validate();
 		menuDialog.pack();
@@ -111,7 +110,7 @@ public class WindowManager {
 
 		menuDialog.setTitle("Welcome to LogicWorkz");
 		menuDialog.getContentPane().removeAll();
-		currentDialogPanel = new MenuPanel();
+		currentDialogPanel = new MenuPanel(data);
 		menuDialog.getContentPane().add(currentDialogPanel);
 		menuDialog.getContentPane().validate();
 		menuDialog.pack();
