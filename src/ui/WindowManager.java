@@ -8,7 +8,7 @@ public class WindowManager {
 	private final MenuDialog menuDialog;
 	private JPanel currentDialogPanel;
 
-	private final GameWindow gameWindow;
+	private static GameWindow gameWindow;
 	private JPanel currentWindowPanel;
 
 	private final SharedData data;
@@ -159,4 +159,8 @@ public class WindowManager {
 		menuDialog.setVisible(false);
 	}
 
+	public static JFrame getGameFrame()
+	{
+		return gameWindow;
+	}
 }

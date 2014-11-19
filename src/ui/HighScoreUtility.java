@@ -12,7 +12,7 @@ public class HighScoreUtility {
 
 	public static void recordHighScore(int score) {
 		if (!loadHighScore() || highScoreRecord == null) {
-			JOptionPane.showMessageDialog(null,
+			JOptionPane.showMessageDialog(WindowManager.getGameFrame(),
 					"Error loading highscore record", "Error",
 					JOptionPane.ERROR_MESSAGE);
 			return;
@@ -25,7 +25,7 @@ public class HighScoreUtility {
 			}
 		}
 		if (index >= highScoreRecord.length) {
-			JOptionPane.showMessageDialog(null, "Game over\nYour score is "
+			JOptionPane.showMessageDialog(WindowManager.getGameFrame(), "Game over\nYour score is "
 					+ score, "Game over", JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			String name = JOptionPane.showInputDialog(null,
@@ -47,7 +47,7 @@ public class HighScoreUtility {
 				out.print(getXORed(record));
 				out.close();
 			} catch (IOException e) {
-				JOptionPane.showMessageDialog(null,
+				JOptionPane.showMessageDialog(WindowManager.getGameFrame(),
 						"Error saving high score record", "Error",
 						JOptionPane.ERROR_MESSAGE);
 				highScoreRecord = null;
@@ -58,7 +58,7 @@ public class HighScoreUtility {
 
 	public static String[] listTop10() {
 		if (!loadHighScore() || highScoreRecord == null) {
-			JOptionPane.showMessageDialog(null,
+			JOptionPane.showMessageDialog(WindowManager.getGameFrame(),
 					"Error loading highscore record", "Error",
 					JOptionPane.ERROR_MESSAGE);
 			return HighScoreRecord.defaultRecord();
