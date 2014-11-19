@@ -38,7 +38,7 @@ public class PlayPanel extends JPanel {
 		for (int i = 0; i < list.size(); i++)
 			list.get(i).render(g2);
 
-		if (data.getRemainWaitingTime() > 0) {
+		if (data.getRemainWaitingTime() > 0 && !data.getKmap().isRun()) {
 
 			g2.setComposite(transcluentWhite);
 			g2.setColor(Color.BLACK);
@@ -55,7 +55,8 @@ public class PlayPanel extends JPanel {
 			g2.drawString(
 					"" + number,
 					(ConfigurableOption.PLAYPANEL_WIDTH - (int) rect.getWidth()) / 2,
-					(ConfigurableOption.PLAYPANEL_HEIGHT - (int) rect.getHeight()) / 2 + 100);
+					(ConfigurableOption.PLAYPANEL_HEIGHT - (int) rect
+							.getHeight()) / 2 + 100);
 			return;
 		}
 

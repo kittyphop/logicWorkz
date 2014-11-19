@@ -60,8 +60,12 @@ public class GameLogic implements Runnable {
 		Player player = data.getPlayer();
 		ArrayList<IRenderable> list = data.getGameList();
 
+		if (player.isGameOver() || data.getKmap().isRun())
+			return;
+
 		if (data.getRemainWaitingTime() > 0) {
 			data.decreaseWaitingTime();
+			return;
 		}
 
 		if (player.isKmap()) {
@@ -76,11 +80,9 @@ public class GameLogic implements Runnable {
 
 		if (InputUtility.getKeyTriggered(KeyEvent.VK_K)) {
 			data.getKmap().setRun(true);
+			data.setRemainWaitingTime();
 			data.getKmap().setReturnToGame(true);
 		}
-
-		if (player.isGameOver() || data.getKmap().isRun())
-			return;
 
 		if (InputUtility.getKeyTriggered(KeyEvent.VK_ENTER))
 			player.setPause(!player.isPause());

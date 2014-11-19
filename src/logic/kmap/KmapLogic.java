@@ -57,11 +57,11 @@ public class KmapLogic implements Runnable {
 							"Game over\nYour score is " + score, "Game over",
 							JOptionPane.INFORMATION_MESSAGE);
 					WindowManager.setStatus(WindowManager.MENU_STATUS);
-				}
+				} else
+					data.setRemainWaitingTime();
 				data.resetKmap();
 				data.getPlayer().clearCollectedProbe();
 				data.getKmap().setRun(false);
-				data.setRemainWaitingTime();
 			}
 		}
 
@@ -73,6 +73,7 @@ public class KmapLogic implements Runnable {
 
 		if (data.getRemainWaitingTime() > 0) {
 			data.decreaseWaitingTime();
+			return;
 		}
 
 		if (InputUtility.getKeyPressed(KeyEvent.VK_ESCAPE))
