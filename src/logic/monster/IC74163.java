@@ -9,6 +9,8 @@ import ui.DrawingUtility;
 
 public class IC74163 extends Monster {
 
+	private boolean up = false;
+
 	public IC74163(int x, int y, int life) {
 		super(x, y, life, ConfigurableOption.IC_SCORE);
 		img = DrawingUtility.ic74163;
@@ -36,4 +38,27 @@ public class IC74163 extends Monster {
 	public Rectangle rectify() {
 		return new Rectangle(x + 20, y, img.getWidth() - 34, img.getHeight());
 	}
+
+	public void move() {
+		movingDelayCounter--;
+		if (movingDelayCounter > 0)
+			return;
+		movingDelayCounter = ConfigurableOption.MOVING_DELAY;
+		if (x > 2 * ConfigurableOption.PLAYPANEL_WIDTH / 3)
+			x--;
+		else {
+			if (up) {
+				if (y > 10)
+					y--;
+				else
+					up = !up;
+			} else {
+				if (y + img.getHeight() + 10 < ConfigurableOption.PLAYPANEL_HEIGHT)
+					y++;
+				else
+					up = !up;
+			}
+		}
+	}
+
 }

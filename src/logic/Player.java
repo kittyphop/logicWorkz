@@ -8,7 +8,7 @@ import config.SharedData;
 
 public class Player {
 
-	private int time, score, level;
+	private int time, score, level, remainToNextLevel;
 	private boolean gameOver, pause, damaged;
 	private Gun currentGun;
 	private boolean[] collectedProbe;
@@ -16,11 +16,12 @@ public class Player {
 	public Player(SharedData data, int x, int y) {
 		time = ConfigurableOption.MAX_TIME;
 		score = 0;
-		level = 5;
+		level = 1;
 		gameOver = false;
 		pause = false;
 		currentGun = new NormalGun(data, x, y, 0);
 		collectedProbe = new boolean[4];
+		remainToNextLevel = ConfigurableOption.MONSTER_TO_NEXT_LEVEL;
 	}
 
 	public int getTime() {
@@ -120,6 +121,14 @@ public class Player {
 		if (time <= 0) {
 			time = 0;
 			gameOver = true;
+		}
+	}
+
+	public void doMission() {
+		remainToNextLevel--;
+		if (remainToNextLevel == 0) {
+			remainToNextLevel = ConfigurableOption.MONSTER_TO_NEXT_LEVEL;
+			level++;
 		}
 	}
 

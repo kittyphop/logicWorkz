@@ -16,6 +16,7 @@ public class GameLogic implements Runnable {
 	private int newMonsterDelayCounter, newProbeDelayCounter,
 			newClockDelayCounter, shootingDelayCounter, damagedDelayCounter,
 			timeCounter;
+	private boolean isBossCreated = false;
 
 	public GameLogic(SharedData data) {
 		this.data = data;
@@ -47,6 +48,7 @@ public class GameLogic implements Runnable {
 				HighScoreUtility.recordHighScore(data.getPlayer().getScore());
 				WindowManager.setStatus(WindowManager.MENU_STATUS);
 				data.resetGame();
+				isBossCreated = false;
 			}
 		}
 	}
@@ -220,7 +222,7 @@ public class GameLogic implements Runnable {
 		int r = random(1, 100);
 		int i;
 
-		for (i = 0; i < 7; i++) {
+		for (i = 0; i < ConfigurableOption.MAX_LEVEL; i++) {
 			if (r <= p[level][i])
 				break;
 		}
@@ -228,76 +230,72 @@ public class GameLogic implements Runnable {
 		int w = ConfigurableOption.PLAYPANEL_WIDTH;
 		int h = ConfigurableOption.PLAYPANEL_HEIGHT;
 
-		// And-Or-Not
+		// Not
 		if (i == 0) {
-			r = random(1, 3);
-			// And
-			if (r == 1) {
-				int y = random(10, h - DrawingUtility.and.getHeight() - 10);
-				list.add(new And(w, y, 100));
-			}
-			// Or
-			if (r == 2) {
-				int y = random(10, h - DrawingUtility.or.getHeight() - 10);
-				list.add(new Or(w, y, 100));
-			}
-			// Not
-			if (r == 3) {
-				int y = random(10, h - DrawingUtility.not.getHeight() - 10);
-				list.add(new Not(w, y, 100));
-			}
+			int y = random(10, h - DrawingUtility.not.getHeight() - 10);
+			list.add(new Not(w, y, 100));
 		}
 
-		// DFF-JKFF
+		// Or
 		if (i == 1) {
-			r = random(1, 2);
-			// DFF
-			if (r == 1) {
-				int y = random(10, h - DrawingUtility.dFF.getHeight() - 10);
-				list.add(new DFF(w, y, 100));
-			}
-			if (r == 2) {
-				int y = random(10, h - DrawingUtility.jkFF.getHeight() - 10);
-				list.add(new JKFF(w, y, 100));
-			}
+			int y = random(10, h - DrawingUtility.or.getHeight() - 10);
+			list.add(new Or(w, y, 100));
+		}
+
+		// And
+		if (i == 2) {
+			int y = random(10, h - DrawingUtility.and.getHeight() - 10);
+			list.add(new And(w, y, 100));
+		}
+
+		// DFF
+		if (i == 3) {
+			int y = random(10, h - DrawingUtility.dFF.getHeight() - 10);
+			list.add(new DFF(w, y, 100));
+		}
+
+		// JKFF
+		if (i == 4) {
+			int y = random(10, h - DrawingUtility.jkFF.getHeight() - 10);
+			list.add(new JKFF(w, y, 100));
 		}
 
 		// HexDisplay
-		if (i == 2) {
+		if (i == 5) {
 			int y = random(10, h - DrawingUtility.hexDisplay.getHeight() - 10);
 			list.add(new HexDisplay(w, y, 100));
 		}
 
 		// PLA
-		if (i == 3) {
+		if (i == 6) {
 			int y = random(10, h - DrawingUtility.pla.getHeight() - 10);
 			list.add(new PLA(w, y, 100));
 		}
 
 		// Mux
-		if (i == 4) {
+		if (i == 7) {
 			int y = random(10, h - DrawingUtility.mux.getHeight() - 10);
 			list.add(new Mux(w, y, 100));
 		}
 
-		// Adder-AsciiDisplay
-		if (i == 5) {
-			r = random(1, 2);
-			if (r == 1) {
-				int y = random(10, h - DrawingUtility.adder.getHeight() - 10);
-				list.add(new Adder(w, y, 100));
-			}
-			if (r == 2) {
-				int y = random(10, h - DrawingUtility.asciiDisplay.getHeight()
-						- 10);
-				list.add(new AsciiDisplay(w, y, 100));
-			}
+		// Adder
+		if (i == 8) {
+			int y = random(10, h - DrawingUtility.adder.getHeight() - 10);
+			list.add(new Adder(w, y, 100));
+		}
+
+		// AsciiDisplay
+		if (i == 9) {
+			int y = random(10, h - DrawingUtility.asciiDisplay.getHeight() - 10);
+			list.add(new AsciiDisplay(w, y, 100));
 		}
 
 		// IC74163
-		if (i == 6) {
+		if (i == 10 && !isBossCreated) {
 			int y = random(10, h - DrawingUtility.ic74163.getHeight() - 10);
 			list.add(new IC74163(w, y, 100));
+			isBossCreated = true;
 		}
 	}
+
 }

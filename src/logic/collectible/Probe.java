@@ -9,6 +9,7 @@ import config.ConfigurableOption;
 public class Probe extends RenderableObject implements ICollectible {
 
 	private String letter;
+	private boolean up = false;
 
 	public Probe(int x, int y, String letter) {
 		super(x, y);
@@ -31,8 +32,19 @@ public class Probe extends RenderableObject implements ICollectible {
 		movingDelayCounter--;
 		if (movingDelayCounter > 0)
 			return;
-		x--;
 		movingDelayCounter = ConfigurableOption.MOVING_DELAY;
+		x--;
+		if (up) {
+			if (y > 10)
+				y--;
+			else
+				up = !up;
+		} else {
+			if (y + img.getHeight() + 10 < ConfigurableOption.PLAYPANEL_HEIGHT)
+				y++;
+			else
+				up = !up;
+		}
 	}
 
 	public void collect(Player player) {

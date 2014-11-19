@@ -20,7 +20,7 @@ public class ConfigurableOption {
 	public static final Dimension PLAYPANEL_DIMENSION = new Dimension(
 			PLAYPANEL_WIDTH, PLAYPANEL_HEIGHT);
 
-	public static final int MAX_LEVEL = 6;
+	public static final int MAX_LEVEL = 11;
 	public static final int MAX_TIME = 300;
 	public static final int MOVING_DELAY = 2;
 	public static final int BULLET_MOVING_DELAY = 0;
@@ -42,6 +42,7 @@ public class ConfigurableOption {
 	public static final int TIME_DELAY = 1000;
 	public static final int MAX_KMAP_TIME = 10 * TIME_DELAY;
 	public static final int MAX_FRAME = 30;
+	public static final int MONSTER_TO_NEXT_LEVEL = 5;
 
 	// Score
 	public static final int GATE_SCORE = 50;
@@ -53,11 +54,20 @@ public class ConfigurableOption {
 	public static final int ASCII_DISPLAY_SCORE = 1000;
 	public static final int IC_SCORE = 5000;
 
-	// And-Or-Not, DFF-JKFF, HexDisplay, PLA, Mux, Adder-AsciiDisplay, IC74163
+	// not, or, and, dFF, jkFF, hexDisplay, pla, mux, asciiDisplay, adder,
+	// ic74163
 	public static final int[][] MONSTER_PERCENT = new int[][] {
-			{ 0, 0, 0, 0, 0, 0, 0 }, { 80, 100, 0, 0, 0, 0, 0 },
-			{ 60, 80, 100, 0, 0, 0, 0 }, { 50, 70, 90, 100, 0, 0, 0 },
-			{ 40, 65, 80, 90, 100, 0, 0 }, { 40, 60, 70, 80, 90, 100, 0 },
-			{ 0, 0, 0, 0, 0, 0, 100 } };
+			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+			{ 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // level 1
+			{ 70, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // level 2
+			{ 30, 60, 100, 0, 0, 0, 0, 0, 0, 0, 0 }, // level 3
+			{ 30, 50, 70, 100, 0, 0, 0, 0, 0, 0, 0 }, // level 4
+			{ 20, 40, 60, 80, 100, 0, 0, 0, 0, 0, 0 }, // level 5
+			{ 0, 20, 40, 60, 80, 100, 0, 0, 0, 0, 0 }, // level 6
+			{ 0, 0, 20, 40, 60, 80, 100, 0, 0, 0, 0 }, // level 7
+			{ 0, 0, 10, 25, 40, 60, 80, 100, 0, 0, 0 }, // level 8
+			{ 0, 0, 10, 25, 40, 55, 70, 85, 100, 0, 0 }, // level 9
+			{ 0, 0, 0, 10, 25, 40, 55, 70, 85, 100, 0 }, // level 10
+			{ 0, 0, 0, 0, 10, 25, 40, 55, 70, 85, 100 }, }; // level 11
 
 }
