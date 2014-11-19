@@ -32,7 +32,7 @@ public class Probe extends RenderableObject implements ICollectible {
 		movingDelayCounter--;
 		if (movingDelayCounter > 0)
 			return;
-		movingDelayCounter = ConfigurableOption.MOVING_DELAY;
+		movingDelayCounter = movingDelay;
 		x--;
 		if (up) {
 			if (y > 10)

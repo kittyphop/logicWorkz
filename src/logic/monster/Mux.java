@@ -28,7 +28,7 @@ public class Mux extends Monster {
 		list.add(new GndBullet(x - w, y + 80 - h));
 		list.add(new GndBullet(x - w, y + 94 - h));
 		list.add(new GndBullet(x - w, y + 107 - h));
-		firingDelayCounter = ConfigurableOption.FIRING_DELAY;
+		firingDelayCounter = firingDelay;
 	}
 
 	public Rectangle rectify() {

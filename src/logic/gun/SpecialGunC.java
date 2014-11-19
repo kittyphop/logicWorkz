@@ -1,6 +1,7 @@
 package logic.gun;
 
 import java.util.ArrayList;
+
 import config.SharedData;
 import logic.IRenderable;
 import logic.Player;
@@ -8,19 +9,22 @@ import logic.Rectangle;
 import logic.bullet.VddBullet;
 import ui.DrawingUtility;
 
-public class SpecialGunB extends Gun {
+public class SpecialGunC extends Gun {
 
-	public SpecialGunB(SharedData data, int x, int y, int bullet) {
+	public SpecialGunC(SharedData data, int x, int y, int bullet) {
 		super(data, x, y, bullet);
-		img = DrawingUtility.oneShot;
+		img = DrawingUtility.hexKeyboard;
 		img0 = img;
 		img1 = img;
 	}
 
 	public void shoot(Player player, ArrayList<IRenderable> list) {
 		int h = DrawingUtility.vddBullet.getHeight() / 2;
-		list.add(new VddBullet(x + img.getWidth(), y + 13 - h, true));
-		list.add(new VddBullet(x + img.getWidth(), y + 33 - h, true));
+		int l = img.getHeight() / 8;
+		list.add(new VddBullet(x + img.getWidth(), y + l - h, true));
+		list.add(new VddBullet(x + img.getWidth(), y + 3 * l - h, true));
+		list.add(new VddBullet(x + img.getWidth(), y + 5 * l - h, true));
+		list.add(new VddBullet(x + img.getWidth(), y + 7 * l - h, true));
 		bullet--;
 		if (bullet == 0) {
 			destroyed = true;
@@ -31,8 +35,7 @@ public class SpecialGunB extends Gun {
 	}
 
 	public Rectangle rectify() {
-		return new Rectangle(x + 15, y, img.getWidth() - 35,
-				img.getHeight() - 21);
+		return new Rectangle(x, y, img.getHeight(), img.getHeight());
 	}
 
 }

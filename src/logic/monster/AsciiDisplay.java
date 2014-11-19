@@ -30,7 +30,7 @@ public class AsciiDisplay extends Monster {
 		list.add(new GndBullet(x - w, y + 76 - h));
 		list.add(new GndBullet(x - w, y + 90 - h));
 		list.add(new GndBullet(x - w, y + 103 - h));
-		firingDelayCounter = ConfigurableOption.FIRING_DELAY;
+		firingDelayCounter = firingDelay;
 	}
 
 	public Rectangle rectify() {

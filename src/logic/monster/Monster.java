@@ -7,16 +7,19 @@ import logic.Player;
 import logic.Rectangle;
 import logic.RenderableObject;
 import config.ConfigurableOption;
+import config.RandomUtility;
 
 public abstract class Monster extends RenderableObject {
 
-	protected int life, reward, firingDelayCounter;
+	protected int life, reward, firingDelay, firingDelayCounter;
 
 	public Monster(int x, int y, int life, int reward) {
 		super(x, y);
 		this.life = life;
 		this.reward = reward;
-		firingDelayCounter = ConfigurableOption.FIRING_DELAY;
+		firingDelay = RandomUtility.random(ConfigurableOption.MIN_FIRING_DELAY,
+				ConfigurableOption.MAX_FIRING_DELAY);
+		firingDelayCounter = firingDelay;
 	}
 
 	public void move() {
@@ -24,7 +27,7 @@ public abstract class Monster extends RenderableObject {
 		if (movingDelayCounter > 0)
 			return;
 		x--;
-		movingDelayCounter = ConfigurableOption.MOVING_DELAY;
+		movingDelayCounter = movingDelay;
 	}
 
 	public abstract void shoot(ArrayList<IRenderable> list);

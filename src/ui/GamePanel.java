@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import logic.gun.Gun;
 import logic.gun.NormalGun;
 import logic.gun.SpecialGunA;
-import logic.gun.SpecialGunB;
+import logic.gun.SpecialGunC;
 import config.ConfigurableOption;
 import config.InputUtility;
 import config.SharedData;
@@ -89,7 +89,7 @@ public class GamePanel extends JPanel {
 		BufferedImage gun_img = DrawingUtility.side_binary_switch;
 		if (currentGun instanceof SpecialGunA)
 			gun_img = DrawingUtility.side_push_button;
-		if (currentGun instanceof SpecialGunB)
+		if (currentGun instanceof SpecialGunC)
 			gun_img = DrawingUtility.side_hex_keyboard;
 		g2.drawImage(gun_img, null, 756, 98);
 

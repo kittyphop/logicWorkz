@@ -20,8 +20,8 @@ public class SpecialGunA extends Gun {
 
 	public void shoot(Player player, ArrayList<IRenderable> list) {
 		int h = DrawingUtility.vddBullet.getHeight() / 2;
-		list.add(new VddBullet(x + img.getWidth(), y + img.getHeight() / 2 + 2
-				- h, true));
+		list.add(new VddBullet(x + img.getWidth(), y + img.getHeight() / 2 - h,
+				true));
 		bullet--;
 		if (bullet == 0) {
 			destroyed = true;

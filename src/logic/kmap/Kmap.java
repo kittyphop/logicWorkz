@@ -1,8 +1,10 @@
 package logic.kmap;
 
 import java.awt.Graphics2D;
+
 import logic.gun.*;
 import config.ConfigurableOption;
+import config.RandomUtility;
 
 public class Kmap {
 
@@ -51,7 +53,7 @@ public class Kmap {
 			nextGun = new SpecialGunA(null, 0, 0, 0);
 			remainToNextGun = 4 - score;
 		} else if (score < 7) {
-			nextGun = new SpecialGunB(null, 0, 0, 0);
+			nextGun = new SpecialGunC(null, 0, 0, 0);
 			remainToNextGun = 7 - score;
 		} else {
 			nextGun = null;
@@ -111,14 +113,10 @@ public class Kmap {
 		return nextGun;
 	}
 
-	public int random(int a, int b) {
-		return (int) (Math.random() * (b - a + 1)) + a;
-	}
-
 	public void randomKmap() {
 		for (int i = 0; i < 4; i++)
 			for (int j = 0; j < 4; j++) {
-				map[i][j] = random(0, 2);
+				map[i][j] = RandomUtility.random(0, 2);
 				cover[i][j] = false;
 			}
 	}

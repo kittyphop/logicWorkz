@@ -22,7 +22,7 @@ public abstract class Gun extends RenderableObject {
 
 	public Gun(SharedData data, int x, int y, int bullet) {
 		super(x, y);
-		z = Integer.MAX_VALUE - 1;
+		z = Integer.MAX_VALUE;
 		this.data = data;
 		this.bullet = bullet;
 		renderDelayCounter = ConfigurableOption.RENDER_DELAY;

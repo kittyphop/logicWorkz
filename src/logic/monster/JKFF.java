@@ -24,7 +24,7 @@ public class JKFF extends Monster {
 		list.add(new GndBullet(x - w, y + 27 - h));
 		list.add(new GndBullet(x - w, y + 40 - h));
 		list.add(new GndBullet(x - w, y + 53 - h));
-		firingDelayCounter = ConfigurableOption.FIRING_DELAY;
+		firingDelayCounter = firingDelay;
 	}
 
 	public Rectangle rectify() {

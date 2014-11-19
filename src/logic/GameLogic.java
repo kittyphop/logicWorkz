@@ -20,11 +20,14 @@ public class GameLogic implements Runnable {
 
 	public GameLogic(SharedData data) {
 		this.data = data;
-		newMonsterDelayCounter = random(ConfigurableOption.MIN_NEW_MONSTER,
+		newMonsterDelayCounter = RandomUtility.random(
+				ConfigurableOption.MIN_NEW_MONSTER,
 				ConfigurableOption.MAX_NEW_MONSTER);
-		newProbeDelayCounter = random(ConfigurableOption.MIN_NEW_PROBE,
+		newProbeDelayCounter = RandomUtility.random(
+				ConfigurableOption.MIN_NEW_PROBE,
 				ConfigurableOption.MAX_NEW_PROBE);
-		newClockDelayCounter = random(ConfigurableOption.MIN_NEW_CLOCK,
+		newClockDelayCounter = RandomUtility.random(
+				ConfigurableOption.MIN_NEW_CLOCK,
 				ConfigurableOption.MAX_NEW_CLOCK);
 		shootingDelayCounter = 1;
 		damagedDelayCounter = 1;
@@ -128,7 +131,8 @@ public class GameLogic implements Runnable {
 		newMonsterDelayCounter--;
 		if (newMonsterDelayCounter == 0) {
 			newMonster();
-			newMonsterDelayCounter = random(ConfigurableOption.MIN_NEW_MONSTER,
+			newMonsterDelayCounter = RandomUtility.random(
+					ConfigurableOption.MIN_NEW_MONSTER,
 					ConfigurableOption.MAX_NEW_MONSTER);
 		}
 
@@ -136,21 +140,27 @@ public class GameLogic implements Runnable {
 		newProbeDelayCounter--;
 		if (newProbeDelayCounter == 0) {
 			String[] x = { "K", "M", "A", "P" };
-			int r = random(0, 3);
-			int y = random(10, ConfigurableOption.PLAYPANEL_HEIGHT
-					- DrawingUtility.probeA.getHeight() - 10);
+			int r = RandomUtility.random(0, 3);
+			int y = RandomUtility.random(
+					10,
+					ConfigurableOption.PLAYPANEL_HEIGHT
+							- DrawingUtility.probeA.getHeight() - 10);
 			list.add(new Probe(ConfigurableOption.PLAYPANEL_WIDTH, y, x[r]));
-			newProbeDelayCounter = random(ConfigurableOption.MIN_NEW_PROBE,
+			newProbeDelayCounter = RandomUtility.random(
+					ConfigurableOption.MIN_NEW_PROBE,
 					ConfigurableOption.MAX_NEW_PROBE);
 		}
 
 		// new clock
 		newClockDelayCounter--;
 		if (newClockDelayCounter == 0) {
-			int y = random(10, ConfigurableOption.PLAYPANEL_HEIGHT
-					- DrawingUtility.clock.getHeight() - 10);
+			int y = RandomUtility.random(
+					10,
+					ConfigurableOption.PLAYPANEL_HEIGHT
+							- DrawingUtility.clock.getHeight() - 10);
 			list.add(new Clock(ConfigurableOption.PLAYPANEL_WIDTH, y));
-			newProbeDelayCounter = random(ConfigurableOption.MIN_NEW_CLOCK,
+			newProbeDelayCounter = RandomUtility.random(
+					ConfigurableOption.MIN_NEW_CLOCK,
 					ConfigurableOption.MAX_NEW_CLOCK);
 		}
 
@@ -209,17 +219,13 @@ public class GameLogic implements Runnable {
 		}
 	}
 
-	public int random(int a, int b) {
-		return (int) (Math.random() * (b - a + 1)) + a;
-	}
-
 	public void newMonster() {
 		Player player = data.getPlayer();
 		ArrayList<IRenderable> list = data.getGameList();
 
 		int[][] p = ConfigurableOption.MONSTER_PERCENT;
 		int level = player.getLevel();
-		int r = random(1, 100);
+		int r = RandomUtility.random(1, 100);
 		int i;
 
 		for (i = 0; i < ConfigurableOption.MAX_LEVEL; i++) {
@@ -232,67 +238,78 @@ public class GameLogic implements Runnable {
 
 		// Not
 		if (i == 0) {
-			int y = random(10, h - DrawingUtility.not.getHeight() - 10);
+			int y = RandomUtility.random(10, h - DrawingUtility.not.getHeight()
+					- 10);
 			list.add(new Not(w, y));
 		}
 
 		// Or
 		if (i == 1) {
-			int y = random(10, h - DrawingUtility.or.getHeight() - 10);
+			int y = RandomUtility.random(10, h - DrawingUtility.or.getHeight()
+					- 10);
 			list.add(new Or(w, y));
 		}
 
 		// And
 		if (i == 2) {
-			int y = random(10, h - DrawingUtility.and.getHeight() - 10);
+			int y = RandomUtility.random(10, h - DrawingUtility.and.getHeight()
+					- 10);
 			list.add(new And(w, y));
 		}
 
 		// DFF
 		if (i == 3) {
-			int y = random(10, h - DrawingUtility.dFF.getHeight() - 10);
+			int y = RandomUtility.random(10, h - DrawingUtility.dFF.getHeight()
+					- 10);
 			list.add(new DFF(w, y));
 		}
 
 		// JKFF
 		if (i == 4) {
-			int y = random(10, h - DrawingUtility.jkFF.getHeight() - 10);
+			int y = RandomUtility.random(10,
+					h - DrawingUtility.jkFF.getHeight() - 10);
 			list.add(new JKFF(w, y));
 		}
 
 		// HexDisplay
 		if (i == 5) {
-			int y = random(10, h - DrawingUtility.hexDisplay.getHeight() - 10);
+			int y = RandomUtility.random(10,
+					h - DrawingUtility.hexDisplay.getHeight() - 10);
 			list.add(new HexDisplay(w, y));
 		}
 
 		// PLA
 		if (i == 6) {
-			int y = random(10, h - DrawingUtility.pla.getHeight() - 10);
+			int y = RandomUtility.random(10, h - DrawingUtility.pla.getHeight()
+					- 10);
 			list.add(new PLA(w, y));
 		}
 
 		// Mux
 		if (i == 7) {
-			int y = random(10, h - DrawingUtility.mux.getHeight() - 10);
+			int y = RandomUtility.random(10, h - DrawingUtility.mux.getHeight()
+					- 10);
 			list.add(new Mux(w, y));
 		}
 
 		// AsciiDisplay
 		if (i == 8) {
-			int y = random(10, h - DrawingUtility.asciiDisplay.getHeight() - 10);
+			int y = RandomUtility.random(10,
+					h - DrawingUtility.asciiDisplay.getHeight() - 10);
 			list.add(new AsciiDisplay(w, y));
 		}
 
 		// Adder
 		if (i == 9) {
-			int y = random(10, h - DrawingUtility.adder.getHeight() - 10);
+			int y = RandomUtility.random(10,
+					h - DrawingUtility.adder.getHeight() - 10);
 			list.add(new Adder(w, y));
 		}
 
 		// IC74163
 		if (i == 10 && !isBossCreated) {
-			int y = random(10, h - DrawingUtility.ic74163.getHeight() - 10);
+			int y = RandomUtility.random(10,
+					h - DrawingUtility.ic74163.getHeight() - 10);
 			list.add(new IC74163(w, y));
 			isBossCreated = true;
 		}

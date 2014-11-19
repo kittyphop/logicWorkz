@@ -26,7 +26,7 @@ public class PLA extends Monster {
 		list.add(new GndBullet(x - w, y + 60 - h));
 		list.add(new GndBullet(x - w, y + 73 - h));
 		list.add(new GndBullet(x - w, y + 86 - h));
-		firingDelayCounter = ConfigurableOption.FIRING_DELAY;
+		firingDelayCounter = firingDelay;
 	}
 
 	public Rectangle rectify() {

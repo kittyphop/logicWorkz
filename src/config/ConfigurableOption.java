@@ -22,7 +22,8 @@ public class ConfigurableOption {
 
 	public static final int MAX_LEVEL = 10;
 	public static final int MAX_TIME = 300;
-	public static final int MOVING_DELAY = 2;
+	public static final int MIN_MOVING_DELAY = 1;
+	public static final int MAX_MOVING_DELAY = 5;
 	public static final int BULLET_MOVING_DELAY = 0;
 	public static final int CLOCK_TIME = 10;
 	public static final int MIN_NEW_MONSTER = 100;
@@ -36,7 +37,8 @@ public class ConfigurableOption {
 	public static final int VDD_SPECIAL_POWER = 100;
 	public static final int ATTACK = 10;
 	public static final int SHOOTING_DELAY = 50;
-	public static final int FIRING_DELAY = 200;
+	public static final int MIN_FIRING_DELAY = 150;
+	public static final int MAX_FIRING_DELAY = 250;
 	public static final int DAMAGED_DELAY = 350;
 	public static final int RENDER_DELAY = 7;
 	public static final int TIME_DELAY = 1000;

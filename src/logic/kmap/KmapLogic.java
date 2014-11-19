@@ -2,12 +2,8 @@ package logic.kmap;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
-
-import logic.gun.Gun;
-import logic.gun.SpecialGunA;
-import logic.gun.SpecialGunB;
+import logic.gun.*;
 import ui.WindowManager;
 import config.*;
 
@@ -32,20 +28,27 @@ public class KmapLogic implements Runnable {
 					InputUtility.postUpdate();
 				}
 				data.getKmap().setRun(true);
+				if (data.getKmap().isCoverAllOnes())
+					data.getKmap().setScore(data.getKmap().getScore() + 1);
 				int score = data.getKmap().getScore();
 				int x = data.getPlayer().getCurrentGun().getX();
 				int y = data.getPlayer().getCurrentGun().getY();
-				if (score >= 7) {
-					Gun g = data.getPlayer().getCurrentGun();
-					data.getGameList().remove(g);
-					Gun ng = new SpecialGunB(data, x, y, 99);
+				if (score >= 10) {
+					data.getPlayer().getCurrentGun().setDestroyed(true);
+					Gun ng = new SpecialGunC(data, x, y, (score - 9) * 10);
+					data.getPlayer().setCurrentGun(ng);
+					data.getGameList().add(ng);
+				} else if (score >= 7
+						&& !(data.getPlayer().getCurrentGun() instanceof SpecialGunC)) {
+					data.getPlayer().getCurrentGun().setDestroyed(true);
+					Gun ng = new SpecialGunB(data, x, y, (score - 6) * 10);
 					data.getPlayer().setCurrentGun(ng);
 					data.getGameList().add(ng);
 				} else if (score >= 4
-						&& !(data.getPlayer().getCurrentGun() instanceof SpecialGunA)) {
-					Gun g = data.getPlayer().getCurrentGun();
-					data.getGameList().remove(g);
-					Gun ng = new SpecialGunA(data, x, y, 99);
+						&& !(data.getPlayer().getCurrentGun() instanceof SpecialGunC || data
+								.getPlayer().getCurrentGun() instanceof SpecialGunB)) {
+					data.getPlayer().getCurrentGun().setDestroyed(true);
+					Gun ng = new SpecialGunA(data, x, y, (score - 3) * 10);
 					data.getPlayer().setCurrentGun(ng);
 					data.getGameList().add(ng);
 				}
@@ -56,7 +59,6 @@ public class KmapLogic implements Runnable {
 					WindowManager.setStatus(WindowManager.MENU_STATUS);
 				}
 				data.resetKmap();
-				data.getPlayer().setPause(false);
 				data.getPlayer().clearCollectedProbe();
 				data.getKmap().setRun(false);
 			}
@@ -108,7 +110,8 @@ public class KmapLogic implements Runnable {
 
 		// check if player release
 		if (InputUtility.isMouseLeftUpTriggered()) {
-			map.setRemainFrame(map.getRemainFrame() - 1);
+			if (!data.getTemp().hasMinus())
+				map.setRemainFrame(map.getRemainFrame() - 1);
 			if (map.ok(data.getTemp().toIndex())) {
 				map.cover(data.getTemp().toIndex());
 				list.add(new Frame(data.getTemp()));

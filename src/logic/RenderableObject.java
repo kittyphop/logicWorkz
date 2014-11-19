@@ -4,18 +4,21 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import config.ConfigurableOption;
+import config.RandomUtility;
 
 public abstract class RenderableObject implements IRenderable {
 
-	protected int x, y, z, movingDelayCounter;
+	protected int x, y, z, movingDelay, movingDelayCounter;
 	protected boolean destroyed;
 	protected BufferedImage img;
 
 	public RenderableObject(int x, int y) {
 		this.x = x;
 		this.y = y;
-		this.z = (int) (Math.random() * 1000);
-		movingDelayCounter = ConfigurableOption.MOVING_DELAY;
+		this.z = RandomUtility.random(1, Integer.MAX_VALUE - 1);
+		movingDelay = RandomUtility.random(ConfigurableOption.MIN_MOVING_DELAY,
+				ConfigurableOption.MAX_MOVING_DELAY);
+		movingDelayCounter = movingDelay;
 		destroyed = false;
 	}
 

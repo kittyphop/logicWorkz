@@ -1,6 +1,7 @@
 package logic.monster;
 
 import java.util.ArrayList;
+
 import config.ConfigurableOption;
 import logic.IRenderable;
 import logic.Rectangle;
@@ -33,7 +34,7 @@ public class IC74163 extends Monster {
 		list.add(new GndBullet(x - w, y + 102 - h));
 		list.add(new GndBullet(x - w, y + 122 - h));
 		list.add(new GndBullet(x - w, y + 142 - h));
-		firingDelayCounter = ConfigurableOption.FIRING_DELAY;
+		firingDelayCounter = firingDelay;
 	}
 
 	public Rectangle rectify() {
@@ -44,7 +45,7 @@ public class IC74163 extends Monster {
 		movingDelayCounter--;
 		if (movingDelayCounter > 0)
 			return;
-		movingDelayCounter = ConfigurableOption.MOVING_DELAY;
+		movingDelayCounter = movingDelay;
 		if (x > 2 * ConfigurableOption.PLAYPANEL_WIDTH / 3)
 			x--;
 		else {

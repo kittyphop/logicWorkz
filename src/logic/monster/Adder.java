@@ -30,7 +30,7 @@ public class Adder extends Monster {
 		list.add(new GndBullet(x - w, y + 113 - h));
 		list.add(new GndBullet(x - w, y + 127 - h));
 		list.add(new GndBullet(x - w, y + 140 - h));
-		firingDelayCounter = ConfigurableOption.FIRING_DELAY;
+		firingDelayCounter = firingDelay;
 	}
 
 	public Rectangle rectify() {

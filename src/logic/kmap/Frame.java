@@ -45,23 +45,104 @@ public class Frame {
 		return new Frame(a, b, c, d);
 	}
 
+	public boolean hasMinus() {
+		return x1 == -1 || y1 == -1 || x2 == -1 || y2 == -1;
+	}
+
 	public void render(Graphics2D g2) {
 		if (x1 == -1 || y1 == -1 || x2 == -1 || y2 == -1)
 			return;
 
-		Color c = g2.getColor();
+		int a = x1, b = y1, c = x2, d = y2;
+		int[] p1, p2, q1, q2;
+
+		if (a > c) {
+			int t = a;
+			a = c;
+			c = t;
+		}
+		if (b > d) {
+			int t = b;
+			b = d;
+			d = t;
+		}
+
+		if (c < 387) {
+			a += 120;
+			c += 120;
+		}
+		if (c > 507) {
+			a -= 120;
+			c -= 120;
+		}
+
+		if (d < 250) {
+			b += 120;
+			d += 120;
+		}
+		if (d > 370) {
+			b -= 120;
+			d -= 120;
+		}
+
+		if (a >= 387 && a <= 507) {
+			p1 = new int[] { a, c, 0 };
+			p2 = new int[] { 0, 0, 0 };
+		} else {
+			p1 = new int[] { 387, c, 1 };
+			p2 = new int[] { a + 120, 507, 1 };
+		}
+
+		if (b >= 250 && b <= 370) {
+			q1 = new int[] { b, d, 0 };
+			q2 = new int[] { 0, 0, 0 };
+		} else {
+			q1 = new int[] { 250, d, 1 };
+			q2 = new int[] { b + 120, 370, 1 };
+		}
+
+		Color cc = g2.getColor();
 		g2.setColor(Color.RED);
 
-		if (Kmap.isInsideKmap(x1, y1) && Kmap.isInsideKmap(x2, y2)) {
-			g2.drawLine(x1, y1, x2, y1);
-			g2.drawLine(x1, y1, x1, y2);
-			g2.drawLine(x2, y1, x2, y2);
-			g2.drawLine(x1, y2, x2, y2);
+		// p1-q1
+		g2.drawLine(p1[1], q1[0], p1[1], q1[1]);
+		g2.drawLine(p1[0], q1[1], p1[1], q1[1]);
+		if (p1[2] == 0)
+			g2.drawLine(p1[0], q1[0], p1[0], q1[1]);
+		if (q1[2] == 0)
+			g2.drawLine(p1[0], q1[0], p1[1], q1[0]);
+
+		// p2-q1
+		if (p2[0] != 0) {
+			g2.drawLine(p2[0], q1[0], p2[0], q1[1]);
+			g2.drawLine(p2[0], q1[1], p2[1], q1[1]);
+			if (p2[2] == 0)
+				g2.drawLine(p2[1], q1[0], p2[1], q1[1]);
+			if (q1[2] == 0)
+				g2.drawLine(p2[0], q1[0], p2[1], q1[0]);
 		}
-		g2.setColor(c);
 
-		// not yet implemented
+		// p1-q2
+		if (q2[0] != 0) {
+			g2.drawLine(p1[0], q2[0], p1[1], q2[0]);
+			g2.drawLine(p1[1], q2[0], p1[1], q2[1]);
+			if (p1[2] == 0)
+				g2.drawLine(p1[0], q2[0], p1[0], q2[1]);
+			if (q2[2] == 0)
+				g2.drawLine(p1[0], q2[1], p1[1], q2[1]);
+		}
 
+		// p2-q2
+		if (p2[0] != 0 && q2[0] != 0) {
+			g2.drawLine(p2[0], q2[0], p2[1], q2[0]);
+			g2.drawLine(p2[0], q2[0], p2[0], q2[1]);
+			if (p2[2] == 0)
+				g2.drawLine(p2[1], q2[0], p2[1], q2[1]);
+			if (q2[2] == 0)
+				g2.drawLine(p2[0], q2[1], p2[1], q2[1]);
+		}
+
+		g2.setColor(cc);
 	}
 
 }

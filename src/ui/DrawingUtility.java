@@ -19,7 +19,6 @@ public class DrawingUtility {
 		} catch (Exception e) {
 			return null;
 		}
-
 	}
 
 	private static Image small_icon = getIcon("res/img/small_icon.png");
@@ -48,7 +47,7 @@ public class DrawingUtility {
 	public static final BufferedImage credit_background = getImage("res/img/credit_background.png");
 	public static final BufferedImage kmap_background = getImage("res/img/kmap_background.png");
 	public static final BufferedImage play_panel = getImage("res/img/play_panel.png");
-	
+
 	public static final BufferedImage time_diagram = getImage("res/img/time_diagram.png");
 
 	public static final BufferedImage side_binary_switch = getImage("res/img/side_binary_switch.png");
@@ -69,6 +68,7 @@ public class DrawingUtility {
 	public static final BufferedImage binarySwitch1 = getImage("res/img/binary_switch_1.png");
 	public static final BufferedImage pushButton0 = getImage("res/img/push_button_0.png");
 	public static final BufferedImage pushButton1 = getImage("res/img/push_button_1.png");
+	public static final BufferedImage oneShot = getImage("res/img/one_shot.png");
 	public static final BufferedImage hexKeyboard = getImage("res/img/hex_keyboard.png");
 	public static final BufferedImage and = getImage("res/img/and.png");
 	public static final BufferedImage or = getImage("res/img/or.png");

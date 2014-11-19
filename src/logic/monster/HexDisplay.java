@@ -26,7 +26,7 @@ public class HexDisplay extends Monster {
 		list.add(new GndBullet(x - w, y + 3 * l - h));
 		list.add(new GndBullet(x - w, y + 5 * l - h));
 		list.add(new GndBullet(x - w, y + 7 * l - h));
-		firingDelayCounter = ConfigurableOption.FIRING_DELAY;
+		firingDelayCounter = firingDelay;
 	}
 
 	public Rectangle rectify() {

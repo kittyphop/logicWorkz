@@ -23,7 +23,7 @@ public class DFF extends Monster {
 		// y' = 33, 60
 		list.add(new GndBullet(x - w, y + 33 - h));
 		list.add(new GndBullet(x - w, y + 60 - h));
-		firingDelayCounter = ConfigurableOption.FIRING_DELAY;
+		firingDelayCounter = firingDelay;
 	}
 
 	public Rectangle rectify() {
