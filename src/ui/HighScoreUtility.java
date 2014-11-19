@@ -119,7 +119,7 @@ public class HighScoreUtility {
 		return false;
 	}
 
-	private static boolean createDefaultScoreFile() {
+	public static boolean createDefaultScoreFile() {
 		try {
 			PrintStream out = new PrintStream(new File("highscore"));
 			String str = "";

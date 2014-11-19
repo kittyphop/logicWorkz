@@ -33,11 +33,9 @@ public class PlayPanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.drawImage(DrawingUtility.play_panel, null, 0, 0);
-		if (data == null)
-			return;
 
-		// if(data.getPlayer().isGameOver())
-		// return;
+		if(WindowManager.getStatus()!=WindowManager.GAME_STATUS)
+			return;
 
 		ArrayList<IRenderable> list = data.getGameList();
 		for (int i = 0; i < list.size(); i++)
