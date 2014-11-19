@@ -43,6 +43,7 @@ public class MenuPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				WindowManager.setStatus(WindowManager.MINIGAME_STATUS);
 				data.getKmap().setRun(true);
+				data.setRemainWaitingTime();
 			}
 		});
 
@@ -95,7 +96,7 @@ public class MenuPanel extends JPanel {
 
 		highscoreList = new JList<String>(HighScoreUtility.listTop10());
 		highscoreList.setFont(new Font("Courier New", Font.PLAIN, 15));
-		
+
 		highscorePane = new JScrollPane();
 		highscorePane.setViewportView(highscoreList);
 		highscorePane.setBounds(26, 169, 336, 95);
