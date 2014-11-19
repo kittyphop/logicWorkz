@@ -22,14 +22,14 @@ public class ConfigurableOption {
 
 	public static final int MAX_LEVEL = 10;
 	public static final int MAX_TIME = 300;
-	public static final int MIN_MOVING_DELAY = 1;
+	public static final int MIN_MOVING_DELAY = 2;
 	public static final int MAX_MOVING_DELAY = 5;
 	public static final int BULLET_MOVING_DELAY = 0;
 	public static final int CLOCK_TIME = 10;
 	public static final int MIN_NEW_MONSTER = 100;
 	public static final int MAX_NEW_MONSTER = 200;
-	public static final int MIN_NEW_PROBE = 500;
-	public static final int MAX_NEW_PROBE = 700;
+	public static final int MIN_NEW_PROBE = 2000;
+	public static final int MAX_NEW_PROBE = 3000;
 	public static final int MIN_NEW_CLOCK = 2000;
 	public static final int MAX_NEW_CLOCK = 3000;
 	public static final int GND_POWER = 10;
