@@ -26,15 +26,15 @@ public class ConfigurableOption {
 	public static final int MAX_MOVING_DELAY = 5;
 	public static final int BULLET_MOVING_DELAY = 0;
 	public static final int CLOCK_TIME = 10;
-	public static final int MIN_NEW_MONSTER = 100;
-	public static final int MAX_NEW_MONSTER = 200;
+	public static final int MIN_NEW_MONSTER = 300;
+	public static final int MAX_NEW_MONSTER = 600;
 	public static final int MIN_NEW_PROBE = 2000;
 	public static final int MAX_NEW_PROBE = 3000;
-	public static final int MIN_NEW_CLOCK = 2000;
-	public static final int MAX_NEW_CLOCK = 3000;
+	public static final int MIN_NEW_CLOCK = 7000;
+	public static final int MAX_NEW_CLOCK = 10000;
 	public static final int GND_POWER = 10;
 	public static final int VDD_POWER = 10;
-	public static final int VDD_SPECIAL_POWER = 100;
+	public static final int VDD_SPECIAL_POWER = 50;
 	public static final int ATTACK = 10;
 	public static final int SHOOTING_DELAY = 50;
 	public static final int MIN_FIRING_DELAY = 150;
@@ -56,8 +56,8 @@ public class ConfigurableOption {
 	public static final int PLA_LIFE = 100;
 	public static final int MUX_LIFE = 130;
 	public static final int ASCII_DISPLAY_LIFE = 150;
-	public static final int ADDER_LIFE = 170;
-	public static final int IC74163_LIFE = 200;
+	public static final int ADDER_LIFE = 200;
+	public static final int IC74163_LIFE = 500;
 
 	// Score
 	public static final int NOT_SCORE = 50;
@@ -76,15 +76,15 @@ public class ConfigurableOption {
 	// ic74163
 	public static final int[][] MONSTER_PERCENT = new int[][] {
 			{ 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // level 0
-			{ 70, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // level 1
-			{ 30, 60, 100, 0, 0, 0, 0, 0, 0, 0, 0 }, // level 2
-			{ 30, 50, 70, 100, 0, 0, 0, 0, 0, 0, 0 }, // level 3
-			{ 20, 40, 60, 80, 100, 0, 0, 0, 0, 0, 0 }, // level 4
-			{ 0, 20, 40, 60, 80, 100, 0, 0, 0, 0, 0 }, // level 5
-			{ 0, 0, 20, 40, 60, 80, 100, 0, 0, 0, 0 }, // level 6
-			{ 0, 0, 10, 25, 40, 60, 80, 100, 0, 0, 0 }, // level 7
-			{ 0, 0, 10, 25, 40, 55, 70, 85, 100, 0, 0 }, // level 8
-			{ 0, 0, 0, 10, 25, 40, 55, 70, 85, 100, 0 }, // level 9
-			{ 0, 0, 0, 0, 10, 25, 40, 55, 70, 85, 100 }, }; // level BOSS (10)
+			{ 40, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, // level 1
+			{ 30, 50, 100, 0, 0, 0, 0, 0, 0, 0, 0 }, // level 2
+			{ 15, 30, 50, 100, 0, 0, 0, 0, 0, 0, 0 }, // level 3
+			{ 10, 25, 35, 50, 100, 0, 0, 0, 0, 0, 0 }, // level 4
+			{ 0, 10, 25, 35, 50, 100, 0, 0, 0, 0, 0 }, // level 5
+			{ 0, 0, 10, 25, 35, 50, 100, 0, 0, 0, 0 }, // level 6
+			{ 0, 0, 10, 20, 30, 40, 50, 100, 0, 0, 0 }, // level 7
+			{ 0, 0, 5, 10, 20, 30, 40, 50, 100, 0, 0 }, // level 8
+			{ 0, 0, 0, 5, 10, 20, 30, 40, 50, 100, 0 }, // level 9
+			{ 0, 0, 0, 0, 5, 10, 20, 30, 40, 50, 100 }, }; // level BOSS (10)
 
 }

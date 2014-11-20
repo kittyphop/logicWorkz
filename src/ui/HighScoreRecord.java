@@ -28,8 +28,9 @@ public class HighScoreRecord implements Comparable<HighScoreRecord> {
 	}
 
 	public static String[] defaultRecord() {
-		return new String[] { "A:800", "B:350", "C:300", "D:250", "E:200",
-				"F:100", "G:40", "H:30", "I:20", "J:10" };
+		return new String[] { "Adder:15000", "AsciiDisplay:12500", "Mux:10000",
+				"PLA:8500", "HexDisplay:7000", "JK-FF:5000", "D-FF:4500",
+				"AND:3000", "OR:2500", "NOT:1000" };
 	}
 
 	public int compareTo(HighScoreRecord o) {

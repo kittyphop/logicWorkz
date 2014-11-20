@@ -15,7 +15,7 @@ public abstract class RenderableObject implements IRenderable {
 	public RenderableObject(int x, int y) {
 		this.x = x;
 		this.y = y;
-		this.z = RandomUtility.random(1, Integer.MAX_VALUE - 1);
+		this.z = RandomUtility.random(1, Integer.MAX_VALUE - 2);
 		movingDelay = RandomUtility.random(ConfigurableOption.MIN_MOVING_DELAY,
 				ConfigurableOption.MAX_MOVING_DELAY);
 		movingDelayCounter = movingDelay;

@@ -65,6 +65,7 @@ public class DrawingUtility {
 	public static final BufferedImage probeP = getImage("res/img/probe_p.png");
 	public static final BufferedImage gndBullet = getImage("res/img/gnd.png");
 	public static final BufferedImage vddBullet = getImage("res/img/vdd.png");
+	public static final BufferedImage vddBulletSpecial = getImage("res/img/vdd_special.png");
 	public static final BufferedImage binarySwitch0 = getImage("res/img/binary_switch_0.png");
 	public static final BufferedImage binarySwitch1 = getImage("res/img/binary_switch_1.png");
 	public static final BufferedImage pushButton0 = getImage("res/img/push_button_0.png");

@@ -11,11 +11,13 @@ public class VddBullet extends Bullet {
 	public VddBullet(int x, int y, boolean special) {
 		super(x, y);
 		this.special = special;
-		if (special)
+		if (special) {
+			img = DrawingUtility.vddBulletSpecial;
 			power = ConfigurableOption.VDD_SPECIAL_POWER;
-		else
+		} else {
 			power = ConfigurableOption.VDD_POWER;
-		img = DrawingUtility.vddBullet;
+			img = DrawingUtility.vddBullet;
+		}
 	}
 
 	public boolean isSpecial() {

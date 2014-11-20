@@ -135,8 +135,10 @@ public class Player {
 			level++;
 			if (level == ConfigurableOption.MAX_LEVEL)
 				remainToNextLevel = 1;
-			if (level > ConfigurableOption.MAX_LEVEL)
+			if (level > ConfigurableOption.MAX_LEVEL) {
+				remainToNextLevel = 0;
 				gameOver = true;
+			}
 		}
 	}
 

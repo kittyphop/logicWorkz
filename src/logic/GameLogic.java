@@ -166,7 +166,7 @@ public class GameLogic implements Runnable {
 					ConfigurableOption.PLAYPANEL_HEIGHT
 							- DrawingUtility.clock.getHeight() - 10);
 			list.add(new Clock(ConfigurableOption.PLAYPANEL_WIDTH, y));
-			newProbeDelayCounter = RandomUtility.random(
+			newClockDelayCounter = RandomUtility.random(
 					ConfigurableOption.MIN_NEW_CLOCK,
 					ConfigurableOption.MAX_NEW_CLOCK);
 		}

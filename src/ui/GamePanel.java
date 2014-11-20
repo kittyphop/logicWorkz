@@ -111,7 +111,7 @@ public class GamePanel extends JPanel {
 		font = new Font("MS Sans Serif", Font.BOLD, 30);
 		g2.setFont(font);
 		g2.setColor(Color.BLACK);
-		g2.drawString("PROBE : ", 260, 537);
+		g2.drawString("PROBE : ", 285, 537);
 
 		boolean[] probe = data.getPlayer().getCollectedProbe();
 		for (int i = 0; i <= 3; i++) {
@@ -119,7 +119,7 @@ public class GamePanel extends JPanel {
 			if (probe[i])
 				isCollect = 1;
 			g2.drawImage(DrawingUtility.probe_array[i][isCollect], null,
-					400 + 40 * i, 507);
+					425 + 40 * i, 507);
 		}
 
 		// time counter
