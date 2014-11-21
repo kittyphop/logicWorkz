@@ -105,9 +105,11 @@ public class GameLogic implements Runnable {
 			data.getKmap().setReturnToGame(true);
 		}
 
-		if (InputUtility.getKeyTriggered(KeyEvent.VK_ESCAPE)
-				&& !data.getKmap().isRun())
+		if (InputUtility.getKeyTriggered(KeyEvent.VK_ESCAPE))
 			player.setGameOver(true);
+
+		if (InputUtility.getKeyTriggered(KeyEvent.VK_X))
+			player.doMission();
 
 		// decrease time
 		timeCounter--;
@@ -209,7 +211,9 @@ public class GameLogic implements Runnable {
 				for (IRenderable j : list) {
 					if (j instanceof Monster && i.isOverlap(j)) {
 						((VddBullet) i).destroyed = true;
-						((Monster) j).isHit(((VddBullet) i).getPower(), player);
+						if (!j.isDestroyed())
+							((Monster) j).isHit(((VddBullet) i).getPower(),
+									player);
 					}
 				}
 			}

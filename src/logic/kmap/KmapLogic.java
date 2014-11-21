@@ -30,6 +30,7 @@ public class KmapLogic implements Runnable {
 					InputUtility.postUpdate();
 				}
 				data.getKmap().setRun(true);
+				data.setTemp(new Frame(-1, -1, -1, -1));
 				if (data.getKmap().isCoverAllOnes())
 					data.getKmap().setScore(data.getKmap().getScore() + 1);
 				int score = data.getKmap().getScore();
@@ -88,7 +89,7 @@ public class KmapLogic implements Runnable {
 			return;
 		}
 
-		if (InputUtility.getKeyPressed(KeyEvent.VK_ESCAPE))
+		if (InputUtility.getKeyTriggered(KeyEvent.VK_ESCAPE))
 			map.setRun(false);
 
 		if (!map.isRun())
@@ -98,7 +99,7 @@ public class KmapLogic implements Runnable {
 		map.setTime(map.getTime() - 1);
 
 		// check if cover all ones
-		if (map.isCoverAllOnes()) {
+		if (map.isCoverAllOnes() || InputUtility.getKeyTriggered(KeyEvent.VK_X)) {
 			map.setScore(map.getScore() + 1);
 			map.randomKmap();
 			list.clear();
