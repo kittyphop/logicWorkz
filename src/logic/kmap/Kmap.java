@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import logic.gun.*;
 import config.ConfigurableOption;
 import config.RandomUtility;
+import config.SharedData;
 
 public class Kmap {
 
@@ -13,13 +14,15 @@ public class Kmap {
 	private int time, score, x, y, remainFrame, remainToNextGun;
 	private boolean run, returnToGame;
 	private Gun nextGun;
+	private SharedData data;
 
-	public Kmap() {
+	public Kmap(SharedData data) {
+		this.data = data;
 		randomKmap();
 		time = ConfigurableOption.MAX_KMAP_TIME;
 		score = 0;
 		remainFrame = ConfigurableOption.MAX_FRAME;
-		run = false;
+		setRun(false);
 		returnToGame = false;
 		x = -1;
 		y = -1;
@@ -39,7 +42,7 @@ public class Kmap {
 		this.time = time;
 		if (time <= 0) {
 			this.time = 0;
-			run = false;
+			setRun(false);
 		}
 	}
 
@@ -88,7 +91,7 @@ public class Kmap {
 		this.remainFrame = remainFrame;
 		if (remainFrame <= 0) {
 			this.remainFrame = 0;
-			run = false;
+			setRun(false);
 		}
 	}
 
@@ -97,7 +100,10 @@ public class Kmap {
 	}
 
 	public void setRun(boolean run) {
-		this.run = run;
+		synchronized (data) {
+			this.run = run;
+			data.notifyAll();
+		}
 	}
 
 	public boolean isRun() {

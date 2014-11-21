@@ -30,7 +30,10 @@ public class MenuPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				WindowManager.setStatus(WindowManager.GAME_STATUS);
+				synchronized (data) {
+					WindowManager.setStatus(WindowManager.GAME_STATUS);
+					data.notifyAll();
+				}
 			}
 		});
 
@@ -42,8 +45,8 @@ public class MenuPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				WindowManager.setStatus(WindowManager.MINIGAME_STATUS);
-				data.getKmap().setRun(true);
 				data.setRemainWaitingTime();
+				data.getKmap().setRun(true);
 			}
 		});
 

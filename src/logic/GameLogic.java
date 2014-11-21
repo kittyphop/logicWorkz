@@ -2,6 +2,7 @@ package logic;
 
 import java.awt.event.KeyEvent;
 import java.util.*;
+
 import ui.DrawingUtility;
 import ui.HighScoreUtility;
 import ui.WindowManager;
@@ -44,14 +45,29 @@ public class GameLogic implements Runnable {
 						Thread.sleep(5);
 					} catch (InterruptedException e) {
 					}
-					update();
-					if (!data.getKmap().isRun())
+					if (!data.getKmap().isRun()) {
+						update();
 						InputUtility.postUpdate();
+					} else {
+						synchronized (data) {
+							try {
+								data.wait();
+							} catch (InterruptedException e) {
+							}
+						}
+					}
 				}
 				HighScoreUtility.recordHighScore(data.getPlayer().getScore());
 				WindowManager.setStatus(WindowManager.MENU_STATUS);
 				data.resetGame();
 				isBossCreated = false;
+			} else {
+				synchronized (data) {
+					try {
+						data.wait();
+					} catch (InterruptedException e) {
+					}
+				}
 			}
 		}
 	}
@@ -76,7 +92,14 @@ public class GameLogic implements Runnable {
 			return;
 		}
 
-		if (player.isKmap()) {
+		if (InputUtility.getKeyTriggered(KeyEvent.VK_ENTER))
+			player.setPause(!player.isPause());
+
+		// check if pause
+		if (player.isPause())
+			return;
+
+		if (player.isKmap() || InputUtility.getKeyTriggered(KeyEvent.VK_K)) {
 			data.getKmap().setRun(true);
 			data.setRemainWaitingTime();
 			data.getKmap().setReturnToGame(true);
@@ -85,19 +108,6 @@ public class GameLogic implements Runnable {
 		if (InputUtility.getKeyTriggered(KeyEvent.VK_ESCAPE)
 				&& !data.getKmap().isRun())
 			player.setGameOver(true);
-
-		if (InputUtility.getKeyTriggered(KeyEvent.VK_K)) {
-			data.getKmap().setRun(true);
-			data.setRemainWaitingTime();
-			data.getKmap().setReturnToGame(true);
-		}
-
-		if (InputUtility.getKeyTriggered(KeyEvent.VK_ENTER))
-			player.setPause(!player.isPause());
-
-		// check if pause
-		if (player.isPause())
-			return;
 
 		// decrease time
 		timeCounter--;

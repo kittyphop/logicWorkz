@@ -2,7 +2,9 @@ package logic.kmap;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
+
 import logic.gun.*;
 import ui.WindowManager;
 import config.*;
@@ -65,6 +67,13 @@ public class KmapLogic implements Runnable {
 				data.resetKmap();
 				data.getPlayer().clearCollectedProbe();
 				data.getKmap().setRun(false);
+			} else {
+				synchronized (data) {
+					try {
+						data.wait();
+					} catch (InterruptedException e) {
+					}
+				}
 			}
 		}
 

@@ -20,7 +20,7 @@ public class SharedData {
 		player = new Player(this, 100, ConfigurableOption.PLAYPANEL_HEIGHT / 2);
 		gameList = new ArrayList<IRenderable>();
 		gameList.add(player.getCurrentGun());
-		kmap = new Kmap();
+		kmap = new Kmap(this);
 		temp = new Frame(-1, -1, -1, -1);
 		kmapList = new ArrayList<Frame>();
 		remainWaitingTime = 0;
@@ -69,7 +69,7 @@ public class SharedData {
 	}
 
 	public void resetKmap() {
-		kmap = new Kmap();
+		kmap = new Kmap(this);
 		temp = new Frame(-1, -1, -1, -1);
 		kmapList = new ArrayList<Frame>();
 	}

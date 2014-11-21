@@ -12,8 +12,10 @@ public class Player {
 	private boolean gameOver, pause, damaged;
 	private Gun currentGun;
 	private boolean[] collectedProbe;
+	private SharedData data;
 
 	public Player(SharedData data, int x, int y) {
+		this.data = data;
 		time = ConfigurableOption.MAX_TIME;
 		score = 0;
 		level = 0;
@@ -65,7 +67,10 @@ public class Player {
 	}
 
 	public void setGameOver(boolean gameOver) {
-		this.gameOver = gameOver;
+		synchronized (data) {
+			this.gameOver = gameOver;
+			data.notifyAll();
+		}
 	}
 
 	public boolean isPause() {
@@ -124,7 +129,7 @@ public class Player {
 		time -= attack;
 		if (time <= 0) {
 			time = 0;
-			gameOver = true;
+			setGameOver(true);
 		}
 	}
 
@@ -137,7 +142,7 @@ public class Player {
 				remainToNextLevel = 1;
 			if (level > ConfigurableOption.MAX_LEVEL) {
 				remainToNextLevel = 0;
-				gameOver = true;
+				setGameOver(true);
 			}
 		}
 	}
