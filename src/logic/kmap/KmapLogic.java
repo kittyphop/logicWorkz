@@ -34,39 +34,41 @@ public class KmapLogic implements Runnable {
 				if (data.getKmap().isCoverAllOnes())
 					data.getKmap().setScore(data.getKmap().getScore() + 1);
 				int score = data.getKmap().getScore();
-				int x = data.getPlayer().getCurrentGun().getX();
-				int y = data.getPlayer().getCurrentGun().getY();
-				Gun g = data.getPlayer().getCurrentGun();
-				if (score >= 10) {
-					g.setDestroyed(true);
-					Gun ng = new SpecialGunC(data, x, y, (score - 9) * 5 + 45);
-					data.getPlayer().setCurrentGun(ng);
-					data.getGameList().add(ng);
-				} else if (score >= 7
-						&& (!(g instanceof SpecialGunC) || (g instanceof SpecialGunB && g
-								.getBulletAmount() < (score - 6) * 5 + 30))) {
-					g.setDestroyed(true);
-					Gun ng = new SpecialGunB(data, x, y, (score - 6) * 5 + 30);
-					data.getPlayer().setCurrentGun(ng);
-					data.getGameList().add(ng);
-				} else if (score >= 4
-						&& (!(g instanceof SpecialGunC || g instanceof SpecialGunB) || (g instanceof SpecialGunA && g
-								.getBulletAmount() < (score - 3) * 10))) {
-					g.setDestroyed(true);
-					Gun ng = new SpecialGunA(data, x, y, (score - 3) * 10);
-					data.getPlayer().setCurrentGun(ng);
-					data.getGameList().add(ng);
-				}
-				if (!data.getKmap().isReturnToGame()) {
+				if (data.getKmap().isReturnToGame()) {
+					int x = data.getPlayer().getCurrentGun().getX();
+					int y = data.getPlayer().getCurrentGun().getY();
+					Gun g = data.getPlayer().getCurrentGun();
+					if (score >= 10) {
+						g.setDestroyed(true);
+						Gun ng = new SpecialGunC(data, x, y,
+								(score - 9) * 5 + 45);
+						data.getPlayer().setCurrentGun(ng);
+						data.getGameList().add(ng);
+					} else if (score >= 7
+							&& (!(g instanceof SpecialGunC) || (g instanceof SpecialGunB && g
+									.getBulletAmount() < (score - 6) * 5 + 30))) {
+						g.setDestroyed(true);
+						Gun ng = new SpecialGunB(data, x, y,
+								(score - 6) * 5 + 30);
+						data.getPlayer().setCurrentGun(ng);
+						data.getGameList().add(ng);
+					} else if (score >= 4
+							&& (!(g instanceof SpecialGunC || g instanceof SpecialGunB) || (g instanceof SpecialGunA && g
+									.getBulletAmount() < (score - 3) * 10))) {
+						g.setDestroyed(true);
+						Gun ng = new SpecialGunA(data, x, y, (score - 3) * 10);
+						data.getPlayer().setCurrentGun(ng);
+						data.getGameList().add(ng);
+					}
+					data.getPlayer().clearCollectedProbe();
+					data.setRemainWaitingTime();
+				} else {
 					JOptionPane.showMessageDialog(null,
 							"Game over\nYour score is " + score, "Game over",
 							JOptionPane.INFORMATION_MESSAGE);
 					WindowManager.setStatus(WindowManager.MENU_STATUS);
-					data.resetGame();
-				} else
-					data.setRemainWaitingTime();
+				}
 				data.resetKmap();
-				data.getPlayer().clearCollectedProbe();
 				data.getKmap().setRun(false);
 			} else {
 				synchronized (data) {

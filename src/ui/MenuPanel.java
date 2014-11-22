@@ -30,10 +30,8 @@ public class MenuPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				synchronized (data) {
-					WindowManager.setStatus(WindowManager.GAME_STATUS);
-					data.notifyAll();
-				}
+				WindowManager.setStatus(WindowManager.GAME_STATUS);
+				data.getPlayer().setGameOver(false);
 			}
 		});
 

@@ -19,7 +19,7 @@ public class Player {
 		time = ConfigurableOption.MAX_TIME;
 		score = 0;
 		level = 0;
-		gameOver = false;
+		setGameOver(true);
 		pause = false;
 		currentGun = new NormalGun(data, x, y, 0);
 		collectedProbe = new boolean[4];
@@ -61,8 +61,6 @@ public class Player {
 	}
 
 	public boolean isGameOver() {
-		if (time <= 0)
-			setGameOver(true);
 		return gameOver;
 	}
 

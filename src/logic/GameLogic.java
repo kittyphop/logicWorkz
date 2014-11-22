@@ -2,10 +2,7 @@ package logic;
 
 import java.awt.event.KeyEvent;
 import java.util.*;
-
-import ui.DrawingUtility;
-import ui.HighScoreUtility;
-import ui.WindowManager;
+import ui.*;
 import logic.bullet.*;
 import logic.collectible.*;
 import logic.monster.*;
@@ -37,8 +34,7 @@ public class GameLogic implements Runnable {
 
 	public void run() {
 		while (true) {
-			if (WindowManager.getStatus() == WindowManager.GAME_STATUS
-					&& !data.getPlayer().isGameOver()) {
+			if (!data.getPlayer().isGameOver()) {
 				InputUtility.reset();
 				while (!data.getPlayer().isGameOver()) {
 					try {
