@@ -80,24 +80,21 @@ public abstract class Gun extends RenderableObject {
 			player.getCurrentGun().y = ConfigurableOption.PLAYPANEL_HEIGHT
 					- player.getCurrentGun().img.getHeight();
 
-		if (data.getPlayer().isPause() || data.getKmap().isRun())
+		if (data.getPlayer().isPause() || data.getKmap().isRun()) {
 			super.render(g2);
-		else if (data.getPlayer().isDamaged()) {
+			return;
+		}
+		if (data.getPlayer().isDamaged()) {
 			renderDelayCounter--;
 			if (renderDelayCounter > ConfigurableOption.RENDER_DELAY / 2)
 				return;
-			if (InputUtility.getKeyPressed(KeyEvent.VK_SPACE))
-				img = img1;
-			else
-				img = img0;
 			if (renderDelayCounter == 0)
 				renderDelayCounter = ConfigurableOption.RENDER_DELAY;
-		} else {
-			if (InputUtility.getKeyPressed(KeyEvent.VK_SPACE))
-				img = img1;
-			else
-				img = img0;
 		}
+		if (InputUtility.getKeyPressed(KeyEvent.VK_SPACE))
+			img = img1;
+		else
+			img = img0;
 		super.render(g2);
 	}
 

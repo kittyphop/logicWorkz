@@ -182,7 +182,7 @@ public class GameLogic implements Runnable {
 		// check gun damaged
 		damagedDelayCounter--;
 		if (damagedDelayCounter < 0) {
-			damagedDelayCounter = 1;
+			damagedDelayCounter = 0;
 			player.setDamaged(false);
 		}
 
