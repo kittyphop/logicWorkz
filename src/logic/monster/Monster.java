@@ -2,6 +2,7 @@ package logic.monster;
 
 import java.util.ArrayList;
 
+import ui.AudioUtility;
 import logic.IRenderable;
 import logic.Player;
 import logic.Rectangle;
@@ -37,6 +38,7 @@ public abstract class Monster extends RenderableObject {
 	public void isHit(int attack, Player player) {
 		life -= attack;
 		if (life <= 0) {
+			new Thread(new AudioUtility(AudioUtility.ENEMY_DIE)).start();
 			destroyed = true;
 			player.setScore(player.getScore() + reward);
 			boolean mission = false;

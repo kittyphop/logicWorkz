@@ -3,6 +3,7 @@ package logic.collectible;
 import logic.Player;
 import logic.Rectangle;
 import logic.RenderableObject;
+import ui.AudioUtility;
 import ui.DrawingUtility;
 import config.ConfigurableOption;
 
@@ -35,6 +36,7 @@ public class Clock extends RenderableObject implements ICollectible {
 	}
 
 	public void collect(Player player) {
+		new Thread(new AudioUtility(AudioUtility.COLLECT_CLOCK)).start();
 		destroyed = true;
 		player.setTime(player.getTime() + ConfigurableOption.CLOCK_TIME);
 	}

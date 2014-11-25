@@ -3,6 +3,7 @@ package logic.collectible;
 import logic.Player;
 import logic.Rectangle;
 import logic.RenderableObject;
+import ui.AudioUtility;
 import ui.DrawingUtility;
 import config.ConfigurableOption;
 
@@ -48,6 +49,7 @@ public class Probe extends RenderableObject implements ICollectible {
 	}
 
 	public void collect(Player player) {
+		new Thread(new AudioUtility(AudioUtility.COLLECT_PROBE)).start();
 		destroyed = true;
 		player.collectNewProbe(this);
 	}

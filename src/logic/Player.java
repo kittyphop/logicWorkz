@@ -1,5 +1,6 @@
 package logic;
 
+import ui.AudioUtility;
 import logic.collectible.Probe;
 import logic.gun.Gun;
 import logic.gun.NormalGun;
@@ -124,10 +125,12 @@ public class Player {
 	}
 
 	public void isHit(int attack) {
+		new Thread(new AudioUtility(AudioUtility.DAMAGED)).start();
 		time -= attack;
 		if (time <= 0) {
 			time = 0;
 			setGameOver(true);
+			new Thread(new AudioUtility(AudioUtility.GAME_OVER)).start();
 		}
 	}
 

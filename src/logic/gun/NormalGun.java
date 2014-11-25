@@ -7,6 +7,7 @@ import logic.IRenderable;
 import logic.Player;
 import logic.Rectangle;
 import logic.bullet.VddBullet;
+import ui.AudioUtility;
 import ui.DrawingUtility;
 
 public class NormalGun extends Gun {
@@ -19,6 +20,7 @@ public class NormalGun extends Gun {
 	}
 
 	public void shoot(Player player, ArrayList<IRenderable> list) {
+		new Thread(new AudioUtility(AudioUtility.SHOOT)).start();
 		int h = DrawingUtility.vddBullet.getHeight() / 2;
 		list.add(new VddBullet(x + img.getWidth(), y + img.getHeight() / 2 - h,
 				false));
