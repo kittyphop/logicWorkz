@@ -57,16 +57,16 @@ public class PlayPanel extends JPanel {
 			// current gun
 
 			Gun currentGun = data.getPlayer().getCurrentGun();
-			;
+
 			BufferedImage gunImg;
 			if (currentGun instanceof NormalGun)
 				gunImg = DrawingUtility.binarySwitch0;
 			else if (currentGun instanceof SpecialGunA)
-				gunImg = DrawingUtility.pushButton0;
+				gunImg = DrawingUtility.pushButton0_45pix;
 			else if (currentGun instanceof SpecialGunB)
-				gunImg = DrawingUtility.oneShot;
+				gunImg = DrawingUtility.oneShot_45pix;
 			else
-				gunImg = DrawingUtility.hexKeyboard;
+				gunImg = DrawingUtility.hexKeyboard_45pix;
 
 			if (!(currentGun instanceof NormalGun)) {
 				Font font = new Font("MS Sans Serif", Font.BOLD, 30);
@@ -78,18 +78,10 @@ public class PlayPanel extends JPanel {
 				double w = gunImg.getWidth();
 				double h = gunImg.getHeight();
 
-				if (w > h) {
-					h *= 45 / w;
-					w = 45;
-				} else {
-					w *= 45 / h;
-					h = 45;
-				}
-
 				g2.setColor(Color.WHITE);
 				g2.fillRect(460, 215, 51, 51);
-				g2.drawImage(gunImg, (int) (463 + (45 - w) / 2),
-						(int) (218 + (45 - h) / 2), (int) w, (int) h, null);
+				g2.drawImage(gunImg, null, (int) (463 + (45 - w) / 2),
+						(int) (218 + (45 - h) / 2));
 			}
 			// count down
 

@@ -150,41 +150,33 @@ public class GamePanel extends JPanel {
 
 		BufferedImage mon;
 		if (level == 0)
-			mon = DrawingUtility.not;
+			mon = DrawingUtility.not_45pix;
 		else if (level == 1)
-			mon = DrawingUtility.or;
+			mon = DrawingUtility.or_45pix;
 		else if (level == 2)
-			mon = DrawingUtility.and;
+			mon = DrawingUtility.and_45pix;
 		else if (level == 3)
-			mon = DrawingUtility.dFF;
+			mon = DrawingUtility.dFF_45pix;
 		else if (level == 4)
-			mon = DrawingUtility.jkFF;
+			mon = DrawingUtility.jkFF_45pix;
 		else if (level == 5)
-			mon = DrawingUtility.hexDisplay;
+			mon = DrawingUtility.hexDisplay_45pix;
 		else if (level == 6)
-			mon = DrawingUtility.pla;
+			mon = DrawingUtility.pla_45pix;
 		else if (level == 7)
-			mon = DrawingUtility.mux;
+			mon = DrawingUtility.mux_45pix;
 		else if (level == 8)
-			mon = DrawingUtility.asciiDisplay;
+			mon = DrawingUtility.asciiDisplay_45pix;
 		else if (level == 9)
-			mon = DrawingUtility.adder;
+			mon = DrawingUtility.adder_45pix;
 		else
-			mon = DrawingUtility.ic74163;
+			mon = DrawingUtility.ic74163_45pix;
 
 		double w = mon.getWidth();
 		double h = mon.getHeight();
 
-		if (w > h) {
-			h *= 45 / w;
-			w = 45;
-		} else {
-			w *= 45 / h;
-			h = 45;
-		}
-
-		g2.drawImage(mon, (int) (760 + (45 - w) / 2),
-				(int) (505 + (45 - h) / 2), (int) w, (int) h, null);
+		g2.drawImage(mon, null, (int) (760 + (45 - w) / 2),
+				(int) (505 + (45 - h) / 2));
 
 	}
 }

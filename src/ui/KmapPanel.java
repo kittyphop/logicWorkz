@@ -173,9 +173,9 @@ public class KmapPanel extends JPanel {
 			list.get(i).render(g2);
 		data.getTemp().render(g2);
 
-		if(WindowManager.getStatus()==WindowManager.MINIGAME_STATUS)
+		if (WindowManager.getStatus() == WindowManager.MINIGAME_STATUS)
 			return;
-		
+
 		// next gun
 
 		int remainToGun = data.getKmap().getRemainToNextGun();
@@ -184,11 +184,11 @@ public class KmapPanel extends JPanel {
 		if (nextGun instanceof NormalGun)
 			nextGunImg = DrawingUtility.binarySwitch0;
 		else if (nextGun instanceof SpecialGunA)
-			nextGunImg = DrawingUtility.pushButton0;
+			nextGunImg = DrawingUtility.pushButton0_45pix;
 		else if (nextGun instanceof SpecialGunB)
-			nextGunImg = DrawingUtility.oneShot;
+			nextGunImg = DrawingUtility.oneShot_45pix;
 		else if (nextGun instanceof SpecialGunC)
-			nextGunImg = DrawingUtility.hexKeyboard;
+			nextGunImg = DrawingUtility.hexKeyboard_45pix;
 		else
 			nextGunImg = null;
 
@@ -197,7 +197,7 @@ public class KmapPanel extends JPanel {
 		g2.setColor(Color.WHITE);
 
 		if (nextGunImg == null) {
-			nextGunImg = DrawingUtility.hexKeyboard;
+			nextGunImg = DrawingUtility.hexKeyboard_45pix;
 			g2.drawString("You got ", 660, 455);
 		} else {
 			g2.drawString(remainToGun + " x for ", 680, 455);
@@ -206,18 +206,10 @@ public class KmapPanel extends JPanel {
 		double w = nextGunImg.getWidth();
 		double h = nextGunImg.getHeight();
 
-		if (w > h) {
-			h *= 45 / w;
-			w = 45;
-		} else {
-			w *= 45 / h;
-			h = 45;
-		}
-
 		g2.setColor(Color.WHITE);
 		g2.fillRect(787, 417, 51, 51);
-		g2.drawImage(nextGunImg, (int) (790 + (45 - w) / 2),
-				(int) (420 + (45 - h) / 2), (int) w, (int) h, null);
+		g2.drawImage(nextGunImg, null, (int) (790 + (45 - w) / 2),
+				(int) (420 + (45 - h) / 2));
 
 	}
 }

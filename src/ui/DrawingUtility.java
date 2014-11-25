@@ -86,7 +86,23 @@ public class DrawingUtility {
 	public static final BufferedImage adder = getImage("res/img/adder.png");
 	public static final BufferedImage asciiDisplay = getImage("res/img/ascii_display.png");
 	public static final BufferedImage ic74163 = getImage("res/img/74163.png");
+	
+	public static final BufferedImage and_45pix = getImage("res/img/and_45pix.png");
+	public static final BufferedImage or_45pix = getImage("res/img/or_45pix.png");
+	public static final BufferedImage not_45pix = getImage("res/img/not_45pix.png");
+	public static final BufferedImage hexDisplay_45pix = getImage("res/img/hex_display_45pix.png");
+	public static final BufferedImage dFF_45pix = getImage("res/img/d_ff_45pix.png");
+	public static final BufferedImage jkFF_45pix = getImage("res/img/jk_ff_45pix.png");
+	public static final BufferedImage pla_45pix = getImage("res/img/pla_45pix.png");
+	public static final BufferedImage mux_45pix = getImage("res/img/mux_45pix.png");
+	public static final BufferedImage adder_45pix = getImage("res/img/adder_45pix.png");
+	public static final BufferedImage asciiDisplay_45pix = getImage("res/img/ascii_display_45pix.png");
+	public static final BufferedImage ic74163_45pix = getImage("res/img/74163_45pix.png");
 
+	public static final BufferedImage pushButton0_45pix = getImage("res/img/push_button_45pix.png");
+	public static final BufferedImage oneShot_45pix = getImage("res/img/one_shot_45pix.png");
+	public static final BufferedImage hexKeyboard_45pix = getImage("res/img/hex_keyboard_45pix.png");
+	
 	public static final BufferedImage[][] probe_array;
 
 	static {
