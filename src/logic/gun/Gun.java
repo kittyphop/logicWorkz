@@ -3,12 +3,10 @@ package logic.gun;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 import config.ConfigurableOption;
 import config.InputUtility;
 import config.SharedData;
-import logic.IRenderable;
 import logic.Player;
 import logic.Rectangle;
 import logic.RenderableObject;
@@ -28,7 +26,7 @@ public abstract class Gun extends RenderableObject {
 		renderDelayCounter = ConfigurableOption.RENDER_DELAY;
 	}
 
-	public abstract void shoot(Player player, ArrayList<IRenderable> list);
+	public abstract void shoot();
 
 	public boolean canShoot() {
 		return bullet > 0;
