@@ -38,6 +38,7 @@ public class Player {
 		if (this.time <= 0) {
 			this.time = 0;
 			setGameOver(true);
+			new Thread(new AudioUtility(AudioUtility.GAME_OVER)).start();
 		}
 	}
 
@@ -130,6 +131,7 @@ public class Player {
 		if (time <= 0) {
 			time = 0;
 			setGameOver(true);
+			new Thread(new AudioUtility(AudioUtility.GAME_OVER)).start();
 		}
 	}
 

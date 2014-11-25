@@ -25,8 +25,8 @@ public class AudioBackGround implements Runnable {
 					ac.loop();
 				}
 				if (data.getKmap().isGameOver()) {
-					ac.stop();
 					currentClip = -1;
+					ac.stop();
 				}
 			} else if (!data.getPlayer().isGameOver()) {
 				if (!data.getPlayer().isPause() && currentClip != 1) {
@@ -40,8 +40,8 @@ public class AudioBackGround implements Runnable {
 					ac.stop();
 				}
 			} else if (data.getPlayer().isGameOver() && currentClip == 1) {
-				ac.stop();
 				currentClip = -1;
+				ac.stop();
 			} else if (WindowManager.getStatus() == WindowManager.MENU_STATUS) {
 				if (currentClip != 0) {
 					currentClip = 0;

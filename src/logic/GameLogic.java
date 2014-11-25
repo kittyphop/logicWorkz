@@ -57,7 +57,6 @@ public class GameLogic implements Runnable {
 						}
 					}
 				}
-				new Thread(new AudioUtility(AudioUtility.GAME_OVER)).start();
 				HighScoreUtility.recordHighScore(data.getPlayer().getScore());
 				WindowManager.setStatus(WindowManager.MENU_STATUS);
 				data.resetGame();
@@ -109,8 +108,10 @@ public class GameLogic implements Runnable {
 			data.getKmap().setReturnToGame(true);
 		}
 
-		if (InputUtility.getKeyTriggered(KeyEvent.VK_ESCAPE))
+		if (InputUtility.getKeyTriggered(KeyEvent.VK_ESCAPE)) {
 			player.setGameOver(true);
+			new Thread(new AudioUtility(AudioUtility.GAME_OVER)).start();
+		}
 
 		if (InputUtility.getKeyTriggered(KeyEvent.VK_X))
 			player.doMission();
