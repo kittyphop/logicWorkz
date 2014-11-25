@@ -108,13 +108,13 @@ public class DrawingUtility {
 	static {
 		probe_array = new BufferedImage[4][2];
 		probe_array[0][0] = getImage("res/img/probe_k_0.png");
-		probe_array[0][1] = getImage("res/img/probe_k_1.png");
+		probe_array[0][1] = getImage("res/img/probe_k.png");
 		probe_array[1][0] = getImage("res/img/probe_m_0.png");
-		probe_array[1][1] = getImage("res/img/probe_m_1.png");
+		probe_array[1][1] = getImage("res/img/probe_m.png");
 		probe_array[2][0] = getImage("res/img/probe_a_0.png");
-		probe_array[2][1] = getImage("res/img/probe_a_1.png");
+		probe_array[2][1] = getImage("res/img/probe_a.png");
 		probe_array[3][0] = getImage("res/img/probe_p_0.png");
-		probe_array[3][1] = getImage("res/img/probe_p_1.png");
+		probe_array[3][1] = getImage("res/img/probe_p.png");
 	}
 
 }

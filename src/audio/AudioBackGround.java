@@ -25,8 +25,8 @@ public class AudioBackGround implements Runnable {
 					ac.loop();
 				}
 				if (data.getKmap().isGameOver()) {
-					currentClip = -1;
 					ac.stop();
+					break;
 				}
 			} else if (!data.getPlayer().isGameOver()) {
 				if (!data.getPlayer().isPause() && currentClip != 1) {
@@ -36,12 +36,12 @@ public class AudioBackGround implements Runnable {
 					ac.loop();
 				}
 				if (data.getPlayer().isPause()) {
-					currentClip = -1;
 					ac.stop();
+					break;
 				}
 			} else if (data.getPlayer().isGameOver() && currentClip == 1) {
-				currentClip = -1;
 				ac.stop();
+				break;
 			} else if (WindowManager.getStatus() == WindowManager.MENU_STATUS) {
 				if (currentClip != 0) {
 					currentClip = 0;
@@ -51,5 +51,6 @@ public class AudioBackGround implements Runnable {
 				}
 			}
 		}
+		new Thread(new AudioBackGround(data)).start();
 	}
 }
