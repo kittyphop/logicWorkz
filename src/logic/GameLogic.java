@@ -127,7 +127,7 @@ public class GameLogic implements Runnable {
 		if (InputUtility.getKeyPressed(KeyEvent.VK_SPACE)) {
 			shootingDelayCounter--;
 			if (shootingDelayCounter <= 0) {
-				player.getCurrentGun().shoot(player, list);
+				player.getCurrentGun().shoot();
 				shootingDelayCounter = ConfigurableOption.SHOOTING_DELAY;
 			}
 		} else {

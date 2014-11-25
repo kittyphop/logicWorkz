@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import audio.AudioUtility;
 import config.SharedData;
 import logic.IRenderable;
-import logic.Player;
 import logic.Rectangle;
 import logic.bullet.VddBullet;
 import ui.DrawingUtility;
@@ -19,9 +18,10 @@ public class NormalGun extends Gun {
 		img1 = DrawingUtility.binarySwitch1;
 	}
 
-	public void shoot(Player player, ArrayList<IRenderable> list) {
+	public void shoot() {
 		new Thread(new AudioUtility(AudioUtility.SHOOT)).start();
 		int h = DrawingUtility.vddBullet.getHeight() / 2;
+		ArrayList<IRenderable> list = data.getGameList();
 		list.add(new VddBullet(x + img.getWidth(), y + img.getHeight() / 2 - h,
 				false));
 	}
