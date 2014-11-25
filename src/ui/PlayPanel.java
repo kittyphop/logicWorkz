@@ -28,7 +28,7 @@ public class PlayPanel extends JPanel {
 	protected static final AlphaComposite opaque = AlphaComposite.getInstance(
 			AlphaComposite.SRC_OVER, 1);
 
-	SharedData data;
+	private SharedData data;
 
 	public PlayPanel(SharedData data) {
 		this.data = data;

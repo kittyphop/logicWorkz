@@ -12,11 +12,11 @@ import config.SharedData;
 
 public class MenuPanel extends JPanel {
 
-	JButton newGameButton, minigameButton, howToPlayButton, creditButton,
-			resetButton, closeButton;
-	JList highscoreList;
-	JScrollPane highscorePane;
-	SharedData data;
+	private JButton newGameButton, minigameButton, howToPlayButton,
+			creditButton, resetButton, closeButton;
+	private JList highscoreList;
+	private JScrollPane highscorePane;
+	private SharedData data;
 
 	public MenuPanel(final SharedData data) {
 

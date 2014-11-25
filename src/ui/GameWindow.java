@@ -4,8 +4,6 @@ import javax.swing.JFrame;
 
 public class GameWindow extends JFrame {
 
-	GamePanel gamePanel;
-
 	public GameWindow() {
 
 		setTitle("LogicWorkz");
