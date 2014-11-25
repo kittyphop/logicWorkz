@@ -5,7 +5,7 @@ import config.SharedData;
 
 public class WindowManager {
 
-	private final MenuDialog menuDialog;
+	private MenuDialog menuDialog;
 	private JPanel currentDialogPanel;
 
 	private static GameWindow gameWindow;
