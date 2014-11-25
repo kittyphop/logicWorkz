@@ -39,6 +39,7 @@ public class Clock extends RenderableObject implements ICollectible {
 		new Thread(new AudioUtility(AudioUtility.COLLECT_CLOCK)).start();
 		destroyed = true;
 		player.setTime(player.getTime() + ConfigurableOption.CLOCK_TIME);
+		player.setScore(player.getScore() + ConfigurableOption.CLOCK_SCORE);
 	}
 
 	public Rectangle rectify() {

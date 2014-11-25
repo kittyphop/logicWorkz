@@ -52,6 +52,7 @@ public class Probe extends RenderableObject implements ICollectible {
 		new Thread(new AudioUtility(AudioUtility.COLLECT_PROBE)).start();
 		destroyed = true;
 		player.collectNewProbe(this);
+		player.setScore(player.getScore() + ConfigurableOption.PROBE_SCORE);
 	}
 
 	public Rectangle rectify() {

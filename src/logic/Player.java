@@ -144,6 +144,8 @@ public class Player {
 			if (level > ConfigurableOption.MAX_LEVEL) {
 				remainToNextLevel = 0;
 				setGameOver(true);
+				setScore(score + time * 10);
+				new Thread(new AudioUtility(AudioUtility.WIN)).start();
 			}
 		}
 	}

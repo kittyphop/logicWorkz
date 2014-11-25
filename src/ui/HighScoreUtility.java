@@ -30,7 +30,7 @@ public class HighScoreUtility {
 					JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			String name = JOptionPane.showInputDialog(null,
-					"Congratulation, you are ranked " + (index + 1)
+					"Congratulations!, you are ranked " + (index + 1)
 							+ "\nPlease enter your name", "High score",
 					JOptionPane.INFORMATION_MESSAGE);
 			if (name == null)

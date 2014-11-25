@@ -10,16 +10,18 @@ public class AudioUtility implements Runnable {
 	public static final int COLLECT_CLOCK = 1;
 	public static final int COLLECT_PROBE = 2;
 	public static final int SHOOT = 3;
-	public static final int KMAP_BG = 4;
-	public static final int GAME_BG = 5;
-	public static final int MENU_BG = 6;
-	public static final int GAME_OVER = 7;
-	public static final int PAUSE = 8;
-	public static final int ENEMY_DIE = 9;
-	public static final int DAMAGED = 10;
-	public static final int KMAP_CORRECT = 11;
-	public static final int KMAP_INCORRECT = 12;
-	public static final int KMAP_TIME = 13;
+	public static final int GAME_OVER = 4;
+	public static final int PAUSE = 5;
+	public static final int ENEMY_DIE = 6;
+	public static final int DAMAGED = 7;
+	public static final int KMAP_CORRECT = 8;
+	public static final int KMAP_INCORRECT = 9;
+	public static final int KMAP_TIME = 10;
+	public static final int KMAP_COMPLETE = 11;
+	public static final int WIN = 12;
+	public static final int KMAP_BG = 13;
+	public static final int GAME_BG = 14;
+	public static final int MENU_BG = 15;
 
 	public AudioUtility(int event) {
 		this.event = event;
@@ -45,6 +47,8 @@ public class AudioUtility implements Runnable {
 	private static AudioClip acKmapIncorrect = getAudio("res/sound/kmap_incorrect.wav");
 	private static AudioClip acGameOver = getAudio("res/sound/game_over.wav");
 	private static AudioClip acKmapTime = getAudio("res/sound/kmap_time.wav");
+	private static AudioClip acWin = getAudio("res/sound/win.wav");
+	private static AudioClip acKmapComplete = getAudio("res/sound/kmap_complete.wav");
 
 	public void run() {
 		AudioClip ac = null;
@@ -68,6 +72,10 @@ public class AudioUtility implements Runnable {
 			ac = acGameOver;
 		if (event == KMAP_TIME)
 			ac = acKmapTime;
+		if (event == WIN)
+			ac = acWin;
+		if (event == KMAP_COMPLETE)
+			ac = acKmapComplete;
 		ac.play();
 	}
 }

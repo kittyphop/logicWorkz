@@ -71,6 +71,8 @@ public class ConfigurableOption {
 	public static final int ASCII_DISPLAY_SCORE = 1000;
 	public static final int ADDER_SCORE = 2000;
 	public static final int IC74163_SCORE = 5000;
+	public static final int PROBE_SCORE = 100;
+	public static final int CLOCK_SCORE = 200;
 
 	// not, or, and, dFF, jkFF, hexDisplay, pla, mux, asciiDisplay, adder,
 	// ic74163

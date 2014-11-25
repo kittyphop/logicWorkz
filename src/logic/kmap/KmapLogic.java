@@ -32,8 +32,11 @@ public class KmapLogic implements Runnable {
 				}
 				data.getKmap().setRun(true);
 				data.setTemp(new Frame(-1, -1, -1, -1));
-				if (data.getKmap().isCoverAllOnes())
+				if (data.getKmap().isCoverAllOnes()) {
 					data.getKmap().setScore(data.getKmap().getScore() + 1);
+					new Thread(new AudioUtility(AudioUtility.KMAP_COMPLETE))
+							.start();
+				}
 				int score = data.getKmap().getScore();
 				if (data.getKmap().isReturnToGame()) {
 					int x = data.getPlayer().getCurrentGun().getX();
@@ -103,6 +106,7 @@ public class KmapLogic implements Runnable {
 
 		// check if cover all ones
 		if (map.isCoverAllOnes() || InputUtility.getKeyTriggered(KeyEvent.VK_X)) {
+			new Thread(new AudioUtility(AudioUtility.KMAP_COMPLETE)).start();
 			map.setScore(map.getScore() + 1);
 			map.randomKmap();
 			list.clear();
@@ -138,9 +142,9 @@ public class KmapLogic implements Runnable {
 				new Thread(new AudioUtility(AudioUtility.KMAP_CORRECT)).start();
 				map.cover(data.getTemp().toIndex());
 				list.add(new Frame(data.getTemp()));
-			}
-			else
-				new Thread(new AudioUtility(AudioUtility.KMAP_INCORRECT)).start();
+			} else
+				new Thread(new AudioUtility(AudioUtility.KMAP_INCORRECT))
+						.start();
 			map.setX(-1);
 			map.setY(-1);
 			data.setTemp(new Frame(-1, -1, -1, -1));
