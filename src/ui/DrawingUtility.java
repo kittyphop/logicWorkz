@@ -57,6 +57,9 @@ public class DrawingUtility {
 
 	public static final BufferedImage kmap_frame = getImage("res/img/kmap_frame.png");
 	public static final BufferedImage kmap_score = getImage("res/img/kmap_score.png");
+	
+	public static final BufferedImage how_to_play_0 = getImage("res/img/how_to_play_0.png");
+	public static final BufferedImage how_to_play_1 = getImage("res/img/how_to_play_1.png");
 
 	public static final BufferedImage clock = getImage("res/img/clock.png");
 	public static final BufferedImage probeK = getImage("res/img/probe_k.png");
