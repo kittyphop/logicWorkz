@@ -2,12 +2,12 @@ package logic.gun;
 
 import java.util.ArrayList;
 
+import audio.AudioUtility;
 import config.SharedData;
 import logic.IRenderable;
 import logic.Player;
 import logic.Rectangle;
 import logic.bullet.VddBullet;
-import ui.AudioUtility;
 import ui.DrawingUtility;
 
 public class SpecialGunC extends Gun {

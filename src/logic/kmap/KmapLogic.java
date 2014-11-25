@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import audio.AudioUtility;
 import logic.gun.*;
-import ui.AudioUtility;
 import ui.WindowManager;
 import config.*;
 
@@ -22,7 +22,7 @@ public class KmapLogic implements Runnable {
 		while (true) {
 			if (data.getKmap().isRun()) {
 				InputUtility.reset();
-				while (data.getKmap().isRun()) {
+				while (!data.getKmap().isGameOver()) {
 					try {
 						Thread.sleep(5);
 					} catch (InterruptedException e) {
@@ -30,7 +30,6 @@ public class KmapLogic implements Runnable {
 					update();
 					InputUtility.postUpdate();
 				}
-				data.getKmap().setRun(true);
 				data.setTemp(new Frame(-1, -1, -1, -1));
 				if (data.getKmap().isCoverAllOnes()) {
 					data.getKmap().setScore(data.getKmap().getScore() + 1);
@@ -67,6 +66,8 @@ public class KmapLogic implements Runnable {
 					data.getPlayer().clearCollectedProbe();
 					data.setRemainWaitingTime();
 				} else {
+					new Thread(new AudioUtility(AudioUtility.GAME_OVER))
+							.start();
 					JOptionPane.showMessageDialog(null,
 							"Game over\nYour score is " + score, "Game over",
 							JOptionPane.INFORMATION_MESSAGE);
@@ -96,7 +97,7 @@ public class KmapLogic implements Runnable {
 		}
 
 		if (InputUtility.getKeyTriggered(KeyEvent.VK_ESCAPE))
-			map.setRun(false);
+			map.setGameOver(true);
 
 		if (!map.isRun())
 			return;
@@ -136,15 +137,17 @@ public class KmapLogic implements Runnable {
 
 		// check if player release
 		if (InputUtility.isMouseLeftUpTriggered()) {
-			if (!data.getTemp().hasMinus())
+			if (!data.getTemp().hasMinus()) {
 				map.setRemainFrame(map.getRemainFrame() - 1);
-			if (map.ok(data.getTemp().toIndex())) {
-				new Thread(new AudioUtility(AudioUtility.KMAP_CORRECT)).start();
-				map.cover(data.getTemp().toIndex());
-				list.add(new Frame(data.getTemp()));
-			} else
-				new Thread(new AudioUtility(AudioUtility.KMAP_INCORRECT))
-						.start();
+				if (map.ok(data.getTemp().toIndex())) {
+					new Thread(new AudioUtility(AudioUtility.KMAP_CORRECT))
+							.start();
+					map.cover(data.getTemp().toIndex());
+					list.add(new Frame(data.getTemp()));
+				} else
+					new Thread(new AudioUtility(AudioUtility.KMAP_INCORRECT))
+							.start();
+			}
 			map.setX(-1);
 			map.setY(-1);
 			data.setTemp(new Frame(-1, -1, -1, -1));

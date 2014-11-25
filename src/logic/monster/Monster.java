@@ -2,7 +2,7 @@ package logic.monster;
 
 import java.util.ArrayList;
 
-import ui.AudioUtility;
+import audio.AudioUtility;
 import logic.IRenderable;
 import logic.Player;
 import logic.Rectangle;

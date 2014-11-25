@@ -1,8 +1,11 @@
 package logic;
 
+import highscore.HighScoreUtility;
+
 import java.awt.event.KeyEvent;
 import java.util.*;
 
+import audio.AudioUtility;
 import ui.*;
 import logic.bullet.*;
 import logic.collectible.*;
@@ -54,6 +57,7 @@ public class GameLogic implements Runnable {
 						}
 					}
 				}
+				new Thread(new AudioUtility(AudioUtility.GAME_OVER)).start();
 				HighScoreUtility.recordHighScore(data.getPlayer().getScore());
 				WindowManager.setStatus(WindowManager.MENU_STATUS);
 				data.resetGame();

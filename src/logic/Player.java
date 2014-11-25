@@ -1,6 +1,6 @@
 package logic;
 
-import ui.AudioUtility;
+import audio.AudioUtility;
 import logic.collectible.Probe;
 import logic.gun.Gun;
 import logic.gun.NormalGun;
@@ -130,7 +130,6 @@ public class Player {
 		if (time <= 0) {
 			time = 0;
 			setGameOver(true);
-			new Thread(new AudioUtility(AudioUtility.GAME_OVER)).start();
 		}
 	}
 

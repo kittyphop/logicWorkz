@@ -1,3 +1,4 @@
+import audio.AudioBackGround;
 import ui.WindowManager;
 import logic.GameLogic;
 import logic.kmap.KmapLogic;
@@ -9,6 +10,7 @@ public class Main {
 		SharedData data = new SharedData();
 		(new Thread(new GameLogic(data))).start();
 		(new Thread(new KmapLogic(data))).start();
+		(new Thread(new AudioBackGround(data))).start();
 		(new WindowManager(data)).begin();
 	}
 }

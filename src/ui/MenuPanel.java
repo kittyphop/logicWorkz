@@ -1,5 +1,7 @@
 package ui;
 
+import highscore.HighScoreUtility;
+
 import java.awt.*;
 import java.awt.event.*;
 

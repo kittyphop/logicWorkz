@@ -1,9 +1,9 @@
 package logic.collectible;
 
+import audio.AudioUtility;
 import logic.Player;
 import logic.Rectangle;
 import logic.RenderableObject;
-import ui.AudioUtility;
 import ui.DrawingUtility;
 import config.ConfigurableOption;
 

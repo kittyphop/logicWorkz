@@ -12,7 +12,7 @@ public class Kmap {
 	private int[][] map = new int[4][4];
 	private boolean[][] cover = new boolean[4][4];
 	private int time, score, x, y, remainFrame, remainToNextGun;
-	private boolean run, returnToGame;
+	private boolean run, returnToGame, gameOver;
 	private Gun nextGun;
 	private SharedData data;
 
@@ -24,6 +24,7 @@ public class Kmap {
 		remainFrame = ConfigurableOption.MAX_FRAME;
 		setRun(false);
 		returnToGame = false;
+		gameOver = false;
 		x = -1;
 		y = -1;
 		nextGun = new SpecialGunA(null, 0, 0, 0);
@@ -42,7 +43,7 @@ public class Kmap {
 		this.time = time;
 		if (time <= 0) {
 			this.time = 0;
-			setRun(false);
+			gameOver = true;
 		}
 	}
 
@@ -91,7 +92,7 @@ public class Kmap {
 		this.remainFrame = remainFrame;
 		if (remainFrame <= 0) {
 			this.remainFrame = 0;
-			setRun(false);
+			gameOver = true;
 		}
 	}
 
@@ -116,6 +117,14 @@ public class Kmap {
 
 	public void setReturnToGame(boolean returnToGame) {
 		this.returnToGame = returnToGame;
+	}
+
+	public boolean isGameOver() {
+		return gameOver;
+	}
+
+	public void setGameOver(boolean gameOver) {
+		this.gameOver = gameOver;
 	}
 
 	public Gun getNextGun() {
