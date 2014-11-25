@@ -1,11 +1,13 @@
 package logic.gun;
 
 import java.util.ArrayList;
+
 import config.SharedData;
 import logic.IRenderable;
 import logic.Player;
 import logic.Rectangle;
 import logic.bullet.VddBullet;
+import ui.AudioUtility;
 import ui.DrawingUtility;
 
 public class SpecialGunB extends Gun {
@@ -18,6 +20,7 @@ public class SpecialGunB extends Gun {
 	}
 
 	public void shoot(Player player, ArrayList<IRenderable> list) {
+		new Thread(new AudioUtility(AudioUtility.SHOOT)).start();
 		int h = DrawingUtility.vddBullet.getHeight() / 2;
 		list.add(new VddBullet(x + img.getWidth(), y + 13 - h, true));
 		list.add(new VddBullet(x + img.getWidth(), y + 33 - h, true));

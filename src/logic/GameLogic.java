@@ -2,6 +2,7 @@ package logic;
 
 import java.awt.event.KeyEvent;
 import java.util.*;
+
 import ui.*;
 import logic.bullet.*;
 import logic.collectible.*;
@@ -27,8 +28,8 @@ public class GameLogic implements Runnable {
 		newClockDelayCounter = RandomUtility.random(
 				ConfigurableOption.MIN_NEW_CLOCK,
 				ConfigurableOption.MAX_NEW_CLOCK);
-		shootingDelayCounter = 1;
-		damagedDelayCounter = 1;
+		shootingDelayCounter = 0;
+		damagedDelayCounter = 0;
 		timeCounter = ConfigurableOption.TIME_DELAY;
 	}
 
@@ -88,14 +89,17 @@ public class GameLogic implements Runnable {
 			return;
 		}
 
-		if (InputUtility.getKeyTriggered(KeyEvent.VK_ENTER))
+		if (InputUtility.getKeyTriggered(KeyEvent.VK_ENTER)) {
+			new Thread(new AudioUtility(AudioUtility.PAUSE)).start();
 			player.setPause(!player.isPause());
+		}
 
 		// check if pause
 		if (player.isPause())
 			return;
 
 		if (player.isKmap() || InputUtility.getKeyTriggered(KeyEvent.VK_K)) {
+			new Thread(new AudioUtility(AudioUtility.KMAP_TIME)).start();
 			data.getKmap().setRun(true);
 			data.setRemainWaitingTime();
 			data.getKmap().setReturnToGame(true);
@@ -117,12 +121,12 @@ public class GameLogic implements Runnable {
 		// check if player shoot
 		if (InputUtility.getKeyPressed(KeyEvent.VK_SPACE)) {
 			shootingDelayCounter--;
-			if (shootingDelayCounter == 0) {
+			if (shootingDelayCounter <= 0) {
 				player.getCurrentGun().shoot(player, list);
 				shootingDelayCounter = ConfigurableOption.SHOOTING_DELAY;
 			}
 		} else {
-			shootingDelayCounter = 1;
+			shootingDelayCounter = 0;
 		}
 
 		// sort objects by z

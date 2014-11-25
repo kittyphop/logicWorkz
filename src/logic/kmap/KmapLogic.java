@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import logic.gun.*;
+import ui.AudioUtility;
 import ui.WindowManager;
 import config.*;
 
@@ -134,9 +135,12 @@ public class KmapLogic implements Runnable {
 			if (!data.getTemp().hasMinus())
 				map.setRemainFrame(map.getRemainFrame() - 1);
 			if (map.ok(data.getTemp().toIndex())) {
+				new Thread(new AudioUtility(AudioUtility.KMAP_CORRECT)).start();
 				map.cover(data.getTemp().toIndex());
 				list.add(new Frame(data.getTemp()));
 			}
+			else
+				new Thread(new AudioUtility(AudioUtility.KMAP_INCORRECT)).start();
 			map.setX(-1);
 			map.setY(-1);
 			data.setTemp(new Frame(-1, -1, -1, -1));
