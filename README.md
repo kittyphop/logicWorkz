@@ -1,8 +1,6 @@
 # Logic Workz #
 2110215 Prog Meth Project
 
-### [select presentation time within 16 Nov.](http://goo.gl/zMRbu5) ###
-
 ### UML Diagram ###
 * [Logic](https://www.draw.io/?#G0B8JzQAISsklicVpUNklBYUI3MEU)
 * [UI](https://www.draw.io/?#G0B-oFrfahmAI7eVZzWXFGYkJpbXc)
