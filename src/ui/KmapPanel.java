@@ -32,7 +32,7 @@ public class KmapPanel extends JPanel {
 	protected static final AlphaComposite opaque = AlphaComposite.getInstance(
 			AlphaComposite.SRC_OVER, 1);
 
-	SharedData data;
+	private SharedData data;
 
 	public KmapPanel(SharedData data) {
 		this.data = data;

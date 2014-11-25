@@ -11,7 +11,7 @@ import config.ConfigurableOption;
 
 public class CreditPanel extends JPanel {
 
-	JButton backButton;
+	private JButton backButton;
 
 	public CreditPanel() {
 		setPreferredSize(ConfigurableOption.DIALOG_DIMENSION);

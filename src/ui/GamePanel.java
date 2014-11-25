@@ -27,9 +27,9 @@ public class GamePanel extends JPanel {
 	protected static final AlphaComposite opaque = AlphaComposite.getInstance(
 			AlphaComposite.SRC_OVER, 1);
 
-	PlayPanel playPanel;
-	KmapPanel kmapPanel;
-	SharedData data;
+	private PlayPanel playPanel;
+	private KmapPanel kmapPanel;
+	private SharedData data;
 
 	public GamePanel(SharedData data) {
 
