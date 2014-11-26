@@ -127,12 +127,7 @@ public class Player {
 
 	public void isHit(int attack) {
 		new Thread(new AudioUtility(AudioUtility.DAMAGED)).start();
-		time -= attack;
-		if (time <= 0) {
-			time = 0;
-			setGameOver(true);
-			new Thread(new AudioUtility(AudioUtility.GAME_OVER)).start();
-		}
+		setTime(time - attack);
 	}
 
 	public void doMission() {

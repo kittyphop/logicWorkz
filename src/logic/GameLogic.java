@@ -57,6 +57,13 @@ public class GameLogic implements Runnable {
 						}
 					}
 				}
+				ArrayList<IRenderable> list = data.getGameList();
+				for (int i = 0; i < list.size(); i++) {
+					IRenderable o = list.get(i);
+					if (o.isDestroyed() || o.getX() < -100
+							|| o.getX() > ConfigurableOption.PLAYPANEL_WIDTH)
+						list.remove(i);
+				}
 				HighScoreUtility.recordHighScore(data.getPlayer().getScore());
 				WindowManager.setStatus(WindowManager.MENU_STATUS);
 				data.resetGame();
