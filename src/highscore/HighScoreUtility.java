@@ -66,7 +66,11 @@ public class HighScoreUtility {
 			JOptionPane.showMessageDialog(WindowManager.getGameFrame(),
 					"Error loading highscore record", "Error",
 					JOptionPane.ERROR_MESSAGE);
-			return HighScoreRecord.defaultRecord();
+			return new String[] { "Adder        15000", "AsciiDisplay 12500",
+					"Mux          10000", "PLA          8500",
+					"HexDisplay   7000", "JK-FF        5000",
+					"D-FF         4500", "AND          3000",
+					"OR           2500", "NOT          1000" };
 		}
 		String[] highScoreList = new String[10];
 		int max_length = 0;
