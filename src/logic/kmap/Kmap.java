@@ -143,9 +143,9 @@ public class Kmap {
 		return x >= 297 && x <= 597 && y >= 160 && y <= 460;
 	}
 
-	public boolean ok(Frame l) {
-		int x1 = l.getX1(), y1 = l.getY1();
-		int x2 = l.getX2(), y2 = l.getY2();
+	public boolean ok(Frame f) {
+		int x1 = f.getX1(), y1 = f.getY1();
+		int x2 = f.getX2(), y2 = f.getY2();
 
 		if (x1 > x2) {
 			int t = x1;
@@ -175,9 +175,9 @@ public class Kmap {
 		return true;
 	}
 
-	public void cover(Frame l) {
-		int x1 = l.getX1(), y1 = l.getY1();
-		int x2 = l.getX2(), y2 = l.getY2();
+	public void cover(Frame f) {
+		int x1 = f.getX1(), y1 = f.getY1();
+		int x2 = f.getX2(), y2 = f.getY2();
 
 		if (x1 > x2) {
 			int t = x1;

@@ -14,11 +14,11 @@ public class Frame {
 		this.y2 = y2;
 	}
 
-	public Frame(Frame l) {
-		x1 = l.x1;
-		y1 = l.y1;
-		x2 = l.x2;
-		y2 = l.y2;
+	public Frame(Frame f) {
+		x1 = f.x1;
+		y1 = f.y1;
+		x2 = f.x2;
+		y2 = f.y2;
 	}
 
 	public int getX1() {
