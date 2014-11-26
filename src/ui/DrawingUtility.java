@@ -55,7 +55,7 @@ public class DrawingUtility {
 
 	public static final BufferedImage kmap_frame = getImage("res/img/kmap_frame.png");
 	public static final BufferedImage kmap_score = getImage("res/img/kmap_score.png");
-	
+
 	public static final BufferedImage how_to_play_0 = getImage("res/img/how_to_play_0.png");
 	public static final BufferedImage how_to_play_1 = getImage("res/img/how_to_play_1.png");
 
@@ -84,7 +84,7 @@ public class DrawingUtility {
 	public static final BufferedImage adder = getImage("res/img/adder.png");
 	public static final BufferedImage asciiDisplay = getImage("res/img/ascii_display.png");
 	public static final BufferedImage ic74163 = getImage("res/img/74163.png");
-	
+
 	public static final BufferedImage and_45pix = getImage("res/img/and_45pix.png");
 	public static final BufferedImage or_45pix = getImage("res/img/or_45pix.png");
 	public static final BufferedImage not_45pix = getImage("res/img/not_45pix.png");
@@ -100,7 +100,7 @@ public class DrawingUtility {
 	public static final BufferedImage pushButton0_45pix = getImage("res/img/push_button_45pix.png");
 	public static final BufferedImage oneShot_45pix = getImage("res/img/one_shot_45pix.png");
 	public static final BufferedImage hexKeyboard_45pix = getImage("res/img/hex_keyboard_45pix.png");
-	
+
 	public static final BufferedImage[][] probe_array;
 
 	static {
