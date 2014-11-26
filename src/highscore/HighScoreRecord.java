@@ -1,6 +1,5 @@
 package highscore;
 
-
 public class HighScoreRecord implements Comparable<HighScoreRecord> {
 
 	private String name = "";

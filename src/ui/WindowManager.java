@@ -67,7 +67,7 @@ public class WindowManager {
 			currentDialogPanel.repaint();
 			currentWindowPanel.repaint();
 
-			if(menuDialog.isVisible())
+			if (menuDialog.isVisible())
 				currentDialogPanel.requestFocus();
 		}
 	}
@@ -97,7 +97,7 @@ public class WindowManager {
 		currentDialogPanel.requestFocus();
 		menuDialog.setLocationRelativeTo(null);
 		menuDialog.setVisible(true);
-		
+
 	}
 
 	public void dialogToMenu() {
@@ -155,8 +155,7 @@ public class WindowManager {
 		menuDialog.setVisible(false);
 	}
 
-	public static JFrame getGameFrame()
-	{
+	public static JFrame getGameFrame() {
 		return gameWindow;
 	}
 }
