@@ -6,7 +6,7 @@ import config.ConfigurableOption;
 
 public class VddBullet extends Bullet {
 
-	boolean special;
+	private boolean special;
 
 	public VddBullet(int x, int y, boolean special) {
 		super(x, y);

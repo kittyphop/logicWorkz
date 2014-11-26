@@ -48,8 +48,6 @@ public class DrawingUtility {
 	public static final BufferedImage kmap_background = getImage("res/img/kmap_background.png");
 	public static final BufferedImage play_panel = getImage("res/img/play_panel.png");
 
-	public static final BufferedImage time_diagram = getImage("res/img/time_diagram.png");
-
 	public static final BufferedImage side_binary_switch = getImage("res/img/side_binary_switch.png");
 	public static final BufferedImage side_hex_keyboard = getImage("res/img/side_hex_keyboard.png");
 	public static final BufferedImage side_push_button = getImage("res/img/side_push_button.png");
