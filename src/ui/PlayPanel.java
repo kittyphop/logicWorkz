@@ -9,15 +9,12 @@ import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-
 import javax.swing.JPanel;
-
 import logic.IRenderable;
 import logic.gun.Gun;
 import logic.gun.NormalGun;
 import logic.gun.SpecialGunA;
 import logic.gun.SpecialGunB;
-import logic.gun.SpecialGunC;
 import config.ConfigurableOption;
 import config.SharedData;
 

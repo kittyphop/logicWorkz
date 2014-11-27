@@ -16,11 +16,8 @@ public class MenuPanel extends JPanel {
 			creditButton, resetButton, closeButton;
 	private JList highscoreList;
 	private JScrollPane highscorePane;
-	private SharedData data;
 
 	public MenuPanel(final SharedData data) {
-
-		this.data = data;
 
 		setPreferredSize(ConfigurableOption.DIALOG_DIMENSION);
 		setLayout(null);

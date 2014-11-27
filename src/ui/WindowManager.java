@@ -110,6 +110,7 @@ public class WindowManager {
 		currentWindowPanel.requestFocus();
 		gameWindow.setVisible(true);
 
+		menuDialog.setVisible(false);
 		menuDialog.setTitle("Welcome to LogicWorkz");
 		menuDialog.getContentPane().removeAll();
 		currentDialogPanel = new MenuPanel(data);
