@@ -16,6 +16,9 @@ public class HighScoreUtility {
 	public static void recordHighScore(int score) {
 		if (!loadHighScore() || highScoreRecord == null) {
 			JOptionPane.showMessageDialog(WindowManager.getGameFrame(),
+					"Game over\nYour score is " + score, "Game over",
+					JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(WindowManager.getGameFrame(),
 					"Error loading highscore record", "Error",
 					JOptionPane.ERROR_MESSAGE);
 			return;
