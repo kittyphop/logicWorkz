@@ -18,9 +18,6 @@ public class HighScoreUtility {
 			JOptionPane.showMessageDialog(WindowManager.getGameFrame(),
 					"Game over\nYour score is " + score, "Game over",
 					JOptionPane.INFORMATION_MESSAGE);
-			JOptionPane.showMessageDialog(WindowManager.getGameFrame(),
-					"Error loading highscore record", "Error",
-					JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		int index = highScoreRecord.length;
